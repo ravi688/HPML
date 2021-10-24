@@ -1,0 +1,427 @@
+#ifndef __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
+#define __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
+/*
+ * NOTE: 
+ * Wherever you are instantiating any templates from these template definitions,
+ * you should include mat44/header_config.h and mat44/mat44.h headers first.
+ */
+
+#include <template_system.h>
+#include <no_compile_header.h>
+
+#include <math.h>
+
+/*Begin: Template Definitions*/
+
+/*		Begin: template signatures*/
+#define mat44_mul_with_vec4(T) template(mat44_mul_with_vec4, T)
+#define mat44_translation(T) template(mat44_translation, T)
+#define mat44_scale(T) template(mat44_scale, T)
+#define mat44_rotation(T) template(mat44_rotation, T)
+#define mat44_shear(T) template(mat44_shear, T)
+#define mat44_reflection(T) template(mat44_reflection, T)
+#define mat44_shear_xy(T) template(mat44_shear_xy, T)
+#define mat44_shear_yx(T) template(mat44_shear_yx, T)
+#define mat44_shear_zx(T) template(mat44_shear_zx, T)
+#define mat44_shear_xz(T) template(mat44_shear_xz, T)
+#define mat44_shear_yz(T) template(mat44_shear_yz, T)
+#define mat44_shear_zy(T) template(mat44_shear_zy, T)
+#define mat44_rotation_x(T) template(mat44_rotation_x, T)
+#define mat44_rotation_y(T) template(mat44_rotation_y, T)
+#define mat44_rotation_z(T) template(mat44_rotation_z, T)
+/*		End: template signatures*/
+
+
+/*		Begin: template declarations*/
+#define instantiate_declaration_mat44_mul_with_vec4(T) mat44_t(T) mat44_mul_with_vec4(T)(mat44_t(T) mat, T x, T y, T z, T w)
+#define instantiate_declaration_mat44_translation(T) mat44_t(T) mat44_translation(T)(T x, T y, T z)
+#define instantiate_declaration_mat44_scale(T) mat44_t(T) mat44_scale(T)(T x, T y, T z)
+#define instantiate_declaration_mat44_rotation(T) mat44_t(T) mat44_rotation(T)(T angle, T x, T y, T z)
+#define instantiate_declaration_mat44_shear(T) mat44_t(T) mat44_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)
+#define instantiate_declaration_mat44_reflection(T) mat44_t(T) mat44_reflection(T)(T nx, T ny, T nz)
+#define instantiate_declaration_mat44_shear_xy(T) mat44_t(T) mat44_shear_xy(T)(T angle)
+#define instantiate_declaration_mat44_shear_yx(T) mat44_t(T) mat44_shear_yx(T)(T angle)
+#define instantiate_declaration_mat44_shear_zx(T) mat44_t(T) mat44_shear_zx(T)(T angle)
+#define instantiate_declaration_mat44_shear_xz(T) mat44_t(T) mat44_shear_xz(T)(T angle)
+#define instantiate_declaration_mat44_shear_yz(T) mat44_t(T) mat44_shear_yz(T)(T angle)
+#define instantiate_declaration_mat44_shear_zy(T) mat44_t(T) mat44_shear_zy(T)(T angle)
+#define instantiate_declaration_mat44_rotation_x(T) mat44_t(T) mat44_rotation_x(T)(T angle)
+#define instantiate_declaration_mat44_rotation_y(T) mat44_t(T) mat44_rotation_y(T)(T angle)
+#define instantiate_declaration_mat44_rotation_z(T) mat44_t(T) mat44_rotation_z(T)(T angle)
+/*		End: template declarations*/
+
+
+/* 		Begin: template implementations*/
+
+/* mat44_mul_with_vector(T): Multiplies a vector4 components with matrix 4x4
+ * mat44_t(T) mat: 4x4 matrix involved in the multiplication
+ * T x: x-component of the vector4
+ * T y: y-component of the vector4
+ * T z: z-component of the vector4
+ * returns: mat44_t(T) resultant matrix
+ */
+#define instantiate_implementation_mat44_mul_with_vec4(T)\
+mat44_t(T) mat44_mul_with_vec4(T)(mat44_t(T) mat, T x, T y, T z, T w)\
+{\
+	mat44_t(T) _mat =\
+	{\
+		mat.m00 * x, mat.m01 * y, mat.m02 * z, mat.m03 * w,\
+		mat.m10 * x, mat.m11 * y, mat.m12 * z, mat.m13 * w,\
+		mat.m20 * x, mat.m21 * y, mat.m22 * z, mat.m23 * w,\
+		mat.m30 * x, mat.m31 * y, mat.m32 * z, mat.m33 * w\
+	};\
+	return _mat;\
+}
+
+/*
+ * | px | 									| nx |	  | nx |
+ * | py | - 2 | px - ax, py - ay, pz - az | | ny |  * | ny |
+ * | pz |									| nz |	  | nz |
+ *
+ *
+ * | px | 										| nx |	  | nx |
+ * | py | - 2 {| px, py, pz | - | ax, ay, az |} | ny |  * | ny |
+ * | pz |										| nz |	  | nz |
+ *
+ *
+ * | px | 					  | nx |				| nx |	  	| nx |
+ * | py | - 2 {| px, py, pz | | ny |- | ax, ay, az || ny |}  * 	| ny |
+ * | pz |					  | nz |				| nz |	  	| nz |
+ *
+ *
+ * I x P - 2 * { transpose(P).N * N - transpose(A).N * N }
+ *
+ * I x P - 2 * transpose(N) X P * N - 2 * transpose(A).N * N
+ *
+ * | 1	0	0	0 | | px |					  	| px | | nx | 					   | nx | | nx |
+ * | 0	1 	0 	0 | | py | - 2 * | nx ny nz 0 | | py | | ny | - 2 * | ax ay az 1 | | ny | | ny |
+ * | 0 	0 	1 	0 | | pz |					 	| pz | | nz |					   | nz | | nz |
+ * | 0 	0 	0 	1 | | 1  |						| 1  | | 0  |					   | 0  | | 0  |
+ *
+ * | 1	0 	0 	0 |   | px  0   0   0 | 	   | nx  0   0   0 |	| nx  ny   nz  0 |   | px  0   0   0 |      | nx  0   0   0 |   | nx  ny  nz  0 |   | ax  0   0   0 |
+ * | 0	1	0	0 | X | 0   py  0   0 | -   2  | 0   ny  0   0 | X  | nx  ny   nz  0 | X | 0   py  0   0 |    2 | 0   ny  0   0 | X | nx  ny  nz  0 | X | 0   ay  0   0 |
+ * | 0	0 	1 	0 |   | 0   0   pz  0 |	       | 0   0   nz  0 |    | nx  ny   nz  0 |   | 0   0   pz  0 |  -   | 0   0   nz  0 |   | nx  ny  nz  0 |   | 0   0   az  0 |
+ * | 0	0	0	1 |   | 0   0   0   1 |	       | 0   0   0   0 |    | nx  ny   nz  0 |   | 0   0   0   1 |      | 0   0   0   0 |   | nx  ny  nz  0 |   | 0   0   0   1 |
+ * 		I 					P 							N 					M 					P 					K -->
+ *
+ * I x P - 2 * N x M x P - K
+ * I x P - 2 * N x transpose(transpose(P) x transpose(M)) - K
+ * I x P - 2 * transpose(P x transpose(M) x transpose(N)) - K
+ * I x P - 2 * transpose(P x transpose(M) x N) - K
+ * P - 2 * transpose(P x transpose(M) x N) - K
+ * transpose(P - 2 * P x transpose(M) x N) - K
+ * transpose(P x (I - 2 * transpose(M) x N)) - K
+ * transpose(I - 2 * transpose(M) x N) x P - K
+ * (I - 2 * N x M) x P - K 
+ *
+ * Since we are just considering the plane passing through the origin (0, 0, 0), we can assume K = 0 (null matrix)
+ * So, 
+ * Reflection Matrix [transform] = I - 2 * N x M
+ * Reflected Point = Reflection Matrix X P = (I - 2 * N x M) X P
+ */
+/* mat44_reflection(T): Creates a 4x4 reflection matrix for the plane passing through origin (0, 0, 0) having normal as (nx, ny, nz)
+ * T nx: x-component of the normal of the plane
+ * T ny: y-component of the normal of the plane
+ * T nz: z-component of the normal of the plane
+ * returns: mat44_t(T) 4x4 reflection matrix
+ */
+#define instantiate_implementation_mat44_reflection(T)\
+mat44_t(T) mat44_reflection(T)(T nx, T ny, T nz)\
+{\
+	mat44_t(T) N = mat44_diagonal(T)(nx, ny, nz, 0);\
+	mat44_t(T) M = \
+	{\
+		nx, ny, nz, 0,\
+		nx, ny, nz, 0,\
+		nx, ny, nz, 0,\
+		nx, ny, nz, 0,\
+	};\
+	return mat44_sub(T)(mat44_identity(T), mat44_mul_with_scalar(T)(mat44_mul(T)(N, M), 2));\
+}
+
+/* mat44_rotation_x(T): Creates a 4x4 rotation matrix along x axis [ in yz plane]
+ * T angle: angle of rotation
+ * returns: mat44_t(T) 4x4 rotation matrix
+ */
+#define instantiate_implementation_mat44_rotation_x(T)\
+mat44_t(T) mat44_rotation_x(T)(T angle)\
+{\
+	T cos_angle = cos(angle);\
+	T sin_angle = sin(angle);\
+	mat44_t(T) mat =\
+	{\
+		1, 		   0,		   0, 0,\
+		0, cos_angle, -sin_angle, 0,\
+		0, sin_angle, cos_angle,  0,\
+		0,   	   0, 		   0, 1\
+	};\
+	return mat;\
+}
+
+/* mat44_rotation_y(T): Creates a 4x4 rotation matrix along y axis [ in zx plane]
+ * T angle: angle of rotation
+ * returns: mat44_t(T) 4x4 rotation matrix
+ */
+#define instantiate_implementation_mat44_rotation_y(T)\
+mat44_t(T) mat44_rotation_y(T)(T angle)\
+{\
+	T cos_angle = cos(angle);\
+	T sin_angle = sin(angle);\
+	mat44_t(T) mat =\
+	{\
+		cos_angle, 0, sin_angle, 0,\
+		0, 		   1, 		  0, 0,\
+		-sin_angle,0, cos_angle, 0,\
+		0, 		   0, 		  0, 1\
+	};\
+	return mat;\
+}
+
+/* mat44_rotation_z(T): Creates a 4x4 rotation matrix along z axis [ in xy plane]
+ * T angle: angle of rotation
+ * returns: mat44_t(T) 4x4 rotation matrix
+ */
+#define instantiate_implementation_mat44_rotation_z(T)\
+mat44_t(T) mat44_rotation_z(T)(T angle)\
+{\
+	T cos_angle = cos(angle);\
+	T sin_angle = sin(angle);\
+	mat44_t(T) mat =\
+	{\
+		cos_angle, -sin_angle, 0, 0,\
+		sin_angle, cos_angle,  0, 0,\
+		0, 			0, 		   1, 0,\
+		0, 			0, 		   0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * Shear along the x axis in XY plane
+ * | 1 tan(0) 0 |
+ * | 0   1	  0 | = S(XY)
+ * | 0 	 0 	  1 |
+ *
+ * mat44_scale_xy(T): Calculates a shear 4x4 matrix along x axis in xy plane
+ * T angle: displacement angle in xy plane
+ * returns: mat44_t(T) shear matrix along x axis in xy plane
+ */
+#define instantiate_implementation_mat44_shear_xy(T)\
+mat44_t(T) mat44_shear_xy(T)(T angle)\
+{\
+	mat44_t(T) mat =\
+	{\
+		1, tan(angle), 0, 0,\
+		0, 			1, 0, 0,\
+		0, 			0, 1, 0,\
+		0, 			0, 0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * Shear along the y axis in XY plane
+ * | 1	 	0  0 |
+ * | tan(0) 1  0 | = S(YX)
+ * | 0 	 	0  1 |
+ *
+ * mat44_scale_yx(T): Calculates a shear 4x4 matrix along y axis in xy plane
+ * T angle: displacement angle in xy plane
+ * returns: mat44_t(T) shear matrix along y axis in xy plane
+ */
+#define instantiate_implementation_mat44_shear_yx(T)\
+mat44_t(T) mat44_shear_yx(T)(T angle)\
+{\
+	mat44_t(T) mat =\
+	{\
+		1, 			0, 0, 0,\
+		tan(angle), 1, 0, 0,\
+		0, 			0, 1, 0,\
+		0, 			0, 0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * Shear along the z axis in ZX plane
+ * | 1	 	0  0 |
+ * | 0		1  0 | = S(ZX)
+ * | tan(0) 0  1 |
+ *
+ * mat44_scale_zx(T): Calculates a shear 4x4 matrix along z axis in zx plane
+ * T angle: displacement angle in zx plane
+ * returns: mat44_t(T) shear matrix along z axis in zx plane
+ */
+#define instantiate_implementation_mat44_shear_zx(T)\
+mat44_t(T) mat44_shear_zx(T)(T angle)\
+{\
+	mat44_t(T) mat =\
+	{\
+		1,			0, 0, 0,\
+		0,			1, 0, 0,\
+		tan(angle), 1, 0, 0,\
+		0, 		 	0, 0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * Shear along the x axis in XZ plane
+ * | 1  0  tan(0) |
+ * | 0  1	  	0 | = S(XZ)
+ * | 0  0 	    1 |
+ *
+ * mat44_scale_xz(T): Calculates a shear 4x4 matrix along x axis in xz plane
+ * T angle: displacement angle in xz plane
+ * returns: mat44_t(T) shear matrix along x axis in xz plane
+ */
+#define instantiate_implementation_mat44_shear_xz(T)\
+mat44_t(T) mat44_shear_xz(T)(T angle)\
+{\
+	mat44_t(T) mat =\
+	{\
+		1, 0, tan(angle), 0,\
+		0, 1, 		   0, 0,\
+		0, 0, 		   1, 0,\
+		0, 0,		   0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * Shear along the y axis in YZ plane
+ * | 1  0  		0 |
+ * | 0  1  tan(0) | = S(YZ)
+ * | 0  0 	    1 |
+ *
+ * mat44_scale_yz(T): Calculates a shear 4x4 matrix along y axis in yz plane
+ * T angle: displacement angle in yz plane
+ * returns: mat44_t(T) shear matrix along y axis in yz plane
+ */
+#define instantiate_implementation_mat44_shear_yz(T)\
+mat44_t(T) mat44_shear_yz(T)(T angle)\
+{\
+	mat44_t(T) mat =\
+	{\
+		1, 0, 		   0, 0,\
+		0, 1, tan(angle), 0,\
+		0, 0, 		   1, 0,\
+		0, 0, 		   0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * Shear along the z axis in ZY plane
+ * | 1  0  		0 |
+ * | 0  1  		0 | = S(ZY)
+ * | 0  tan(0)  1 |
+ *
+ * mat44_scale_zy(T): Calculates a shear 4x4 matrix along y axis in zy plane
+ * T angle: displacement angle in zy plane
+ * returns: mat44_t(T) shear matrix along y axis in zy plane
+ */
+#define instantiate_implementation_mat44_shear_zy(T)\
+mat44_t(T) mat44_shear_zy(T)(T angle)\
+{\
+	mat44_t(T) mat =\
+	{\
+		1, 			0, 0, 0,\
+		0, 			1, 0, 0,\
+		0, tan(angle), 1, 0,\
+		0, 			0, 0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * mat44_translation(T): Calculates a translation 4x4 matrix having vec3(x, y, z) displacement
+ * T x: x-component of the displacement vector
+ * T y: y-component of the displacement vector
+ * T z: z-component of the displacement vector
+ * returns: mat44_t(T) translation matrix having vec3(x, y, z) displacement
+ */
+#define instantiate_implementation_mat44_translation(T)\
+mat44_t(T) mat44_translation(T)(T x, T y, T z)\
+{\
+	mat44_t(T) mat = \
+	{\
+		1, 0, 0, x,\
+		0, 1, 0, y,\
+		0, 0, 1, z,\
+		0, 0, 0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * mat44_scale(T): Calculates a scale 4x4 matrix having the scale factors as x [in x dir], y [in y dir], and z [in z dir]
+ * T x: scale factor in x direction
+ * T y: scale factor in y direction
+ * T z: scale factor in z direction
+ * returns: mat44_t(T) scale matrix having (x, y, z) scale factors
+ */
+#define instantiate_implementation_mat44_scale(T)\
+mat44_t(T) mat44_scale(T)(T x, T y, T z)\
+{\
+	mat44_t(T) mat =\
+	{\
+		x, 0, 0, 0,\
+		0, y, 0, 0,\
+		0, 0, z, 0,\
+		0, 0, 0, 1\
+	};\
+	return mat;\
+}
+
+/*
+ * mat44_rotation(T): Calculates a 4x4 rotation matrix having angle of rotation 'angle' around the unit axis '(x, y, z)'
+ * T angle: angle of rotation in radians
+ * T x: x-component of the unit axis vector
+ * T y: y-component of the unit axis vector
+ * T z: z-component of the unit axis vector
+ * returns: mat44_t(T) resultant rotation matrix
+ */
+#define instantiate_implementation_mat44_rotation(T)\
+mat44_t(T) mat44_rotation(T)(T angle, T x, T y, T z)\
+{\
+	EXCEPTION_BLOCK(\
+		if((x == 0) && (y == 0) && (z == 0))\
+			throw_exception(DIVIDE_BY_ZERO);\
+	)\
+	T yangle = atan2(z, x);\
+	T zangle = atan2(y, x);\
+	mat44_t(T) ymat = mat44_rotation_y(T)(-yangle);\
+	mat44_t(T) zmat = mat44_rotation_z(T)(-xangle);\
+	mat44_t(T) xmat = mat44_rotation_x(T)(angle);\
+	mat44_t(T) izmat = mat44_inverse(T)(zmat);\			//or transpose of zmat, since inverse of rotation matrix == transpose of rotation matrix
+	mat44_t(T) iymat = mat44_inverse(T)(ymat);\			//or transpose of ymat, since inverse of rotation matrix == transpose of rotation matrix
+	return mat44_mul(T)(iymat, mat44_mul(T)(izmat, mat44_mul(T)(xmat, mat44_mul(T)(zmat, ymat))));\
+}
+
+/*
+ * mat44_shear(T): Calculates a shear 4x4 matrix in 3D space [XY plane, ZX plane, and YZ plane]
+ * T xy_angle: angle for the shear in x direction in xy plane
+ * T yx_angle: angle for the shear in y direction in xy plane
+ * T zx_angle: angle for the shear in z direction in zx plane
+ * T xz_angle: angle for the shear in x direction in xz plane
+ * T yz_angle: angle for the shear in y direction in yz plane
+ * T zy_angle: angle for the shear in z direction in zy plane
+ * returns: mat44_t(T) shear matrix in 3D space
+ */
+#define instantiate_implementation_mat44_shear(T)\
+mat44_t(T) mat44_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)\
+{\
+	mat44_t(T) xy_mat = mat44_shear_xy(T)(xy_angle);\
+	mat44_t(T) yx_mat = mat44_shear_yx(T)(yx_angle);\
+	mat44_t(T) zx_mat = mat44_shear_zx(T)(zx_angle);\
+	mat44_t(T) xz_mat = mat44_shear_xz(T)(xz_angle);\
+	mat44_t(T) yz_mat = mat44_shear_yz(T)(yz_angle);\
+	mat44_t(T) zy_mat = mat44_shear_zy(T)(zy_angle);\
+	return mat44_mul(T)(xy_mat, mat44_mul(T)(yx_mat, mat44_mul(T)(zx_mat, mat44_mul(T)(xz_mat, mat44_mul(T)(yz_mat, zy_mat)))));\
+}
+/*		End: template implementations*/
+
+/*End: Template Definitions*/
+
+#endif /*__HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__*/

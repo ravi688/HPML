@@ -1,0 +1,78 @@
+
+
+#ifndef __HPML_AFFINE_TRANSFORMATION_TEMPLATE_INSTANTIATIONS_H__
+#define __HPML_AFFINE_TRANSFORMATION_TEMPLATE_INSTANTIATIONS_H__
+
+#include <affine_transformation/template_definitions.h>
+
+/*Begin: Template Instantiations*/
+instantiate_declaration_mat44_translation(int);
+instantiate_declaration_mat44_scale(int);
+instantiate_declaration_mat44_rotation(int); 
+instantiate_declaration_mat44_shear(int);
+instantiate_declaration_mat44_reflection(int);
+instantiate_declaration_mat44_shear_xy(int);
+instantiate_declaration_mat44_shear_yx(int);
+instantiate_declaration_mat44_shear_zx(int);
+instantiate_declaration_mat44_shear_xz(int);
+instantiate_declaration_mat44_shear_zy(int);
+instantiate_declaration_mat44_shear_yz(int);
+instantiate_declaration_mat44_rotation_x(int);
+instantiate_declaration_mat44_rotation_y(int);
+instantiate_declaration_mat44_rotation_z(int);
+instantiate_declaration_mat44_mul_with_vec4(int);
+
+instantiate_declaration_mat44_translation(float);
+instantiate_declaration_mat44_scale(float);
+instantiate_declaration_mat44_rotation(float); 
+instantiate_declaration_mat44_shear(float);
+instantiate_declaration_mat44_reflection(float);
+instantiate_declaration_mat44_shear_xy(float);
+instantiate_declaration_mat44_shear_yx(float);
+instantiate_declaration_mat44_shear_zx(float);
+instantiate_declaration_mat44_shear_xz(float);
+instantiate_declaration_mat44_shear_zy(float);
+instantiate_declaration_mat44_shear_yz(float);
+instantiate_declaration_mat44_rotation_x(float);
+instantiate_declaration_mat44_rotation_y(float);
+instantiate_declaration_mat44_rotation_z(float);
+instantiate_declaration_mat44_mul_with_vec4(float);
+
+#if defined(IMPLEMENTATION)
+instantiate_implementation_mat44_translation(int); 
+instantiate_implementation_mat44_scale(int); 
+instantiate_implementation_mat44_rotation(int); 
+instantiate_implementation_mat44_shear(int);
+instantiate_implementation_mat44_reflection(int);
+instantiate_implementation_mat44_shear_xy(int);
+instantiate_implementation_mat44_shear_yx(int);
+instantiate_implementation_mat44_shear_zx(int);
+instantiate_implementation_mat44_shear_xz(int);
+instantiate_implementation_mat44_shear_zy(int);
+instantiate_implementation_mat44_shear_yz(int);
+instantiate_implementation_mat44_rotation_x(int);
+instantiate_implementation_mat44_rotation_y(int);
+instantiate_implementation_mat44_rotation_z(int);
+instantiate_implementation_mat44_mul_with_vec4(int);
+
+instantiate_implementation_mat44_translation(float); 
+instantiate_implementation_mat44_scale(float); 
+instantiate_implementation_mat44_rotation(float); 
+instantiate_implementation_mat44_shear(float);
+instantiate_implementation_mat44_reflection(float);
+instantiate_implementation_mat44_shear_xy(float);
+instantiate_implementation_mat44_shear_yx(float);
+instantiate_implementation_mat44_shear_zx(float);
+instantiate_implementation_mat44_shear_xz(float);
+instantiate_implementation_mat44_shear_zy(float);
+instantiate_implementation_mat44_shear_yz(float);
+instantiate_implementation_mat44_rotation_x(float);
+instantiate_implementation_mat44_rotation_y(float);
+instantiate_implementation_mat44_rotation_z(float);
+instantiate_implementation_mat44_mul_with_vec4(float);
+
+#endif /*if defined IMPLEMENTATION*/
+
+/*End: Template Instantiations*/
+
+#endif /*__HPML_AFFINE_TRANSFORMATION_TEMPLATE_INSTANTIATIONS_H__*/
