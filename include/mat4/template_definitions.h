@@ -11,6 +11,8 @@
 #include <memory/header_config.h>
 #include <memory/memory.h>
 
+#include <defines.h>
+
 /*Begin: Template Definitions*/
 /*template signatures*/
 #define mat4_t(T) template(mat4_t, T)
@@ -24,10 +26,10 @@
 #define instantiate_implementation_mat4_data(T)\
 T* const* const __mat4_data(T)(mat4_t(T)* m)\
 {\
-	m->data[0] = &m->m00;\
-	m->data[1] = &m->m10;\
-	m->data[2] = &m->m20;\
-	m->data[3] = &m->m30;\
+	IGNORE_CONST(m->data[0]) = &m->m00;\
+	IGNORE_CONST(m->data[1]) = &m->m10;\
+	IGNORE_CONST(m->data[2]) = &m->m20;\
+	IGNORE_CONST(m->data[3]) = &m->m30;\
 	return (T* const* const)m->data;\
 }
 
@@ -38,6 +40,19 @@ T* const* const __mat4_data(T)(mat4_t(T)* m)\
 /*mat4_copy*/
 #define mat4_copy(T) copy(T)
 #define instantiate_declaration_mat4_copy(T) instantiate_declaration_copy(T)
+
+/*mat4_determinant*/
+#define mat4_det(T) template(mat4_det, T)
+#define mat4_determinant(T) mat4_det(T)
+#define instantiate_declaration_mat4_det(T) T mat4_det(T)(mat4_t(T) m)
+#define instantiate_implementation_mat4_det(T)\
+T mat4_det(T)(mat4_t(T) m)\
+{\
+	return m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -\
+	m.m01 * (m.m10 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m32 - m.m22 * m.m30)) +\
+	m.m02 * (m.m10 * (m.m21 * m.m33 - m.m23 * m.m31) - m.m11 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m31 - m.m21 * m.m30)) -\
+	m.m03 * (m.m10 * (m.m21 * m.m32 - m.m22 * m.m31) - m.m11 * (m.m20 * m.m32 - m.m22 * m.m30) + m.m12 * (m.m20 * m.m31 - m.m21 * m.m30));\
+}
 
 #define mat4_add(T) template(mat4_add, T)
 #define mat4_sub(T) template(mat4_sub, T)
@@ -533,11 +548,7 @@ mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)\
 #define instantiate_implementation_mat4_inverse(T)\
 mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 {\
-	float det = \
-	m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -\
-	m.m01 * (m.m10 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m32 - m.m22 * m.m30)) +\
-	m.m02 * (m.m10 * (m.m21 * m.m33 - m.m23 * m.m31) - m.m11 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m31 - m.m21 * m.m30)) -\
-	m.m03 * (m.m10 * (m.m21 * m.m32 - m.m22 * m.m31) - m.m11 * (m.m20 * m.m32 - m.m22 * m.m30) + m.m12 * (m.m20 * m.m31 - m.m21 * m.m30));\
+	float det = mat4_det(T)(m);\
 	EXCEPTION_BLOCK(\
 		if(det == 0)\
 			THROW_EXCEPTION(INVERSION_OF_SINGULAR_MATRIX);\
@@ -577,20 +588,6 @@ mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 	_m.m33 = -_m.m33 * inverse_det;\
 	return _m;\
 }
-
-// #define instantiate_implementation_mat4_rotation(T)\
-// mat4_t(T) mat4_rotation(T)(T angle)\
-// {\
-// 	float cos_angle = cos(angle);\
-// 	float sin_angle = sin(angle);\
-// 	mat4_t(T) m;\
-// 	m.m0 = cos_angle;\
-// 	m.m1 = sin_angle;\
-// 	m.m2 = -sin_angle;\
-// 	m.m3 = cos_angle;\
-// 	return m;\
-// }
-
 /*End: Template Definitions*/
 
 #endif
