@@ -1,5 +1,5 @@
-#ifndef __HPML_MAT44_TEMPLATE_DEFINITION_H__
-#define __HPML_MAT44_TEMPLATE_DEFINITION_H__
+#ifndef __HPML_MAT4_TEMPLATE_DEFINITION_H__
+#define __HPML_MAT4_TEMPLATE_DEFINITION_H__
 
 #include <math.h>
 #include <stdio.h>
@@ -10,29 +10,29 @@
 
 /*Begin: Template Definitions*/
 /*template signatures*/
-#define mat44_t(T) template(mat44_t, T)
-#define mat44(T) template(mat44, T)
-#define mat44_add(T) template(mat44_add, T)
-#define mat44_sub(T) template(mat44_sub, T)
-#define mat44_mul(T) template(mat44_mul, T)
-#define mat44_mul_component_wise(T) template(mat44_mul_component_wise, T)
-#define mat44_div(T) template(mat44_div, T)
-#define mat44_is_null(T) template(mat44_is_null, T)
-#define mat44_is_equal(T) template(mat44_is_equal, T)
-#define mat44_null(T) mat44(T)(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-#define mat44_zero(T) mat44_null(T)
-#define mat44_print(T) template(mat44_print, T)
-#define mat44_negate(T) template(mat44_negate, T)
-#define mat44_identity(T) mat44(T)(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-#define mat44_lerp(T) template(mat44_lerp, T)
-#define mat44_mul_with_scalar(T) template(mat44_mul_with_scalar, T)
-#define mat44_inverse(T) template(mat44_inverse, T)
-#define mat44_transpose(T) template(mat44_transpose, T)
-#define mat44_trace(T) template(mat44_trace, T)
-#define mat44_diagonal(T) template(mat44_diagonal, T)
+#define mat4_t(T) template(mat4_t, T)
+#define mat4(T) template(mat4, T)
+#define mat4_add(T) template(mat4_add, T)
+#define mat4_sub(T) template(mat4_sub, T)
+#define mat4_mul(T) template(mat4_mul, T)
+#define mat4_mul_component_wise(T) template(mat4_mul_component_wise, T)
+#define mat4_div(T) template(mat4_div, T)
+#define mat4_is_null(T) template(mat4_is_null, T)
+#define mat4_is_equal(T) template(mat4_is_equal, T)
+#define mat4_null(T) mat4(T)(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+#define mat4_zero(T) mat4_null(T)
+#define mat4_print(T) template(mat4_print, T)
+#define mat4_negate(T) template(mat4_negate, T)
+#define mat4_identity(T) mat4(T)(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+#define mat4_lerp(T) template(mat4_lerp, T)
+#define mat4_mul_with_scalar(T) template(mat4_mul_with_scalar, T)
+#define mat4_inverse(T) template(mat4_inverse, T)
+#define mat4_transpose(T) template(mat4_transpose, T)
+#define mat4_trace(T) template(mat4_trace, T)
+#define mat4_diagonal(T) template(mat4_diagonal, T)
 
-#define instantiate_mat44_struct(T)\
-typedef struct mat44_t(T)\
+#define instantiate_mat4_struct(T)\
+typedef struct mat4_t(T)\
 {\
 	union\
 	{\
@@ -45,34 +45,34 @@ typedef struct mat44_t(T)\
 		};\
 		T values[16];\
 	};\
-} mat44_t(T)
+} mat4_t(T)
 
 
-#define instantiate_declaration_mat44_print(T) void mat44_print(T)(mat44_t(T) m)
-#define instantiate_declaration_mat44(T) mat44_t(T) mat44(T) (\
+#define instantiate_declaration_mat4_print(T) void mat4_print(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4(T) mat4_t(T) mat4(T) (\
 																T v00, T v01, T v02, T v03,\
 																T v10, T v11, T v12, T v13,\
 																T v20, T v21, T v22, T v23,\
 																T v30, T v31, T v32, T v33\
 															 )
-#define instantiate_declaration_mat44_add(T) mat44_t(T) mat44_add(T)(mat44_t(T) m1, mat44_t(T) m2)
-#define instantiate_declaration_mat44_sub(T) mat44_t(T) mat44_sub(T)(mat44_t(T) m1, mat44_t(T) m2)
-#define instantiate_declaration_mat44_mul(T) mat44_t(T) mat44_mul(T)(mat44_t(T) m1, mat44_t(T) m2)
-#define instantiate_declaration_mat44_div(T) mat44_t(T) mat44_div(T)(mat44_t(T) m1, mat44_t(T) m2)
-#define instantiate_declaration_mat44_mul_component_wise(T) mat44_t(T) mat44_mul_component_wise(T)(mat44_t(T) m1, mat44_t(T) m2)
-#define instantiate_declaration_mat44_is_null(T) bool mat44_is_null(T)(mat44_t(T) m)
-#define instantiate_declaration_mat44_is_equal(T) bool mat44_is_equal(T)(mat44_t(T) m1, mat44_t(T) m2)
-#define instantiate_declaration_mat44_null(T) mat44_t(T) mat44_null(T)()
-#define instantiate_declaration_mat44_negate(T) mat44_t(T) mat44_negate(T)(mat44_t(T) m)
-#define instantiate_declaration_mat44_identity(T) mat44_t(T) mat44_identity(T)()
-#define instantiate_declaration_mat44_lerp(T) mat44_t(T) mat44_lerp(T)(mat44_t(T) m1, mat44_t(T) m2, float lerp_value)
-#define instantiate_declaration_mat44_mul_with_scalar(T) mat44_t(T) mat44_mul_with_scalar(T)(mat44_t(T) m, T s)
-#define instantiate_declaration_mat44_inverse(T) mat44_t(T) mat44_inverse(T)(mat44_t(T) m)
-#define instantiate_declaration_mat44_transpose(T) mat44_t(T) mat44_transpose(T)(mat44_t(T) m)
-#define instantiate_declaration_mat44_trace(T) T mat44_trace(T)(mat44_t(T) m)
-#define instantiate_declaration_mat44_diagonal(T) mat44_t(T) mat44_diagonal(T)(T x, T y, T z, T w)
+#define instantiate_declaration_mat4_add(T) mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_sub(T) mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_mul(T) mat4_t(T) mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_div(T) mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_mul_component_wise(T) mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_is_null(T) bool mat4_is_null(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_is_equal(T) bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_null(T) mat4_t(T) mat4_null(T)()
+#define instantiate_declaration_mat4_negate(T) mat4_t(T) mat4_negate(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_identity(T) mat4_t(T) mat4_identity(T)()
+#define instantiate_declaration_mat4_lerp(T) mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)
+#define instantiate_declaration_mat4_mul_with_scalar(T) mat4_t(T) mat4_mul_with_scalar(T)(mat4_t(T) m, T s)
+#define instantiate_declaration_mat4_inverse(T) mat4_t(T) mat4_inverse(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_transpose(T) mat4_t(T) mat4_transpose(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_trace(T) T mat4_trace(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_diagonal(T) mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)
 
-/* mat44(T): mat44 contructor taking 16 parameter to initialize the components
+/* mat4(T): mat4 contructor taking 16 parameter to initialize the components
  * T v00: element at [0, 0] -> [Row, Column]
  * T v01: element at [0, 1] -> [Row, Column]
  * T v02: element at [0, 2] -> [Row, Column]
@@ -89,15 +89,15 @@ typedef struct mat44_t(T)\
  * T v31: element at [3, 1] -> [Row, Column]
  * T v32: element at [3, 2] -> [Row, Column]
  * T v33: element at [3, 3] -> [Row, Column]
- * returns: mat44_t(T) initialized matrix
+ * returns: mat4_t(T) initialized matrix
  */
-#define instantiate_implementation_mat44(T)\
-mat44_t(T) mat44(T)(T v00, T v01, T v02, T v03,\
+#define instantiate_implementation_mat4(T)\
+mat4_t(T) mat4(T)(T v00, T v01, T v02, T v03,\
 					T v10, T v11, T v12, T v13,\
 					T v20, T v21, T v22, T v23,\
 					T v30, T v31, T v32, T v33)\
 {\
-	mat44_t(T) m = \
+	mat4_t(T) m = \
 	{\
 		v00, v01, v02, v03,\
 		v10, v11, v12, v13,\
@@ -107,17 +107,17 @@ mat44_t(T) mat44(T)(T v00, T v01, T v02, T v03,\
 	return m;\
 }
 
-/* mat44_diagonal(T) : Creates a 4x4 diagonal matrix having diagonal elements as x, y, z, w
+/* mat4_diagonal(T) : Creates a 4x4 diagonal matrix having diagonal elements as x, y, z, w
  * T x: element at [0, 0]
  * T y: element at [1, 1]
  * T z: element at [2, 2]
  * T w: element at [3, 3]
- * returns: mat44_t(T) 4x4 diagonal matrix
+ * returns: mat4_t(T) 4x4 diagonal matrix
  */
-#define instantiate_implementation_mat44_diagonal(T)\
-mat44_t(T) mat44_diagonal(T)(T x, T y, T z, T w)\
+#define instantiate_implementation_mat4_diagonal(T)\
+mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)\
 {\
-	mat44_t(T) mat =\
+	mat4_t(T) mat =\
 	{\
 		x, 0, 0, 0,\
 		0, y, 0, 0,\
@@ -127,25 +127,25 @@ mat44_t(T) mat44_diagonal(T)(T x, T y, T z, T w)\
 	return mat;\
 }
 
-/* mat44_trace(T): Calculates trace of 2x2 matrix 
- * mat44_t(T) m: Matrix of which the trace to be calculated
+/* mat4_trace(T): Calculates trace of 2x2 matrix 
+ * mat4_t(T) m: Matrix of which the trace to be calculated
  * returns: T trace value
  */
-#define instantiate_implementation_mat44_trace(T)\
-T mat44_trace(T)(mat44_t(T) m)\
+#define instantiate_implementation_mat4_trace(T)\
+T mat4_trace(T)(mat4_t(T) m)\
 {\
 	return m.m00 + m.m11 + m.m22 + m.m33;\
 }
 
-/* mat44_add(T): Adds a 4x4 matrix into another one [component-wise]
- * mat44_t(T) m1: Addend matrix
- * mat44_t(T) m2: Adder matrix
- * returns: mat44_t(T) addition resultant matrix
+/* mat4_add(T): Adds a 4x4 matrix into another one [component-wise]
+ * mat4_t(T) m1: Addend matrix
+ * mat4_t(T) m2: Adder matrix
+ * returns: mat4_t(T) addition resultant matrix
  */
-#define instantiate_implementation_mat44_add(T)\
-mat44_t(T) mat44_add(T)(mat44_t(T) m1, mat44_t(T) m2)\
+#define instantiate_implementation_mat4_add(T)\
+mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
-	mat44_t(T) m;\
+	mat4_t(T) m;\
 	m.m00 = m1.m00 + m2.m00;\
 	m.m01 = m1.m01 + m2.m01;\
 	m.m02 = m1.m02 + m2.m02;\
@@ -165,15 +165,15 @@ mat44_t(T) mat44_add(T)(mat44_t(T) m1, mat44_t(T) m2)\
 	return m;\
 }
 
-/* mat44_sub(T): Subtracts a 4x4 matrix from another one [component-wise]
- * mat44_t(T) m1: Subtractend matrix
- * mat44_t(T) m2: Subtractor matrix
- * returns: mat44_t(T) subtraction resultant matrix
+/* mat4_sub(T): Subtracts a 4x4 matrix from another one [component-wise]
+ * mat4_t(T) m1: Subtractend matrix
+ * mat4_t(T) m2: Subtractor matrix
+ * returns: mat4_t(T) subtraction resultant matrix
  */
-#define instantiate_implementation_mat44_sub(T)\
-mat44_t(T) mat44_sub(T)(mat44_t(T) m1, mat44_t(T) m2)\
+#define instantiate_implementation_mat4_sub(T)\
+mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
-	mat44_t(T) m;\
+	mat4_t(T) m;\
 	m.m00 = m1.m00 - m2.m00;\
 	m.m01 = m1.m01 - m2.m01;\
 	m.m02 = m1.m02 - m2.m02;\
@@ -200,15 +200,15 @@ mat44_t(T) mat44_sub(T)(mat44_t(T) m1, mat44_t(T) m2)\
  | 30 31 32 33 | | m30 m31 m32 m33 |
  */
 
-/* mat44_mul(T): Multiplies two matrices [4x4 order] by Matrix-Multiplication-Rule
- * mat44_t(T) m1: Left side matrix in multiplication
- * mat44_t(T) m2: right side matrix in mulitplication
- * returns: mat44_t(T) resultant matrix
+/* mat4_mul(T): Multiplies two matrices [4x4 order] by Matrix-Multiplication-Rule
+ * mat4_t(T) m1: Left side matrix in multiplication
+ * mat4_t(T) m2: right side matrix in mulitplication
+ * returns: mat4_t(T) resultant matrix
  */
-#define instantiate_implementation_mat44_mul(T)\
-mat44_t(T) mat44_mul(T)(mat44_t(T) m1, mat44_t(T) m2)\
+#define instantiate_implementation_mat4_mul(T)\
+mat4_t(T) mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
-	mat44_t(T) m;\
+	mat4_t(T) m;\
 	m.m00 = m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03 * m2.m30;\
 	m.m01 = m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03 * m2.m31;\
 	m.m02 = m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22 + m1.m03 * m2.m32;\
@@ -228,15 +228,15 @@ mat44_t(T) mat44_mul(T)(mat44_t(T) m1, mat44_t(T) m2)\
 	return m;\
 }
 
-/* mat44_mul_with_scalar(T): Multiplies a 2x2 matrix with a scalar component wise
- * mat44_t(T) m: Matrix to be multiplied for each components
+/* mat4_mul_with_scalar(T): Multiplies a 2x2 matrix with a scalar component wise
+ * mat4_t(T) m: Matrix to be multiplied for each components
  * T scalar: scalar value to be multiplied [float, double, char, and int etc.]
- * returns: mat44_t(T) resultant matrix
+ * returns: mat4_t(T) resultant matrix
  */
-#define instantiate_implementation_mat44_mul_with_scalar(T)\
-mat44_t(T) mat44_mul_with_scalar(T)(mat44_t(T) m, T scalar)\
+#define instantiate_implementation_mat4_mul_with_scalar(T)\
+mat4_t(T) mat4_mul_with_scalar(T)(mat4_t(T) m, T scalar)\
 {\
-	mat44_t(T) _m = m;\
+	mat4_t(T) _m = m;\
 	_m.values[0] *= scalar;\
 	_m.values[1] *= scalar;\
 	_m.values[2] *= scalar;\
@@ -256,19 +256,19 @@ mat44_t(T) mat44_mul_with_scalar(T)(mat44_t(T) m, T scalar)\
 	return _m;\
 }
 
-/* mat44_div(T): Divides two 2x2 matrices components
- * mat44_t(T) m1: nominator matrix [Dividend]
- * mat44_t(T) m2: denominator matrix [Divisor]
- * returns: mat44_t(T) quotient matrix
+/* mat4_div(T): Divides two 2x2 matrices components
+ * mat4_t(T) m1: nominator matrix [Dividend]
+ * mat4_t(T) m2: denominator matrix [Divisor]
+ * returns: mat4_t(T) quotient matrix
  */
-#define instantiate_implementation_mat44_div(T)\
-mat44_t(T) mat44_div(T)(mat44_t(T) m1, mat44_t(T) m2)\
+#define instantiate_implementation_mat4_div(T)\
+mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 	EXCEPTION_BLOCK(\
-		if(mat44_is_null(T)(m2))\
+		if(mat4_is_null(T)(m2))\
 			THROW_EXCEPTION(DIVIDE_BY_ZERO);\
 	)\
-	mat44_t(T) m;\
+	mat4_t(T) m;\
 	m.values[0]  = m1.values[0] / m2.values[0] ;\
 	m.values[1]  = m1.values[1] / m2.values[1] ;\
 	m.values[2]  = m1.values[2] / m2.values[2] ;\
@@ -289,12 +289,12 @@ mat44_t(T) mat44_div(T)(mat44_t(T) m1, mat44_t(T) m2)\
 }
 
 /* TODO: Replace the equal to operator with some approximation [because of floating point errors]
- * mat44_is_null(T): Checks if the matrix is null or not
- * mat44_t(T) m: matrix to be checked for null
+ * mat4_is_null(T): Checks if the matrix is null or not
+ * mat4_t(T) m: matrix to be checked for null
  * returns: bool true if the matrix is null, otherwise false
  */
-#define instantiate_implementation_mat44_is_null(T)\
-bool mat44_is_null(T)(mat44_t(T) m)\
+#define instantiate_implementation_mat4_is_null(T)\
+bool mat4_is_null(T)(mat4_t(T) m)\
 {\
 	return (m.values[0] == 0) &&\
 		   (m.values[1] == 0) &&\
@@ -315,13 +315,13 @@ bool mat44_is_null(T)(mat44_t(T) m)\
 }
 
 /* TODO: Replace the equal to operator with some approximation [because of floating point errors]
- * mat44_is_equal(T): Checks if two mat44_t's are equal or not
- * mat44_t(T) m1: first matrix to be checked against
- * mat44_t(T) m2: second matrix to be checked against
+ * mat4_is_equal(T): Checks if two mat4_t's are equal or not
+ * mat4_t(T) m1: first matrix to be checked against
+ * mat4_t(T) m2: second matrix to be checked against
  * returns: bool true if the two matrix are approximately equal, otherwise false
  */
-#define instantiate_implementation_mat44_is_equal(T)\
-bool mat44_is_equal(T)(mat44_t(T) m1, mat44_t(T) m2)\
+#define instantiate_implementation_mat4_is_equal(T)\
+bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 		return (m1.values[0]  == m2.values[0] ) &&\
 		   	   (m1.values[1]  == m2.values[1] ) &&\
@@ -341,14 +341,14 @@ bool mat44_is_equal(T)(mat44_t(T) m1, mat44_t(T) m2)\
 		   	   (m1.values[15] == m2.values[15]);\
 }
 
-/* mat44_negate(T): Negates all the elements of 4x4 matrix
- * mat44_t(T) m: matrix to be negated
- * returns: mat44_t(T) negated matrix
+/* mat4_negate(T): Negates all the elements of 4x4 matrix
+ * mat4_t(T) m: matrix to be negated
+ * returns: mat4_t(T) negated matrix
  */
-#define instantiate_implementation_mat44_negate(T)\
-mat44_t(T) mat44_negate(T)(mat44_t(T) m)\
+#define instantiate_implementation_mat4_negate(T)\
+mat4_t(T) mat4_negate(T)(mat4_t(T) m)\
 {\
-	mat44_t(T) m1;\
+	mat4_t(T) m1;\
 	m1.values[0]  = -m.values[0] ;\
 	m1.values[1]  = -m.values[1] ;\
 	m1.values[2]  = -m.values[2] ;\
@@ -368,15 +368,15 @@ mat44_t(T) mat44_negate(T)(mat44_t(T) m)\
 	return m1;\
 }
 
-/* mat44_mul_component_wise(T): Multiplies two matrices component wise
- * mat44_t(T) m1: First matrix involved in the calculation
- * mat44_t(T) m2: Second matrix involved in the calculation
- * returns: mat44_t(T) resultant matrix
+/* mat4_mul_component_wise(T): Multiplies two matrices component wise
+ * mat4_t(T) m1: First matrix involved in the calculation
+ * mat4_t(T) m2: Second matrix involved in the calculation
+ * returns: mat4_t(T) resultant matrix
  */
-#define instantiate_implementation_mat44_mul_component_wise(T)\
-mat44_t(T) mat44_mul_component_wise(T)(mat44_t(T) m1, mat44_t(T) m2)\
+#define instantiate_implementation_mat4_mul_component_wise(T)\
+mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
-	mat44_t(T) m = m1;\
+	mat4_t(T) m = m1;\
 	m.values[0]  *= m2.values[0] ;\
 	m.values[1]  *= m2.values[1] ;\
 	m.values[2]  *= m2.values[2] ;\
@@ -396,14 +396,14 @@ mat44_t(T) mat44_mul_component_wise(T)(mat44_t(T) m1, mat44_t(T) m2)\
 	return m;\
 }
 
-/* mat44_transpose(T): Transposes a 2x2 matrix
- * mat44_t(T) m: Matrix to be transposed
- * returns: mat44_t(T) transposed matrix
+/* mat4_transpose(T): Transposes a 2x2 matrix
+ * mat4_t(T) m: Matrix to be transposed
+ * returns: mat4_t(T) transposed matrix
  */
-#define instantiate_implementation_mat44_transpose(T)\
-mat44_t(T) mat44_transpose(T)(mat44_t(T) m)\
+#define instantiate_implementation_mat4_transpose(T)\
+mat4_t(T) mat4_transpose(T)(mat4_t(T) m)\
 {\
-	mat44_t(T) _m = m;\
+	mat4_t(T) _m = m;\
 	_m.m01 = m.m10;\
 	_m.m02 = m.m20;\
 	_m.m03 = m.m30;\
@@ -419,16 +419,16 @@ mat44_t(T) mat44_transpose(T)(mat44_t(T) m)\
 	return _m;\
 }
 
-/* mat44_lerp(T): Linearly interpolates each elements of 2x2 matrices
- * mat44_t(T) m1: starting matrix
- * mat44_t(T) m2: ending matrix
+/* mat4_lerp(T): Linearly interpolates each elements of 2x2 matrices
+ * mat4_t(T) m1: starting matrix
+ * mat4_t(T) m2: ending matrix
  * float lerp_value: linear interpolation value [0, 1]
- * returns: mat44_t(T) interpolated matrix
+ * returns: mat4_t(T) interpolated matrix
  */
-#define instantiate_implementation_mat44_lerp(T)\
-mat44_t(T) mat44_lerp(T)(mat44_t(T) m1, mat44_t(T) m2, float lerp_value)\
+#define instantiate_implementation_mat4_lerp(T)\
+mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)\
 {\
-	mat44_t(T) m;\
+	mat4_t(T) m;\
 	float _lerp_value = 1 - lerp_value;\
 	m.values[0]  = _lerp_value * m1.values[0]  + lerp_value * m2.values[0] ;\
 	m.values[1]  = _lerp_value * m1.values[1]  + lerp_value * m2.values[1] ;\
@@ -499,12 +499,12 @@ mat44_t(T) mat44_lerp(T)(mat44_t(T) m1, mat44_t(T) m2, float lerp_value)\
 	33 = 00 * (11 * 22 - 12 * 21) - 01 * (10 * 22 - 12 * 20) + 02 * (10 * 21 - 11 * 20)
  */
 
-/* mat44_inverse(T): Inverts a 4x4 matrix 
- * mat44_t(T) m: Matrix to be inverted
- * returns: mat44_t(T) inverted 4x4 matrix
+/* mat4_inverse(T): Inverts a 4x4 matrix 
+ * mat4_t(T) m: Matrix to be inverted
+ * returns: mat4_t(T) inverted 4x4 matrix
  */
-#define instantiate_implementation_mat44_inverse(T)\
-mat44_t(T) mat44_inverse(T)(mat44_t(T) m)\
+#define instantiate_implementation_mat4_inverse(T)\
+mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 {\
 	float det = \
 	m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -\
@@ -516,7 +516,7 @@ mat44_t(T) mat44_inverse(T)(mat44_t(T) m)\
 			THROW_EXCEPTION(INVERSION_OF_SINGULAR_MATRIX);\
 	)\
 	float inverse_det = 1 / det;\
-	mat44_t(T) _m;\
+	mat4_t(T) _m;\
 	_m.m00 = m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31);\
 	_m.m10 = m.m10 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m32 - m.m22 * m.m30);\
 	_m.m20 = m.m10 * (m.m21 * m.m33 - m.m23 * m.m31) - m.m11 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m31 - m.m21 * m.m30);\
@@ -551,12 +551,12 @@ mat44_t(T) mat44_inverse(T)(mat44_t(T) m)\
 	return _m;\
 }
 
-// #define instantiate_implementation_mat44_rotation(T)\
-// mat44_t(T) mat44_rotation(T)(T angle)\
+// #define instantiate_implementation_mat4_rotation(T)\
+// mat4_t(T) mat4_rotation(T)(T angle)\
 // {\
 // 	float cos_angle = cos(angle);\
 // 	float sin_angle = sin(angle);\
-// 	mat44_t(T) m;\
+// 	mat4_t(T) m;\
 // 	m.m0 = cos_angle;\
 // 	m.m1 = sin_angle;\
 // 	m.m2 = -sin_angle;\
