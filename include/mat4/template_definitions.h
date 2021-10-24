@@ -8,10 +8,37 @@
 #include <template_system.h>
 #include <no_compile_header.h>
 
+#include <memory/header_config.h>
+#include <memory/memory.h>
+
 /*Begin: Template Definitions*/
 /*template signatures*/
 #define mat4_t(T) template(mat4_t, T)
 #define mat4(T) template(mat4, T)
+
+
+/*mat4_data*/
+#define __mat4_data(T) template(__mat4_data, T)
+#define mat4_data(T) __mat4_data(T)
+#define instantiate_declaration_mat4_data(T) T* const* const __mat4_data(T)(mat4_t(T)* m)
+#define instantiate_implementation_mat4_data(T)\
+T* const* const __mat4_data(T)(mat4_t(T)* m)\
+{\
+	m->data[0] = &m->m00;\
+	m->data[1] = &m->m10;\
+	m->data[2] = &m->m20;\
+	m->data[3] = &m->m30;\
+	return (T* const* const)m->data;\
+}
+
+/*mat4_move*/
+#define mat4_move(T) move(T)
+#define instantiate_declaration_mat4_move(T) instantiate_declaration_move(T)
+
+/*mat4_copy*/
+#define mat4_copy(T) copy(T)
+#define instantiate_declaration_mat4_copy(T) instantiate_declaration_copy(T)
+
 #define mat4_add(T) template(mat4_add, T)
 #define mat4_sub(T) template(mat4_sub, T)
 #define mat4_mul(T) template(mat4_mul, T)
