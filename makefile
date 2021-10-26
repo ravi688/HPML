@@ -5,13 +5,15 @@ DEFINES =
 INCLUDES = -I.\include
 #source code (.c) 
 SOURCES = $(wildcard src/*.c)
-#libraries
-LIBS = -L.\lib
+#output library
+LIB = .\lib\hpml.a
 #compilation flags
 CFLAGS = -m64
+STATIC_LIB_COMPILATION_FLAGS = -rc
+ARCHIVER = ar
 
 
-OBJECTS = $(addsuffix .o, $(basename $(SOURCES)))
+OBJECTS =  $(filter-out ./src/main.o, $(addsuffix .o, $(basename $(SOURCES))))
 
 all: release
 .PHONY: main clean
@@ -27,9 +29,20 @@ debug: main
 release: DEFINES += -DGLOBAL_RELEASE
 release: main
 
-main: $(OBJECTS)
-	gcc $(DEFINES) $(CFLAGS) $^ $(LIBS) -o $@
+.PHONY: lib lib-debug lib-release
+lib : lib-release
+lib-debug: DEFINES += -DGLOBAL_DEBUG
+lib-debug: $(LIB)
+lib-release: DEFINES += -DGLOBAL_RELEASE
+lib-release: $(LIB)
+
+$(LIB) : $(OBJECTS)
+	$(ARCHIVER) $(STATIC_LIB_COMPILATION_FLAGS) $@ $^ 
+	@echo [Log] hpml.a build successfully
+
+main: ./src/main.o  $(LIB)
+	gcc $(DEFINES) $(CFLAGS) $< $(LIB) -o $@
 
 clean: 
-	del $(addprefix src\, $(notdir $(OBJECTS)))
+	del $(addprefix src\, $(notdir $(OBJECTS))) src\main.o
 	del main.exe
