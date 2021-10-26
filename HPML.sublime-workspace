@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"RE",
+				"RELEASE_MODE"
+			],
+			[
+				"template",
+				"template_instantiations.h"
+			],
+			[
 				"vertex",
 				"vertex3d_t"
 			],
@@ -506,29 +514,108 @@
 			[
 				"vk_getimage",
 				"vk_get_image_views"
-			],
-			[
-				"pVk",
-				"pVkImageView_t"
-			],
-			[
-				"valu",
-				"value2"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "include/mat4/template_definitions.h",
+			"file": "src/main.c",
 			"settings":
 			{
-				"buffer_size": 23456,
+				"buffer_size": 177,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			},
 			"undo_stack":
 			[
+				[
+					5,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAACQAAAAAAAAAJAAAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAAJwAAAAAAAAAnAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					7,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAAEAAAAAAAAAAQAAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAAAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					29,
+					1,
+					"insert",
+					{
+						"characters": "affine_t"
+					},
+					"CQAAAAsAAAAAAAAADAAAAAAAAAAAAAAADAAAAAAAAAAMAAAAAAAAAAQAAABtYXQ0DAAAAAAAAAANAAAAAAAAAAAAAAANAAAAAAAAAA4AAAAAAAAAAAAAAA4AAAAAAAAADwAAAAAAAAAAAAAADwAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAABEAAAAAAAAAAAAAABEAAAAAAAAAEgAAAAAAAAAAAAAAEgAAAAAAAAATAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAADwAAAAAAAAALAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					30,
+					1,
+					"insert",
+					{
+						"characters": "ransformation"
+					},
+					"DQAAABMAAAAAAAAAFAAAAAAAAAAAAAAAFAAAAAAAAAAVAAAAAAAAAAAAAAAVAAAAAAAAABYAAAAAAAAAAAAAABYAAAAAAAAAFwAAAAAAAAAAAAAAFwAAAAAAAAAYAAAAAAAAAAAAAAAYAAAAAAAAABkAAAAAAAAAAAAAABkAAAAAAAAAGgAAAAAAAAAAAAAAGgAAAAAAAAAbAAAAAAAAAAAAAAAbAAAAAAAAABwAAAAAAAAAAAAAABwAAAAAAAAAHQAAAAAAAAAAAAAAHQAAAAAAAAAeAAAAAAAAAAAAAAAeAAAAAAAAAB8AAAAAAAAAAAAAAB8AAAAAAAAAIAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAEwAAAAAAAAATAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"paste",
+					null,
+					"AgAAADwAAAAAAAAAUQAAAAAAAAAAAAAAUQAAAAAAAABRAAAAAAAAAAQAAABtYXQ0",
+					"AQAAAAAAAAABAAAAQAAAAAAAAAA8AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					42,
+					1,
+					"paste",
+					null,
+					"AgAAAFIAAAAAAAAAZwAAAAAAAAAAAAAAZwAAAAAAAABnAAAAAAAAAAQAAABtYXQ0",
+					"AQAAAAAAAAABAAAAVgAAAAAAAABSAAAAAAAAAAAAAAAAAPC/"
+				]
 			]
+		},
+		{
+			"file": "src/vec3.c",
+			"settings":
+			{
+				"buffer_size": 62,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AgAAACEAAAAAAAAAJAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "include/affine_transformation/template_definitions.h",
+			"settings":
+			{
+				"buffer_size": 13786,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "Packages/Makefile/Make.sublime-build",
@@ -574,6 +661,22 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"new file",
+				"File Manager: New File"
+			],
+			[
+				"new f",
+				"File Manager: New File"
+			],
+			[
+				"folder",
+				"Project: Add Folder"
+			],
+			[
+				"Manager: new f",
+				"File Manager: New File"
+			],
 			[
 				"renam",
 				"LocalVariable: Rename"
@@ -661,13 +764,61 @@
 	[
 		"/D/HPML",
 		"/D/HPML/include",
+		"/D/HPML/include/affine_transformation",
+		"/D/HPML/include/header_configuration_system",
+		"/D/HPML/include/mat2",
+		"/D/HPML/include/mat3",
 		"/D/HPML/include/mat4",
+		"/D/HPML/include/memory",
+		"/D/HPML/include/vec2",
+		"/D/HPML/include/vec3",
 		"/D/HPML/lib",
 		"/D/HPML/resource",
 		"/D/HPML/src"
 	],
 	"file_history":
 	[
+		"/D/HPML/src/mat2.c",
+		"/D/HPML/src/mat4.c",
+		"/D/HPML/src/tests.c",
+		"/D/HPML/src/vec2.c",
+		"/D/HPML/src/vec3.c",
+		"/D/HPML/include/vec2/header_config.h",
+		"/D/HPML/include/vec3/header_config.h",
+		"/D/HPML/include/vec3/source_config.h",
+		"/D/HPML/include/vec2/source_config.h",
+		"/D/HPML/include/memory/source_config.h",
+		"/D/HPML/include/mat2/source_config.h",
+		"/D/HPML/src/affine_transformation.c",
+		"/D/HPML/include/affine_transformation/header_config.h",
+		"/D/HPML/include/affine_transformation/source_config.h",
+		"/D/HPML/include/mat4/source_config.h",
+		"/D/HPML/include/memory/header_config.h",
+		"/D/HPML/makefile",
+		"/D/HPML/include/mat4/header_config.h",
+		"/D/HPML/include/mat4/template_definitions.h",
+		"/D/HPML/include/header_configuration_system/restore.h",
+		"/D/HPML/include/header_configuration_system/default.h",
+		"/D/HPML/include/affine_transformation/affine_transformation.h",
+		"/D/HPML/include/mat2/header_config.h",
+		"/D/HPML/include/mat2/mat2.h",
+		"/D/HPML/include/mat4/mat4.h",
+		"/D/HPML/include/memory/memory.h",
+		"/D/HPML/include/vec3/vec3.h",
+		"/D/HPML/include/vec2/vec2.h",
+		"/D/HPML/include/affine_transformation/template_definitions.h",
+		"/D/HPML/include/mat4/template_instantiations.h",
+		"/D/HPML/include/memory/template_definitions.h",
+		"/D/HPML/include/defines.h",
+		"/D/HPML/include/quat/quat.h",
+		"/D/HPML/include/header_configuration_system/header_config_backup.h",
+		"/D/HPML/src/main.c",
+		"/D/HPML/header_configuration_system/header_config_backup.h",
+		"/D/HPML/include/header_configuration_system/header_config_restore.h",
+		"/D/HPML/include/header_configuration_system/header_configuration_system.h",
+		"/D/HPML/include/memory/template_instantiations.h",
+		"/D/HPML/file",
+		"/D/HPML/include/memory",
 		"/D/VulkanRenderer/makefile",
 		"/D/VulkanRenderer/source/test/test.c",
 		"/D/VulkanRenderer/source/engine.c",
@@ -754,56 +905,15 @@
 		"/F/VulkanRenderer/source/string.c",
 		"/F/VulkanRenderer/include/engine/array/array.c",
 		"/F/VulkanRenderer/include/template_system.h",
-		"/E/VulkanSDK/1.2.182.0/Demos/cube.c",
-		"/F/VulkanRenderer/include/vulkan/vulkan_core.h",
-		"/E/VulkanSDK/1.2.182.0/Demos/vulkaninfo.h",
-		"/F/VulkanRenderer/source/file_utility.c",
-		"/F/VulkanRenderer/include/utilities/file_utility.h",
-		"/F/VulkanRenderer/include/engine/renderer/renderer.h",
-		"/F/VulkanRenderer/source/engine.c",
-		"/D/VulkanRendererMinGW64Project/source/main.c",
-		"/F/VulkanRenderer/include/engine/engine.h",
-		"/F/VulkanRenderer/include/tuple/template_instantiations.h",
-		"/F/VulkanRenderer/include/tuple/template_definitions.h",
-		"/F/VulkanRenderer/include/tuple/header_config.h",
-		"/F/VulkanRenderer/include/tuple/tuple.h",
-		"/F/VulkanRenderer/shaders/fragmentShader.shader",
-		"/F/VulkanRenderer/include/utilities/casting_utility.h",
-		"/F/VulkanRenderer/include/debug.h",
-		"/F/VulkanRenderer/include/engine/material.h",
-		"/D/cairo_project/cairo_project/include/defs.h",
-		"/F/VulkanRenderer/include/defs.h",
-		"/F/VulkanRenderer/include/utilities/utilities.h",
-		"/F/VulkanRenderer/include/buffer.h",
-		"/F/VulkanRenderer/include/Utilities/file_utility.h",
-		"/F/VulkanRenderer/include/utilities.h",
-		"/D/gtk_project/gtk_project/Learn_Projects/Documentation/source/defs.c",
-		"/D/gtk_project/gtk_project/Learn_Projects/Documentation/include/defs.h",
-		"/C/Users/rp041/Dropbox/C Projects/Documentation/source/Serialization.c",
-		"/C/Users/rp041/Dropbox/C Projects/Documentation/source/XmlParser.c",
-		"/C/Users/rp041/Dropbox/C Projects/custom_libs_01/Serialization.h",
-		"/C/Users/rp041/Dropbox/C Projects/custom_libs_01/TextFileManagement.c",
-		"/C/Users/rp041/Dropbox/C Projects/custom_libs/XmlParser.h",
-		"/F/VulkanRenderer/include/garbage_collector/garbage_collector.h",
-		"/F/VulkanRenderer/include/header_configuration_system/header_config_reset.h",
-		"/F/VulkanRenderer/include/GLFW/glfw3.h",
-		"/F/VulkanRenderer/include/string/string.h",
-		"/F/VulkanRenderer/include/header_configuration_system/header_config_default.h",
-		"/F/VulkanRenderer/include/header_configuration_system/header_configuration_system.h",
-		"/F/VulkanRenderer/include/vulkan/vk_layer.h",
-		"/F/VulkanRenderer/include/vulkan/*",
-		"/F/VulkanRenderer/include/vulkan/vulkan.h",
-		"/F/VulkanRenderer/source/main.c",
-		"/F/VulkanRenderer/include/tgc/tgc.h",
-		"/F/VulkanRenderer/source/garbage_collector.c"
+		"/E/VulkanSDK/1.2.182.0/Demos/cube.c"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 42.4
 	},
 	"find_in_files":
 	{
-		"height": 107.2,
+		"height": 111.2,
 		"where_history":
 		[
 			""
@@ -811,9 +921,20 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"ifdef",
+			"instantiate_implementation_mat4_identity",
+			"<header_configuration_system/header_config_backup.h>",
+			"<header_configuration_system/header_config_restore.h>",
+			"<header_configuration_system/header_config_default.h>",
+			"<header_configuration_system/header_config_reset.h>",
+			"#\tundef",
+			"#ifdef",
+			"#define",
+			"#\tundef",
+			"mat22",
 			"1",
 			"screen_height",
 			"screen_width",
@@ -930,18 +1051,7 @@
 			"Material",
 			"Component",
 			"Object",
-			"Scene",
-			"scene_manager_for_each_objects_in_all_scenes",
-			"for_each_objects_in_all_scenes",
-			"Object",
-			"Scene",
-			"SceneManager",
-			"/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////",
-			"MESH_VISIBILITY",
-			"color",
-			"../../",
-			"vidoe",
-			"Win64-gcc"
+			"Scene"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -949,6 +1059,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"<header_configuration_system/backup.h>",
+			"<header_configuration_system/restore.h>",
+			"<header_configuration_system/default.h>",
+			"<#ifdef HEADER_CONFIGURATION_SYSTEM_HEADER\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_HEADER\n#endif\n\n#ifdef HEADER\n#define BACKUP_HEADER\n#endif\n\n#ifdef HPML_HEADER\n#define BACKUP_HPML_HEADER\n#endif\n\n#ifdef HEADER_CONFIGURATION_SYSTEM_IMPLEMENTATION\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_IMPLEMENTATION\n#endif\n\n#ifdef IMPLEMENTATION\n#define BACKUP_IMPLEMENTATION\n#endif\n\n#ifdef HPML_IMPLEMENTATION\n#define BACKUP_HPML_IMPLEMENTATION\n#endif\n\n#ifdef HEADER_CONFIGURATION_SYSTEM_DEBUG_MODE\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_DEBUG_MODE\n#endif\n\n#ifdef DEBUG_MODE\n#define BACKUP_DEBUG_MODE\n#endif\n\n#ifdef DEBUG\n#define BACKUP_DEBUG\n#endif\n\n#ifdef HEADER_CONFIGURATION_SYSTEM_RELEASE_MODE\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_RELEASE_MODE\n#endif\n\n#ifdef RELEASE_MODE\n#define BACKUP_RELEASE_MODE\n#endif\n\n#ifdef RELEASE\n#define BACKUP_RELEASE\n#endif\n\n<header_configuration_system/default.h>",
+			"<#ifdef HEADER_CONFIGURATION_SYSTEM_HEADER\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_HEADER\n#endif\n\n#ifdef HEADER\n#define BACKUP_HEADER\n#endif\n\n#ifdef HPML_HEADER\n#define BACKUP_HPML_HEADER\n#endif\n\n#ifdef HEADER_CONFIGURATION_SYSTEM_IMPLEMENTATION\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_IMPLEMENTATION\n#endif\n\n#ifdef IMPLEMENTATION\n#define BACKUP_IMPLEMENTATION\n#endif\n\n#ifdef HPML_IMPLEMENTATION\n#define BACKUP_HPML_IMPLEMENTATION\n#endif\n\n#ifdef HEADER_CONFIGURATION_SYSTEM_DEBUG_MODE\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_DEBUG_MODE\n#endif\n\n#ifdef DEBUG_MODE\n#define BACKUP_DEBUG_MODE\n#endif\n\n#ifdef DEBUG\n#define BACKUP_DEBUG\n#endif\n\n#ifdef HEADER_CONFIGURATION_SYSTEM_RELEASE_MODE\n#define BACKUP_HEADER_CONFIGURATION_SYSTEM_RELEASE_MODE\n#endif\n\n#ifdef RELEASE_MODE\n#define BACKUP_RELEASE_MODE\n#endif\n\n#ifdef RELEASE\n#define BACKUP_RELEASE\n#endif\n\n<header_configuration_system/reset.h>"
 		],
 		"reverse": false,
 		"scrollbar_highlights": true,
@@ -965,20 +1080,80 @@
 			[
 				{
 					"buffer": 0,
-					"file": "include/mat4/template_definitions.h",
-					"selected": true,
-					"semi_transient": true,
+					"file": "src/main.c",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 23456,
+						"buffer_size": 177,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								454,
-								454
+								127,
+								177
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/vec3.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 62,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								62,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "include/affine_transformation/template_definitions.h",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 13786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1000,11 +1175,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 29.6
 	},
 	"input":
 	{
-		"height": 40.0
+		"height": 42.4
 	},
 	"layout":
 	{
@@ -1041,7 +1216,7 @@
 	"project": "HPML.sublime-project",
 	"replace":
 	{
-		"height": 52.8
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1050,6 +1225,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"def",
+				"include\\defines.h"
+			],
+			[
+				"header_configuration",
+				"include\\header_configuration_system\\header_configuration_system.h"
+			],
+			[
+				"memory/header",
+				"include\\memory\\header_config.h"
+			],
 			[
 				"vertex",
 				"shaders\\vertexShader.vert"
@@ -1159,7 +1346,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 246.4,
+	"side_bar_width": 537.0,
 	"status_bar_visible": false,
 	"template_settings":
 	{

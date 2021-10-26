@@ -1,5 +1,5 @@
 
-DEFINES = -DDEBUG
+DEFINES = 
 
 #header files (.h)
 INCLUDES = -I.\include
@@ -13,11 +13,19 @@ CFLAGS = -m64
 
 OBJECTS = $(addsuffix .o, $(basename $(SOURCES)))
 
-all: main
+all: release
 .PHONY: main clean
 
 %.o : %.c
 	gcc $(DEFINES) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+.PHONY: debug release
+
+debug: DEFINES += -DGLOBAL_DEBUG
+debug: main
+
+release: DEFINES += -DGLOBAL_RELEASE
+release: main
 
 main: $(OBJECTS)
 	gcc $(DEFINES) $(CFLAGS) $^ $(LIBS) -o $@

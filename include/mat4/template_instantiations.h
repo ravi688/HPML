@@ -5,7 +5,10 @@
 
 /*Begin: Template Instantiations*/
 instantiate_mat4_struct(int);
+instantiate_declaration_mat4_move(int); 
+instantiate_declaration_mat4_copy(int);
 instantiate_declaration_mat4(int);
+instantiate_declaration_mat4_data(int);
 instantiate_declaration_mat4_add(int);
 instantiate_declaration_mat4_sub(int);
 instantiate_declaration_mat4_mul(int);
@@ -21,9 +24,14 @@ instantiate_declaration_mat4_mul_with_scalar(int);
 instantiate_declaration_mat4_transpose(int);
 instantiate_declaration_mat4_inverse(int);
 instantiate_declaration_mat4_diagonal(int);
+instantiate_declaration_mat4_identity(int);
+instantiate_declaration_mat4_det(int);
 
 instantiate_mat4_struct(float);
+instantiate_declaration_mat4_move(float);
+instantiate_declaration_mat4_copy(float);
 instantiate_declaration_mat4(float);
+instantiate_declaration_mat4_data(float);
 instantiate_declaration_mat4_add(float);
 instantiate_declaration_mat4_sub(float);
 instantiate_declaration_mat4_mul(float);
@@ -39,11 +47,16 @@ instantiate_declaration_mat4_mul_with_scalar(float);
 instantiate_declaration_mat4_transpose(float);
 instantiate_declaration_mat4_inverse(float);
 instantiate_declaration_mat4_diagonal(float);
+instantiate_declaration_mat4_identity(float);
+instantiate_declaration_mat4_det(float);
 
 /*End: Template Instantiations*/
 
 #if defined(IMPLEMENTATION)
 instantiate_implementation_mat4(int);
+instantiate_implementation_mat4_data(int);
+instantiate_implementation_mat4_move(int);
+instantiate_implementation_mat4_copy(int);
 instantiate_implementation_mat4_add(int);
 instantiate_implementation_mat4_sub(int);
 instantiate_implementation_mat4_mul(int);
@@ -58,8 +71,13 @@ instantiate_implementation_mat4_mul_with_scalar(int);
 instantiate_implementation_mat4_transpose(int);
 instantiate_implementation_mat4_inverse(int);
 instantiate_implementation_mat4_diagonal(int);
+instantiate_implementation_mat4_identity(int);
+instantiate_implementation_mat4_det(int);
 
 instantiate_implementation_mat4(float);
+instantiate_implementation_mat4_data(float);
+instantiate_implementation_mat4_move(float);
+instantiate_implementation_mat4_copy(float);
 instantiate_implementation_mat4_add(float);
 instantiate_implementation_mat4_sub(float);
 instantiate_implementation_mat4_mul(float);
@@ -74,6 +92,8 @@ instantiate_implementation_mat4_mul_with_scalar(float);
 instantiate_implementation_mat4_transpose(float);
 instantiate_implementation_mat4_inverse(float);
 instantiate_implementation_mat4_diagonal(float);
+instantiate_implementation_mat4_identity(float);
+instantiate_implementation_mat4_det(float);
 
 void mat4_print(float)(mat4_t(float) m)
 {

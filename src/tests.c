@@ -4,8 +4,8 @@
 
 #include <vec2/header_config.h>
 #include <vec2/vec2.h>
-#include <mat22/header_config.h>
-#include <mat22/mat22.h>
+#include <mat2/header_config.h>
+#include <mat2/mat2.h>
 
 #include <stdio.h>
 
@@ -92,52 +92,52 @@ void vec2_test()
 	else puts("F"); 
 }
 
-void mat22_test()
+void mat2_test()
 {
-		mat22_t(float) m1 = mat22(float)(1.0f, 2.0f, 3.0f, 4.0f); 
-	mat22_print(float)(m1);
-	mat22_t(float) m2 = mat22(float)(-1.0f, -2.0f, -3.0f, -4.0f); 
-	mat22_print(float)(m2); 
+		mat2_t(float) m1 = mat2(float)(1.0f, 2.0f, 3.0f, 4.0f); 
+	mat2_print(float)(m1);
+	mat2_t(float) m2 = mat2(float)(-1.0f, -2.0f, -3.0f, -4.0f); 
+	mat2_print(float)(m2); 
 
-	puts("mat22_add()");
-	mat22_print(float)(mat22_add(float)(m1, m2)); 
-	puts("mat22_sub()");
-	mat22_print(float)(mat22_sub(float)(m1, m2)); 
-	puts("mat22_mul()");
-	mat22_print(float)(mat22_mul(float)(m1, m2)); 
-	puts("mat22_mul_component_wise()");
-	mat22_print(float)(mat22_mul_component_wise(float)(m1, m2)); 
-	puts("mat22_div()");
-	mat22_print(float)(mat22_div(float)(m1, m2)); 
-	puts("mat22_trace()"); 
-	printf("Trace of {1.0f, 2.0f, 3.0f, 4.0f }: %f\n", mat22_trace(float)(m1));
-	puts("mat22_null()"); 
-	puts("mat22_identity()"); 
-	mat22_print(float)(mat22_identity(float)); 
-	puts("mat22_negate()"); 
-	mat22_print(float)(mat22(float)(1.0f, 1.0f, 1.0f, 1.0f)); 
-	mat22_print(float)(mat22_negate(float)(mat22(float)(1.0f, 1.0f, 1.0f, 1.0f)));
-	puts("mat22_lerp()"); 
-	mat22_t(float) m3 = mat22(float)(1.0f, 1.0f, 1.0f, 1.0f); 
-	mat22_t(float) m4 = mat22(float)(3.0f, 3.0f, 3.0f, 3.0f); 
-	mat22_t(float) lerp_m = mat22_lerp(float)(m3, m4, 0.5f); 
-	mat22_print(float)(lerp_m);
-	puts("mat22_mul_scalar()"); 
-	mat22_print(float)(mat22_mul_with_scalar(float)(mat22(float)(1.0f, 1.0f, 1.0f, 1.0f), 5.0f)); 
+	puts("mat2_add()");
+	mat2_print(float)(mat2_add(float)(m1, m2)); 
+	puts("mat2_sub()");
+	mat2_print(float)(mat2_sub(float)(m1, m2)); 
+	puts("mat2_mul()");
+	mat2_print(float)(mat2_mul(float)(m1, m2)); 
+	puts("mat2_mul_component_wise()");
+	mat2_print(float)(mat2_mul_component_wise(float)(m1, m2)); 
+	puts("mat2_div()");
+	mat2_print(float)(mat2_div(float)(m1, m2)); 
+	puts("mat2_trace()"); 
+	printf("Trace of {1.0f, 2.0f, 3.0f, 4.0f }: %f\n", mat2_trace(float)(m1));
+	puts("mat2_null()"); 
+	puts("mat2_identity()"); 
+	mat2_print(float)(mat2_identity(float)); 
+	puts("mat2_negate()"); 
+	mat2_print(float)(mat2(float)(1.0f, 1.0f, 1.0f, 1.0f)); 
+	mat2_print(float)(mat2_negate(float)(mat2(float)(1.0f, 1.0f, 1.0f, 1.0f)));
+	puts("mat2_lerp()"); 
+	mat2_t(float) m3 = mat2(float)(1.0f, 1.0f, 1.0f, 1.0f); 
+	mat2_t(float) m4 = mat2(float)(3.0f, 3.0f, 3.0f, 3.0f); 
+	mat2_t(float) lerp_m = mat2_lerp(float)(m3, m4, 0.5f); 
+	mat2_print(float)(lerp_m);
+	puts("mat2_mul_scalar()"); 
+	mat2_print(float)(mat2_mul_with_scalar(float)(mat2(float)(1.0f, 1.0f, 1.0f, 1.0f), 5.0f)); 
 
 
-	puts("mat22_transpose()");
-	mat22_t(float) m5 = 
+	puts("mat2_transpose()");
+	mat2_t(float) m5 = 
 	{
 		1.0f, 2.0f,
 		3.0f, 4.0f
 	};
-	mat22_print(float)(m5);
-	mat22_print(float)(mat22_transpose(float)(m5));
+	mat2_print(float)(m5);
+	mat2_print(float)(mat2_transpose(float)(m5));
 
-	puts("mat22_inverse()"); 
-	mat22_print(float)(m5);
-	mat22_print(float)(mat22_inverse(float)(mat22_null(float)));
-	mat22_print(float)(mat22_inverse(float)(mat22_inverse(float)(m5))); 
+	puts("mat2_inverse()"); 
+	mat2_print(float)(m5);
+	mat2_print(float)(mat2_inverse(float)(mat2_null(float)));
+	mat2_print(float)(mat2_inverse(float)(mat2_inverse(float)(m5))); 
 
 }

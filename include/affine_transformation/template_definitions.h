@@ -1,10 +1,5 @@
 #ifndef __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
 #define __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
-/*
- * NOTE: 
- * Wherever you are instantiating any templates from these template definitions,
- * you should include mat4/header_config.h and mat4/mat4.h headers first.
- */
 
 #include <template_system.h>
 #include <no_compile_header.h>
@@ -136,7 +131,7 @@ mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)\
 		nx, ny, nz, 0,\
 		nx, ny, nz, 0,\
 	};\
-	return mat4_sub(T)(mat4_identity(T), mat4_mul_with_scalar(T)(mat4_mul(T)(N, M), 2));\
+	return mat4_sub(T)(mat4_identity(T)(), mat4_mul_with_scalar(T)(mat4_mul(T)(2, N, M), 2));\
 }
 
 /* mat4_rotation_x(T): Creates a 4x4 rotation matrix along x axis [ in yz plane]
@@ -392,11 +387,11 @@ mat4_t(T) mat4_rotation(T)(T angle, T x, T y, T z)\
 	T yangle = atan2(z, x);\
 	T zangle = atan2(y, x);\
 	mat4_t(T) ymat = mat4_rotation_y(T)(-yangle);\
-	mat4_t(T) zmat = mat4_rotation_z(T)(-xangle);\
+	mat4_t(T) zmat = mat4_rotation_z(T)(-zangle);\
 	mat4_t(T) xmat = mat4_rotation_x(T)(angle);\
-	mat4_t(T) izmat = mat4_inverse(T)(zmat);\			//or transpose of zmat, since inverse of rotation matrix == transpose of rotation matrix
-	mat4_t(T) iymat = mat4_inverse(T)(ymat);\			//or transpose of ymat, since inverse of rotation matrix == transpose of rotation matrix
-	return mat4_mul(T)(iymat, mat4_mul(T)(izmat, mat4_mul(T)(xmat, mat4_mul(T)(zmat, ymat))));\
+	mat4_t(T) izmat = mat4_inverse(T)(zmat);\
+	mat4_t(T) iymat = mat4_inverse(T)(ymat);\
+	return mat4_mul(T)(5, iymat, izmat, xmat, zmat, ymat);\
 }
 
 /*
@@ -418,7 +413,7 @@ mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_ang
 	mat4_t(T) xz_mat = mat4_shear_xz(T)(xz_angle);\
 	mat4_t(T) yz_mat = mat4_shear_yz(T)(yz_angle);\
 	mat4_t(T) zy_mat = mat4_shear_zy(T)(zy_angle);\
-	return mat4_mul(T)(xy_mat, mat4_mul(T)(yx_mat, mat4_mul(T)(zx_mat, mat4_mul(T)(xz_mat, mat4_mul(T)(yz_mat, zy_mat)))));\
+	return mat4_mul(T)(6, xy_mat, yx_mat, zx_mat, xz_mat, yz_mat, zy_mat);\
 }
 /*		End: template implementations*/
 

@@ -2,8 +2,8 @@
 #pragma once
 
 
-#include <header_configuration_system/header_config_default.h>
+#include <header_configuration_system/default.h>
 
 #include <memory/template_instantiations.h>
 
-#include <header_configuration_system/header_config_reset.h>
+#include <header_configuration_system/reset.h>
