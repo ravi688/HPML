@@ -8,13 +8,102 @@
 #include <template_system.h>
 #include <no_compile_header.h>
 
+#include <stdarg.h>
+
+#include <defines.h>
+
 /*Begin: Template Definitions*/
 /*template signatures*/
 #define mat4_t(T) template(mat4_t, T)
 #define mat4(T) template(mat4, T)
+
+
+/*mat4_data*/
+#define __mat4_data(T) template(__mat4_data, T)
+#define mat4_data(T) __mat4_data(T)
+#define instantiate_declaration_mat4_data(T) T* const* const __mat4_data(T)(mat4_t(T)* m)
+#define instantiate_implementation_mat4_data(T)\
+T* const* const __mat4_data(T)(mat4_t(T)* m)\
+{\
+	IGNORE_CONST(T*,m->data[0]) = &m->m00;\
+	IGNORE_CONST(T*,m->data[1]) = &m->m10;\
+	IGNORE_CONST(T*,m->data[2]) = &m->m20;\
+	IGNORE_CONST(T*,m->data[3]) = &m->m30;\
+	return (T* const* const)m->data;\
+}
+
+/*mat4_move*/
+#define mat4_move(T) move(mat4_t(T))
+#define instantiate_declaration_mat4_move(T) instantiate_declaration_move(mat4_t(T))
+#define instantiate_implementation_mat4_move(T) instantiate_implementation_move(mat4_t(T))
+
+/*mat4_copy*/
+#define mat4_copy(T) copy(mat4_t(T))
+#define instantiate_declaration_mat4_copy(T) instantiate_declaration_copy(mat4_t(T))
+#define instantiate_implementation_mat4_copy(T) instantiate_implementation_copy(mat4_t(T))
+
+/*mat4_determinant*/
+#define mat4_det(T) template(mat4_det, T)
+#define mat4_determinant(T) mat4_det(T)
+#define instantiate_declaration_mat4_det(T) T mat4_det(T)(mat4_t(T) m)
+#define instantiate_implementation_mat4_det(T)\
+T mat4_det(T)(mat4_t(T) m)\
+{\
+	return m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -\
+	m.m01 * (m.m10 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m32 - m.m22 * m.m30)) +\
+	m.m02 * (m.m10 * (m.m21 * m.m33 - m.m23 * m.m31) - m.m11 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m31 - m.m21 * m.m30)) -\
+	m.m03 * (m.m10 * (m.m21 * m.m32 - m.m22 * m.m31) - m.m11 * (m.m20 * m.m32 - m.m22 * m.m30) + m.m12 * (m.m20 * m.m31 - m.m21 * m.m30));\
+}
+
+/*mat4_mul*/
+/* mat4_mul(T): Multiplies two matrices [4x4 order] by Matrix-Multiplication-Rule
+ * mat4_t(T) m1: Left side matrix in multiplication
+ * mat4_t(T) m2: right side matrix in mulitplication
+ * returns: mat4_t(T) resultant matrix
+ */
+#define mat4_mul(T) template(mat4_mul, T)
+#define __mat4_mul(T) template(__mat4_mul, T)
+#define instantiate_declaration_mat4_mul(T)\
+mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2);\
+mat4_t(T) mat4_mul(T)(uint32_t count, ...)
+#define instantiate_implementation_mat4_mul(T)\
+mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
+{\
+	mat4_t(T) m;\
+	m.m00 = m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03 * m2.m30;\
+	m.m01 = m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03 * m2.m31;\
+	m.m02 = m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22 + m1.m03 * m2.m32;\
+	m.m03 = m1.m00 * m2.m03 + m1.m01 * m2.m13 + m1.m02 * m2.m23 + m1.m03 * m2.m33;\
+	m.m10 = m1.m10 * m2.m00 + m1.m11 * m2.m10 + m1.m12 * m2.m20 + m1.m13 * m2.m30;\
+	m.m11 = m1.m10 * m2.m01 + m1.m11 * m2.m11 + m1.m12 * m2.m21 + m1.m13 * m2.m31;\
+	m.m12 = m1.m10 * m2.m02 + m1.m11 * m2.m12 + m1.m12 * m2.m22 + m1.m13 * m2.m32;\
+	m.m13 = m1.m10 * m2.m03 + m1.m11 * m2.m13 + m1.m12 * m2.m23 + m1.m13 * m2.m33;\
+	m.m20 = m1.m20 * m2.m00 + m1.m21 * m2.m10 + m1.m22 * m2.m20 + m1.m23 * m2.m30;\
+	m.m21 = m1.m20 * m2.m01 + m1.m21 * m2.m11 + m1.m22 * m2.m21 + m1.m23 * m2.m31;\
+	m.m22 = m1.m20 * m2.m02 + m1.m21 * m2.m12 + m1.m22 * m2.m22 + m1.m23 * m2.m32;\
+	m.m23 = m1.m20 * m2.m03 + m1.m21 * m2.m13 + m1.m22 * m2.m23 + m1.m23 * m2.m33;\
+	m.m30 = m1.m30 * m2.m00 + m1.m31 * m2.m10 + m1.m32 * m2.m20 + m1.m33 * m2.m30;\
+	m.m31 = m1.m30 * m2.m01 + m1.m31 * m2.m11 + m1.m32 * m2.m21 + m1.m33 * m2.m31;\
+	m.m32 = m1.m30 * m2.m02 + m1.m31 * m2.m12 + m1.m32 * m2.m22 + m1.m33 * m2.m32;\
+	m.m33 = m1.m30 * m2.m03 + m1.m31 * m2.m13 + m1.m32 * m2.m23 + m1.m33 * m2.m33;\
+	return m;\
+}\
+mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
+{\
+	mat4_t(T) result = mat4_identity(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		mat4_move(T)(&result, __mat4_mul(T)(result, va_arg(args, mat4_t(T))));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+} 
+
 #define mat4_add(T) template(mat4_add, T)
 #define mat4_sub(T) template(mat4_sub, T)
-#define mat4_mul(T) template(mat4_mul, T)
 #define mat4_mul_component_wise(T) template(mat4_mul_component_wise, T)
 #define mat4_div(T) template(mat4_div, T)
 #define mat4_is_null(T) template(mat4_is_null, T)
@@ -23,7 +112,7 @@
 #define mat4_zero(T) mat4_null(T)
 #define mat4_print(T) template(mat4_print, T)
 #define mat4_negate(T) template(mat4_negate, T)
-#define mat4_identity(T) mat4(T)(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+#define mat4_identity(T) template(mat4_identity, T)
 #define mat4_lerp(T) template(mat4_lerp, T)
 #define mat4_mul_with_scalar(T) template(mat4_mul_with_scalar, T)
 #define mat4_inverse(T) template(mat4_inverse, T)
@@ -45,6 +134,7 @@ typedef struct mat4_t(T)\
 		};\
 		T values[16];\
 	};\
+	T* const data[4];\
 } mat4_t(T)
 
 
@@ -57,7 +147,6 @@ typedef struct mat4_t(T)\
 															 )
 #define instantiate_declaration_mat4_add(T) mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)
 #define instantiate_declaration_mat4_sub(T) mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)
-#define instantiate_declaration_mat4_mul(T) mat4_t(T) mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)
 #define instantiate_declaration_mat4_div(T) mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)
 #define instantiate_declaration_mat4_mul_component_wise(T) mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)
 #define instantiate_declaration_mat4_is_null(T) bool mat4_is_null(T)(mat4_t(T) m)
@@ -71,6 +160,14 @@ typedef struct mat4_t(T)\
 #define instantiate_declaration_mat4_transpose(T) mat4_t(T) mat4_transpose(T)(mat4_t(T) m)
 #define instantiate_declaration_mat4_trace(T) T mat4_trace(T)(mat4_t(T) m)
 #define instantiate_declaration_mat4_diagonal(T) mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)
+
+/* mat4_identity(T): returns an 4x4 identity matrix
+ */
+#define instantiate_implementation_mat4_identity(T)\
+mat4_t(T) mat4_identity(T)()\
+{\
+	return mat4(T)(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);\
+}
 
 /* mat4(T): mat4 contructor taking 16 parameter to initialize the components
  * T v00: element at [0, 0] -> [Row, Column]
@@ -199,34 +296,6 @@ mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)\
  | 20 21 22 23 | | m20 m21 m22 m23 |
  | 30 31 32 33 | | m30 m31 m32 m33 |
  */
-
-/* mat4_mul(T): Multiplies two matrices [4x4 order] by Matrix-Multiplication-Rule
- * mat4_t(T) m1: Left side matrix in multiplication
- * mat4_t(T) m2: right side matrix in mulitplication
- * returns: mat4_t(T) resultant matrix
- */
-#define instantiate_implementation_mat4_mul(T)\
-mat4_t(T) mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
-{\
-	mat4_t(T) m;\
-	m.m00 = m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03 * m2.m30;\
-	m.m01 = m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03 * m2.m31;\
-	m.m02 = m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22 + m1.m03 * m2.m32;\
-	m.m03 = m1.m00 * m2.m03 + m1.m01 * m2.m13 + m1.m02 * m2.m23 + m1.m03 * m2.m33;\
-	m.m10 = m1.m10 * m2.m00 + m1.m11 * m2.m10 + m1.m12 * m2.m20 + m1.m13 * m2.m30;\
-	m.m11 = m1.m10 * m2.m01 + m1.m11 * m2.m11 + m1.m12 * m2.m21 + m1.m13 * m2.m31;\
-	m.m12 = m1.m10 * m2.m02 + m1.m11 * m2.m12 + m1.m12 * m2.m22 + m1.m13 * m2.m32;\
-	m.m13 = m1.m10 * m2.m03 + m1.m11 * m2.m13 + m1.m12 * m2.m23 + m1.m13 * m2.m33;\
-	m.m20 = m1.m20 * m2.m00 + m1.m21 * m2.m10 + m1.m22 * m2.m20 + m1.m23 * m2.m30;\
-	m.m21 = m1.m20 * m2.m01 + m1.m21 * m2.m11 + m1.m22 * m2.m21 + m1.m23 * m2.m31;\
-	m.m22 = m1.m20 * m2.m02 + m1.m21 * m2.m12 + m1.m22 * m2.m22 + m1.m23 * m2.m32;\
-	m.m23 = m1.m20 * m2.m03 + m1.m21 * m2.m13 + m1.m22 * m2.m23 + m1.m23 * m2.m33;\
-	m.m30 = m1.m30 * m2.m00 + m1.m31 * m2.m10 + m1.m32 * m2.m20 + m1.m33 * m2.m30;\
-	m.m31 = m1.m30 * m2.m01 + m1.m31 * m2.m11 + m1.m32 * m2.m21 + m1.m33 * m2.m31;\
-	m.m32 = m1.m30 * m2.m02 + m1.m31 * m2.m12 + m1.m32 * m2.m22 + m1.m33 * m2.m32;\
-	m.m33 = m1.m30 * m2.m03 + m1.m31 * m2.m13 + m1.m32 * m2.m23 + m1.m33 * m2.m33;\
-	return m;\
-}
 
 /* mat4_mul_with_scalar(T): Multiplies a 2x2 matrix with a scalar component wise
  * mat4_t(T) m: Matrix to be multiplied for each components
@@ -506,11 +575,7 @@ mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)\
 #define instantiate_implementation_mat4_inverse(T)\
 mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 {\
-	float det = \
-	m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -\
-	m.m01 * (m.m10 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m32 - m.m22 * m.m30)) +\
-	m.m02 * (m.m10 * (m.m21 * m.m33 - m.m23 * m.m31) - m.m11 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m31 - m.m21 * m.m30)) -\
-	m.m03 * (m.m10 * (m.m21 * m.m32 - m.m22 * m.m31) - m.m11 * (m.m20 * m.m32 - m.m22 * m.m30) + m.m12 * (m.m20 * m.m31 - m.m21 * m.m30));\
+	float det = mat4_det(T)(m);\
 	EXCEPTION_BLOCK(\
 		if(det == 0)\
 			THROW_EXCEPTION(INVERSION_OF_SINGULAR_MATRIX);\
@@ -550,20 +615,6 @@ mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 	_m.m33 = -_m.m33 * inverse_det;\
 	return _m;\
 }
-
-// #define instantiate_implementation_mat4_rotation(T)\
-// mat4_t(T) mat4_rotation(T)(T angle)\
-// {\
-// 	float cos_angle = cos(angle);\
-// 	float sin_angle = sin(angle);\
-// 	mat4_t(T) m;\
-// 	m.m0 = cos_angle;\
-// 	m.m1 = sin_angle;\
-// 	m.m2 = -sin_angle;\
-// 	m.m3 = cos_angle;\
-// 	return m;\
-// }
-
 /*End: Template Definitions*/
 
 #endif

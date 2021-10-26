@@ -64,7 +64,7 @@ typedef struct vec3_t(T)\
 #define instantiate_declaration_vec3_null(T) vec3_t(T) vec3_null(T)()
 #define instantiate_declaration_vec3_zero(T) instantiate_declaration_vec3_null(T)
 #define instantiate_declaration_vec3_print(T) void vec3_print(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3(T) vec3_t(T) vec3(T)(T x, T y)
+#define instantiate_declaration_vec3(T) vec3_t(T) vec3(T)(T x, T y, T z)
 #define instantiate_declaration_vec3_dot(T) float vec3_dot(T)(vec3_t(T) v1, vec3_t(T) v2)
 #define instantiate_declaration_vec3_magnitude(T) float vec3_magnitude(T)(vec3_t(T) v)
 #define instantiate_declaration_vec3_negate(T) vec3_t(T) vec3_negate(T)(vec3_t(T) v)
@@ -122,7 +122,7 @@ vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, T slerp_value)\
  * returns: float box product of from, to, and height vectors
  */
 #define instantiate_implementation_vec3_box_product(T)\
-float vec3_box_product(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
+float vec3_box_product(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
 {\
 	return vec3_dot(T)(height, vec3_cross(T)(from, to));\
 }
@@ -133,7 +133,7 @@ float vec3_box_product(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
  * returns: vec3_t(T) cross product, pseudo vector
  */
 #define instantiate_implementation_vec3_cross(T)\
-vec3_t(T) vec3_cross(vec3_t(T) from, vec3_t(T) to)\
+vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)\
 {\
 	vec3_t(T) v;\
 	v.x = from.y * to.z - from.z * to.y;\
@@ -148,7 +148,7 @@ vec3_t(T) vec3_cross(vec3_t(T) from, vec3_t(T) to)\
  * returns: vec3_t(T) scaled vector
  */
 #define instantiate_implementation_vec3_scale(T)\
-vec3_t(T) vec3_scale(vec3_t(T) v, float scalar_value)\
+vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)\
 {\
 	vec3_t(T) scaled_v =  { v.x * scalar_value, v.y * scalar_value, v.z * scalar_value };\
 	return scaled_v;\
