@@ -50,3 +50,5 @@ main: ./src/main.o  $(LIB)
 clean: 
 	del $(addprefix src\, $(notdir $(OBJECTS))) src\main.o
 	del main.exe
+	del $(LIB)
+	rmdir $(LIB_DIR)
