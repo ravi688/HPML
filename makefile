@@ -7,6 +7,7 @@ INCLUDES = -I.\include
 SOURCES = $(wildcard src/*.c)
 #output library
 LIB = .\lib\hpml.a
+LIB_DIR = .\lib
 #compilation flags
 CFLAGS = -m64
 STATIC_LIB_COMPILATION_FLAGS = -rc
@@ -29,14 +30,17 @@ debug: main
 release: DEFINES += -DGLOBAL_RELEASE
 release: main
 
-.PHONY: lib lib-debug lib-release
-lib : lib-release
-lib-debug: DEFINES += -DGLOBAL_DEBUG
-lib-debug: $(LIB)
-lib-release: DEFINES += -DGLOBAL_RELEASE
-lib-release: $(LIB)
+.PHONY: lib-static lib-static-debug lib-static-release
+lib-static :  lib-static-release 
+lib-static-debug: DEFINES += -DGLOBAL_DEBUG
+lib-static-debug: $(LIB)
+lib-static-release: DEFINES += -DGLOBAL_RELEASE
+lib-static-release: $(LIB)
 
-$(LIB) : $(OBJECTS)
+$(LIB_DIR) : 
+	mkdir $@
+
+$(LIB): $(OBJECTS) | $(LIB_DIR)
 	$(ARCHIVER) $(STATIC_LIB_COMPILATION_FLAGS) $@ $^ 
 	@echo [Log] hpml.a build successfully
 
