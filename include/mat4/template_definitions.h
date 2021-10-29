@@ -114,7 +114,7 @@ mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
 #define mat4_negate(T) template(mat4_negate, T)
 #define mat4_identity(T) template(mat4_identity, T)
 #define mat4_lerp(T) template(mat4_lerp, T)
-#define mat4_mul_with_scalar(T) template(mat4_mul_with_scalar, T)
+#define mat4_mul_scalar(T) template(mat4_mul_scalar, T)
 #define mat4_inverse(T) template(mat4_inverse, T)
 #define mat4_transpose(T) template(mat4_transpose, T)
 #define mat4_trace(T) template(mat4_trace, T)
@@ -155,7 +155,7 @@ typedef struct mat4_t(T)\
 #define instantiate_declaration_mat4_negate(T) mat4_t(T) mat4_negate(T)(mat4_t(T) m)
 #define instantiate_declaration_mat4_identity(T) mat4_t(T) mat4_identity(T)()
 #define instantiate_declaration_mat4_lerp(T) mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)
-#define instantiate_declaration_mat4_mul_with_scalar(T) mat4_t(T) mat4_mul_with_scalar(T)(mat4_t(T) m, T s)
+#define instantiate_declaration_mat4_mul_scalar(T) mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T s)
 #define instantiate_declaration_mat4_inverse(T) mat4_t(T) mat4_inverse(T)(mat4_t(T) m)
 #define instantiate_declaration_mat4_transpose(T) mat4_t(T) mat4_transpose(T)(mat4_t(T) m)
 #define instantiate_declaration_mat4_trace(T) T mat4_trace(T)(mat4_t(T) m)
@@ -297,13 +297,13 @@ mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)\
  | 30 31 32 33 | | m30 m31 m32 m33 |
  */
 
-/* mat4_mul_with_scalar(T): Multiplies a 2x2 matrix with a scalar component wise
+/* mat4_mul_scalar(T): Multiplies a 2x2 matrix with a scalar component wise
  * mat4_t(T) m: Matrix to be multiplied for each components
  * T scalar: scalar value to be multiplied [float, double, char, and int etc.]
  * returns: mat4_t(T) resultant matrix
  */
-#define instantiate_implementation_mat4_mul_with_scalar(T)\
-mat4_t(T) mat4_mul_with_scalar(T)(mat4_t(T) m, T scalar)\
+#define instantiate_implementation_mat4_mul_scalar(T)\
+mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T scalar)\
 {\
 	mat4_t(T) _m = m;\
 	_m.values[0] *= scalar;\

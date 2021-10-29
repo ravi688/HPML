@@ -9,10 +9,19 @@
 /*Begin: Template Definitions*/
 
 /*		Begin: template signatures*/
-#define mat4_mul_with_vec4(T) template(mat4_mul_with_vec4, T)
+#define mat4_mul_vec4(T) template(mat4_mul_vec4, T)
 #define mat4_translation(T) template(mat4_translation, T)
 #define mat4_scale(T) template(mat4_scale, T)
+#define mat4_axis_rotation(T) template(mat4_axis_rotation, T)
+
+/*mat4_rotation*/
 #define mat4_rotation(T) template(mat4_rotation, T)
+#define instantiate_declaration_mat4_rotation(T) mat4_t(T) mat4_rotation(T)(T x, T y, T z)
+#define instantiate_implementation_mat4_rotation(T) mat4_t(T) mat4_rotation(T)(T x, T y, T z)\
+{\
+	return mat4_mul(T)(3, mat4_rotation_x(T)(x), mat4_rotation_y(T)(y), mat4_rotation_z(T)(z));\
+}
+
 #define mat4_shear(T) template(mat4_shear, T)
 #define mat4_reflection(T) template(mat4_reflection, T)
 #define mat4_shear_xy(T) template(mat4_shear_xy, T)
@@ -28,10 +37,10 @@
 
 
 /*		Begin: template declarations*/
-#define instantiate_declaration_mat4_mul_with_vec4(T) mat4_t(T) mat4_mul_with_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)
+#define instantiate_declaration_mat4_mul_vec4(T) mat4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)
 #define instantiate_declaration_mat4_translation(T) mat4_t(T) mat4_translation(T)(T x, T y, T z)
 #define instantiate_declaration_mat4_scale(T) mat4_t(T) mat4_scale(T)(T x, T y, T z)
-#define instantiate_declaration_mat4_rotation(T) mat4_t(T) mat4_rotation(T)(T angle, T x, T y, T z)
+#define instantiate_declaration_mat4_axis_rotation(T) mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)
 #define instantiate_declaration_mat4_shear(T) mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)
 #define instantiate_declaration_mat4_reflection(T) mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)
 #define instantiate_declaration_mat4_shear_xy(T) mat4_t(T) mat4_shear_xy(T)(T angle)
@@ -48,15 +57,15 @@
 
 /* 		Begin: template implementations*/
 
-/* mat4_mul_with_vector(T): Multiplies a vector4 components with matrix 4x4
+/* mat4_mul_with_vect4(T): Multiplies a vector4 components with matrix 4x4
  * mat4_t(T) mat: 4x4 matrix involved in the multiplication
  * T x: x-component of the vector4
  * T y: y-component of the vector4
  * T z: z-component of the vector4
  * returns: mat4_t(T) resultant matrix
  */
-#define instantiate_implementation_mat4_mul_with_vec4(T)\
-mat4_t(T) mat4_mul_with_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
+#define instantiate_implementation_mat4_mul_vec4(T)\
+mat4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
 {\
 	mat4_t(T) _mat =\
 	{\
@@ -131,7 +140,7 @@ mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)\
 		nx, ny, nz, 0,\
 		nx, ny, nz, 0,\
 	};\
-	return mat4_sub(T)(mat4_identity(T)(), mat4_mul_with_scalar(T)(mat4_mul(T)(2, N, M), 2));\
+	return mat4_sub(T)(mat4_identity(T)(), mat4_mul_scalar(T)(mat4_mul(T)(2, N, M), 2));\
 }
 
 /* mat4_rotation_x(T): Creates a 4x4 rotation matrix along x axis [ in yz plane]
@@ -370,15 +379,15 @@ mat4_t(T) mat4_scale(T)(T x, T y, T z)\
 }
 
 /*
- * mat4_rotation(T): Calculates a 4x4 rotation matrix having angle of rotation 'angle' around the unit axis '(x, y, z)'
+ * mat4_axis_rotation(T): Calculates a 4x4 rotation matrix having angle of rotation 'angle' around the unit axis '(x, y, z)'
  * T angle: angle of rotation in radians
  * T x: x-component of the unit axis vector
  * T y: y-component of the unit axis vector
  * T z: z-component of the unit axis vector
  * returns: mat4_t(T) resultant rotation matrix
  */
-#define instantiate_implementation_mat4_rotation(T)\
-mat4_t(T) mat4_rotation(T)(T angle, T x, T y, T z)\
+#define instantiate_implementation_mat4_axis_rotation(T)\
+mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)\
 {\
 	EXCEPTION_BLOCK(\
 		if((x == 0) && (y == 0) && (z == 0))\

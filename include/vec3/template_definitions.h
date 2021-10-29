@@ -55,7 +55,7 @@ typedef struct vec3_t(T)\
 } vec3_t(T)
 
 #define instantiate_declaration_vec3_is_equal(T) bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T v2) v2)
-#define instantiate_declaration_vec3_slerp(T) vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, T slerp_value)
+#define instantiate_declaration_vec3_slerp(T) vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)
 #define instantiate_declaration_vec3_add(T) vec3_t(T) vec3_add(T)(vec3_t(T) v1, vec3_t(T) v2)
 #define instantiate_declaration_vec3_sub(T) vec3_t(T) vec3_sub(T)(vec3_t(T) v1, vec3_t(T) v2)
 #define instantiate_declaration_vec3_mul(T) vec3_t(T) vec3_mul(T)(vec3_t(T) v1, vec3_t(T) v2)
@@ -104,7 +104,7 @@ bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec3_t(T) spherically interpolated value
  */
 #define instantiate_implementation_vec3_slerp(T)\
-vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, T slerp_value)\
+vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)\
 {\
 	float angle = vec3_angle(T)(v1, v2);\
 	EXCEPTION_BLOCK(\
