@@ -9,6 +9,7 @@
 instantiate_declaration_mat4_translation(int);
 instantiate_declaration_mat4_scale(int);
 instantiate_declaration_mat4_rotation(int); 
+instantiate_declaration_mat4_axis_rotation(int); 
 instantiate_declaration_mat4_shear(int);
 instantiate_declaration_mat4_reflection(int);
 instantiate_declaration_mat4_shear_xy(int);
@@ -20,11 +21,12 @@ instantiate_declaration_mat4_shear_yz(int);
 instantiate_declaration_mat4_rotation_x(int);
 instantiate_declaration_mat4_rotation_y(int);
 instantiate_declaration_mat4_rotation_z(int);
-instantiate_declaration_mat4_mul_with_vec4(int);
+instantiate_declaration_mat4_mul_vec4(int);
 
 instantiate_declaration_mat4_translation(float);
 instantiate_declaration_mat4_scale(float);
 instantiate_declaration_mat4_rotation(float); 
+instantiate_declaration_mat4_axis_rotation(float); 
 instantiate_declaration_mat4_shear(float);
 instantiate_declaration_mat4_reflection(float);
 instantiate_declaration_mat4_shear_xy(float);
@@ -36,12 +38,13 @@ instantiate_declaration_mat4_shear_yz(float);
 instantiate_declaration_mat4_rotation_x(float);
 instantiate_declaration_mat4_rotation_y(float);
 instantiate_declaration_mat4_rotation_z(float);
-instantiate_declaration_mat4_mul_with_vec4(float);
+instantiate_declaration_mat4_mul_vec4(float);
 
 #if defined(IMPLEMENTATION)
 instantiate_implementation_mat4_translation(int); 
 instantiate_implementation_mat4_scale(int); 
 instantiate_implementation_mat4_rotation(int); 
+instantiate_implementation_mat4_axis_rotation(int); 
 instantiate_implementation_mat4_shear(int);
 instantiate_implementation_mat4_reflection(int);
 instantiate_implementation_mat4_shear_xy(int);
@@ -53,11 +56,12 @@ instantiate_implementation_mat4_shear_yz(int);
 instantiate_implementation_mat4_rotation_x(int);
 instantiate_implementation_mat4_rotation_y(int);
 instantiate_implementation_mat4_rotation_z(int);
-instantiate_implementation_mat4_mul_with_vec4(int);
+instantiate_implementation_mat4_mul_vec4(int);
 
 instantiate_implementation_mat4_translation(float); 
 instantiate_implementation_mat4_scale(float); 
 instantiate_implementation_mat4_rotation(float); 
+instantiate_implementation_mat4_axis_rotation(float); 
 instantiate_implementation_mat4_shear(float);
 instantiate_implementation_mat4_reflection(float);
 instantiate_implementation_mat4_shear_xy(float);
@@ -69,7 +73,7 @@ instantiate_implementation_mat4_shear_yz(float);
 instantiate_implementation_mat4_rotation_x(float);
 instantiate_implementation_mat4_rotation_y(float);
 instantiate_implementation_mat4_rotation_z(float);
-instantiate_implementation_mat4_mul_with_vec4(float);
+instantiate_implementation_mat4_mul_vec4(float);
 
 #endif /*if defined IMPLEMENTATION*/
 

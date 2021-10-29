@@ -20,3 +20,18 @@ typedef int8_t s8;
 #endif
 
 #define IGNORE_CONST(type, value) *(type*)(&value)
+
+#ifdef GLOBAL_DEBUG 
+
+#define ASSERT(boolean, ...)\
+do\
+{\
+	if(!(boolean))\
+	{\
+		printf(__VA_ARGS__);\
+		exit(0);\
+	}\
+} while(0)
+#else 
+#	define ASSERT(boolean, ...)
+#endif
