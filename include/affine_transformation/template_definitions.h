@@ -37,7 +37,7 @@
 
 
 /*		Begin: template declarations*/
-#define instantiate_declaration_mat4_mul_vec4(T) mat4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)
+#define instantiate_declaration_mat4_mul_vec4(T) vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)
 #define instantiate_declaration_mat4_translation(T) mat4_t(T) mat4_translation(T)(T x, T y, T z)
 #define instantiate_declaration_mat4_scale(T) mat4_t(T) mat4_scale(T)(T x, T y, T z)
 #define instantiate_declaration_mat4_axis_rotation(T) mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)
@@ -62,17 +62,18 @@
  * T x: x-component of the vector4
  * T y: y-component of the vector4
  * T z: z-component of the vector4
- * returns: mat4_t(T) resultant matrix
+ * T w: w-component of the vector4
+ * returns: vec4_t(T) resultant vector4
  */
 #define instantiate_implementation_mat4_mul_vec4(T)\
-mat4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
+vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
 {\
-	mat4_t(T) _mat =\
+	vec4_t(T) _mat =\
 	{\
-		mat.m00 * x, mat.m01 * y, mat.m02 * z, mat.m03 * w,\
-		mat.m10 * x, mat.m11 * y, mat.m12 * z, mat.m13 * w,\
-		mat.m20 * x, mat.m21 * y, mat.m22 * z, mat.m23 * w,\
-		mat.m30 * x, mat.m31 * y, mat.m32 * z, mat.m33 * w\
+		mat.m00 * x + mat.m01 * y + mat.m02 * z +  mat.m03 * w,\
+		mat.m10 * x + mat.m11 * y + mat.m12 * z +  mat.m13 * w,\
+		mat.m20 * x + mat.m21 * y + mat.m22 * z +  mat.m23 * w,\
+		mat.m30 * x + mat.m31 * y + mat.m32 * z +  mat.m33 * w\
 	};\
 	return _mat;\
 }

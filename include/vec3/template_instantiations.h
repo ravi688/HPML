@@ -26,7 +26,7 @@ instantiate_declaration_vec3_left(int);
 instantiate_declaration_vec3_right(int);
 instantiate_declaration_vec3_forward(int);
 instantiate_declaration_vec3_backward(int);
-instantiate_declaration_vec3_box_product(int);
+instantiate_declaration_vec3_box(int);
 
 instantiate_vec3_struct(float);
 instantiate_declaration_vec3_add(float);
@@ -49,7 +49,7 @@ instantiate_declaration_vec3_left(float);
 instantiate_declaration_vec3_right(float);
 instantiate_declaration_vec3_forward(float);
 instantiate_declaration_vec3_backward(float);
-instantiate_declaration_vec3_box_product(float);
+instantiate_declaration_vec3_box(float);
 
 #if defined(IMPLEMENTATION)
 instantiate_implementation_vec3_add(int); 
@@ -71,7 +71,7 @@ instantiate_implementation_vec3_left(int);
 instantiate_implementation_vec3_right(int);
 instantiate_implementation_vec3_forward(int);
 instantiate_implementation_vec3_backward(int);
-instantiate_implementation_vec3_box_product(int);
+instantiate_implementation_vec3_box(int);
 void vec3_print(int)(vec3_t(int) v)
 {
 	printf("vec3_t(int): { %d, %d }\n", v.x, v.y);
@@ -96,7 +96,7 @@ instantiate_implementation_vec3_left(float);
 instantiate_implementation_vec3_right(float);
 instantiate_implementation_vec3_forward(float);
 instantiate_implementation_vec3_backward(float);
-instantiate_implementation_vec3_box_product(float);
+instantiate_implementation_vec3_box(float);
 void vec3_print(float)(vec3_t(float) v)
 {
 	printf("vec3_t(float):  { %f, %f }\n", v.x, v.y);
