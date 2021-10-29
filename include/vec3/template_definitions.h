@@ -44,7 +44,7 @@
 #define vec3_internal_division(T) template(vec3_internal_division, T)
 #define vec3_external_division(T) template(vec3_external_division, T)
 #define vec3_direction_ratios(T) template(vec3_direction_ratios, T) NOT_IMPLEMENTED
-#define vec3_box_product(T) template(vec3_box_product, T) NOT_IMPLEMENTED
+#define vec3_box(T) template(vec3_box, T) NOT_IMPLEMENTED
 
 #define instantiate_vec3_struct(T) \
 typedef struct vec3_t(T)\
@@ -84,7 +84,7 @@ typedef struct vec3_t(T)\
 #define instantiate_declaration_vec3_external_division(T) vec3_t(T) vec3_external_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)
 #define instantiate_declaration_vec3_scale(T) vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)
 #define instantiate_declaration_vec3_cross(T) vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)
-#define instantiate_declaration_vec3_box_product(T) float vec3_box_product(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)
+#define instantiate_declaration_vec3_box(T) float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)
 
 /* vec3_is_equal(T): Checks whether the two vectors are equal or not
  * vec3_t(T) v1: First vector to be checked against
@@ -116,13 +116,13 @@ vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)\
 	return vec3_add(vec3_scale(T)(v1, sin(angle - temp) * inv_sin_angle), vec3_scale(v2, sin(temp)));\
 }
 
-/* vec3_box_product: Calculates box product [Value of parallelpiped]
+/* vec3_box: Calculates box product [Value of parallelpiped]
  * vec3_t(T) from: from vector(
  * vec3_t(T) to: to vector
  * returns: float box product of from, to, and height vectors
  */
-#define instantiate_implementation_vec3_box_product(T)\
-float vec3_box_product(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
+#define instantiate_implementation_vec3_box(T)\
+float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
 {\
 	return vec3_dot(T)(height, vec3_cross(T)(from, to));\
 }
