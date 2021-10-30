@@ -9,6 +9,8 @@
 #include <no_compile_header.h>
 #include <defines.h>
 
+#include <stdarg.h>
+
 /*DATA*/
 /*vec4_t(T) struct*/
 #define vec4_t(T) template(vec4_t, T)
@@ -65,24 +67,92 @@ typedef struct\
 
 /*ARITHMETIC*/
 /*vec4_add*/
+#define __vec4_add(T) template(__vec4_add, T)
 #define vec4_add(T) template(vec4_add, T)
-#define instantiate_declaration_vec4_add(T) vec4_t(T) vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_add(T) vec4_t(T) vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w }; }
+#define instantiate_declaration_vec4_add(T)\
+vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_add(T)(u32 count, ...)
+#define instantiate_implementation_vec4_add(T)\
+vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w }; }\
+vec4_t(T) vec4_add(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_add(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*vec4_sub*/
+#define __vec4_sub(T) template(__vec4_sub, T)
 #define vec4_sub(T) template(vec4_sub, T)
-#define instantiate_declaration_vec4_sub(T) vec4_t(T) vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_sub(T) vec4_t(T) vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }
+#define instantiate_declaration_vec4_sub(T)\
+vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_sub(T)(u32 count, ...)
+#define instantiate_implementation_vec4_sub(T)\
+vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x  v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }\
+vec4_t(T) vec4_sub(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_sub(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*vec4_mul*/
+#define __vec4_mul(T) template(__vec4_mul, T)
 #define vec4_mul(T) template(vec4_mul, T)
-#define instantiate_declaration_vec4_mul(T) vec4_t(T) vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_mul(T) vec4_t(T) vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t) { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w }; }
+#define instantiate_declaration_vec4_mul(T)\
+vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_mul(T)(u32 count, ...)
+#define instantiate_implementation_vec4_mul(T)\
+vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w }; }\
+vec4_t(T) vec4_mul(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_mul(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*vec4_div*/
+#define __vec4_div(T) template(__vec4_div, T)
 #define vec4_div(T) template(vec4_div, T)
-#define instantiate_declaration_vec4_div(T) vec4_t(T) vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_div(T) vec4_t(T) vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t) { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w }; }
+#define instantiate_declaration_vec4_div(T)\
+vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_div(T)(u32 count, ...)
+#define instantiate_implementation_vec4_div(T)\
+vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w }; }\
+vec4_t(T) vec4_div(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_div(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*INTERPOLATION*/
 /*vec4_lerp*/
@@ -106,7 +176,7 @@ typedef struct\
 	)\
 	float inv_sin_angle = 1 / sin(angle);\
 	float temp = slerp_value * angle;\
-	return vec4_add(vec4_scale(T)(v1, sin(angle - temp) * inv_sin_angle), vec4_scale(v2, sin(temp)));\
+	return vec4_add(T)(vec4_scale(T)(v1, sin(angle - temp) * inv_sin_angle), vec4_scale(T)(v2, sin(temp)));\
 }
 
 /*ALGEBRA*/
