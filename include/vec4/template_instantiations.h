@@ -17,8 +17,15 @@ instantiate_declaration_vec4_left(int);
 instantiate_declaration_vec4_right(int);
 instantiate_declaration_vec4_forward(int);
 instantiate_declaration_vec4_back(int);
-// instantiate_declaration_vec4_dot(int);
-// instantiate_declaration_vec4_cross(int);
+
+instantiate_declaration_vec4_dot(int);
+instantiate_declaration_vec4_cross(int);
+instantiate_declaration_vec4_rotate_x(int);
+instantiate_declaration_vec4_rotate_y(int);
+instantiate_declaration_vec4_rotate_z(int);
+instantiate_declaration_vec4_box(int);
+instantiate_declaration_vec4_project(int);
+instantiate_declaration_vec4_unit_project(int);
 
 
 instantiate_vec4_struct(float);
@@ -37,9 +44,15 @@ instantiate_declaration_vec4_left(float);
 instantiate_declaration_vec4_right(float);
 instantiate_declaration_vec4_forward(float);
 instantiate_declaration_vec4_back(float);
-// instantiate_declaration_vec4_dot(float);
-// instantiate_declaration_vec4_cross(float);
 
+instantiate_declaration_vec4_dot(float);
+instantiate_declaration_vec4_cross(float);
+instantiate_declaration_vec4_rotate_x(float);
+instantiate_declaration_vec4_rotate_y(float);
+instantiate_declaration_vec4_rotate_z(float);
+instantiate_declaration_vec4_box(float);
+instantiate_declaration_vec4_project(float);
+instantiate_declaration_vec4_unit_project(float);
 
 #if(IMPLEMENTATION)
 instantiate_implementation_vec4(int);
@@ -57,8 +70,15 @@ instantiate_implementation_vec4_left(int);
 instantiate_implementation_vec4_right(int);
 instantiate_implementation_vec4_forward(int);
 instantiate_implementation_vec4_back(int);
-// instantiate_implementation_vec4_dot(int);
-// instantiate_implementation_vec4_cross(int);
+
+instantiate_implementation_vec4_dot(int);
+instantiate_implementation_vec4_cross(int);
+instantiate_implementation_vec4_rotate_x(int);
+instantiate_implementation_vec4_rotate_y(int);
+instantiate_implementation_vec4_rotate_z(int);
+instantiate_implementation_vec4_box(int);
+instantiate_implementation_vec4_project(int);
+instantiate_implementation_vec4_unit_project(int);
 
 
 instantiate_implementation_vec4(float);
@@ -76,7 +96,15 @@ instantiate_implementation_vec4_left(float);
 instantiate_implementation_vec4_right(float);
 instantiate_implementation_vec4_forward(float);
 instantiate_implementation_vec4_back(float);
-// instantiate_implementation_vec4_dot(float);
-// instantiate_implementation_vec4_cross(float);
+
+instantiate_implementation_vec4_dot(float);
+instantiate_implementation_vec4_cross(float);
+instantiate_implementation_vec4_rotate_x(float);
+instantiate_implementation_vec4_rotate_y(float);
+instantiate_implementation_vec4_rotate_z(float);
+instantiate_implementation_vec4_box(float);
+instantiate_implementation_vec4_project(float);
+instantiate_implementation_vec4_unit_project(float);
+
 
 #endif
