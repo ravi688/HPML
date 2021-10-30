@@ -22,6 +22,8 @@ instantiate_declaration_mat4_rotation_x(int);
 instantiate_declaration_mat4_rotation_y(int);
 instantiate_declaration_mat4_rotation_z(int);
 instantiate_declaration_mat4_mul_vec4(int);
+instantiate_declaration_mat4_ortho_projection(int);
+instantiate_declaration_mat4_persp_projection(int);
 
 instantiate_declaration_mat4_translation(float);
 instantiate_declaration_mat4_scale(float);
@@ -39,6 +41,8 @@ instantiate_declaration_mat4_rotation_x(float);
 instantiate_declaration_mat4_rotation_y(float);
 instantiate_declaration_mat4_rotation_z(float);
 instantiate_declaration_mat4_mul_vec4(float);
+instantiate_declaration_mat4_ortho_projection(float);
+instantiate_declaration_mat4_persp_projection(float);
 
 #if defined(IMPLEMENTATION)
 instantiate_implementation_mat4_translation(int); 
@@ -57,6 +61,8 @@ instantiate_implementation_mat4_rotation_x(int);
 instantiate_implementation_mat4_rotation_y(int);
 instantiate_implementation_mat4_rotation_z(int);
 instantiate_implementation_mat4_mul_vec4(int);
+instantiate_implementation_mat4_ortho_projection(int);
+instantiate_implementation_mat4_persp_projection(int);
 
 instantiate_implementation_mat4_translation(float); 
 instantiate_implementation_mat4_scale(float); 
@@ -74,6 +80,8 @@ instantiate_implementation_mat4_rotation_x(float);
 instantiate_implementation_mat4_rotation_y(float);
 instantiate_implementation_mat4_rotation_z(float);
 instantiate_implementation_mat4_mul_vec4(float);
+instantiate_implementation_mat4_ortho_projection(float);
+instantiate_implementation_mat4_persp_projection(float);
 
 #endif /*if defined IMPLEMENTATION*/
 

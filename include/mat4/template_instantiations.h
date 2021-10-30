@@ -26,6 +26,7 @@ instantiate_declaration_mat4_inverse(int);
 instantiate_declaration_mat4_diagonal(int);
 instantiate_declaration_mat4_identity(int);
 instantiate_declaration_mat4_det(int);
+instantiate_declaration_mat4_build_cofactor(int);
 
 instantiate_mat4_struct(float);
 instantiate_declaration_mat4_move(float);
@@ -49,6 +50,8 @@ instantiate_declaration_mat4_inverse(float);
 instantiate_declaration_mat4_diagonal(float);
 instantiate_declaration_mat4_identity(float);
 instantiate_declaration_mat4_det(float);
+instantiate_declaration_mat4_build_cofactor(float);
+
 
 /*End: Template Instantiations*/
 
@@ -73,6 +76,7 @@ instantiate_implementation_mat4_inverse(int);
 instantiate_implementation_mat4_diagonal(int);
 instantiate_implementation_mat4_identity(int);
 instantiate_implementation_mat4_det(int);
+instantiate_implementation_mat4_build_cofactor(int);
 
 instantiate_implementation_mat4(float);
 instantiate_implementation_mat4_data(float);
@@ -94,6 +98,7 @@ instantiate_implementation_mat4_inverse(float);
 instantiate_implementation_mat4_diagonal(float);
 instantiate_implementation_mat4_identity(float);
 instantiate_implementation_mat4_det(float);
+instantiate_implementation_mat4_build_cofactor(float);
 
 void mat4_print(float)(mat4_t(float) m)
 {

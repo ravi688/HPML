@@ -22,6 +22,47 @@
 	return mat4_mul(T)(3, mat4_rotation_x(T)(x), mat4_rotation_y(T)(y), mat4_rotation_z(T)(z));\
 }
 
+/*mat4_ortho_projection*/
+#define mat4_ortho_projection(T) template(mat4_ortho_projection, T)
+#define instantiate_declaration_mat4_ortho_projection(T) mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)
+#define instantiate_implementation_mat4_ortho_projection(T) mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)\
+{\
+	float box_x = farClipPlane - nearClipPlane;\
+	float box_y = height;\
+	float box_z = aspectRatio * height;\
+EXCEPTION_BLOCK\
+(\
+	if((box_x == 0) || (box_y == 0) || (box_z == 0))\
+		throw_exception(DIVIDE_BY_ZERO);\
+	if((box_x < 0) || (box_y < 0) || (box_z < 0))\
+		throw_exception(NEGATIVE_VALUE);\
+)\
+	return mat4_scale(T)(1 / box_x, 2 / box_y, 2 / box_z );\
+}
+
+/*mat4_persp_projection*/
+#define mat4_persp_projection(T) template(mat4_persp_projection, T)
+#define instantiate_declaration_mat4_persp_projection(T) mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)
+#define instantiate_implementation_mat4_persp_projection(T) mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)\
+{\
+EXCEPTION_BLOCK\
+(\
+	if((farClipPlane < nearClipPlane) || (fieldOfView < 0))\
+		throw_exception(NEGATIVE_VALUE);\
+	if((farClipPlane == nearClipPlane) || (fieldOfView == 0))\
+		throw_exception(DIVIDE_BY_ZERO);\
+)\
+	float depth = 1 / (farClipPlane - nearClipPlane);\
+	float temp = 2 / tan(fieldOfView * 0.5f);\
+	return (mat4_t(T))\
+	{\
+		depth, 0, 0, 0,\
+		0, aspectRatio * temp, 0, 0,\
+		0, 0, temp, 0,\
+		1, 0, 0, 0,\
+	};\
+}
+
 #define mat4_shear(T) template(mat4_shear, T)
 #define mat4_reflection(T) template(mat4_reflection, T)
 #define mat4_shear_xy(T) template(mat4_shear_xy, T)

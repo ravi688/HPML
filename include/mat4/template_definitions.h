@@ -69,23 +69,25 @@ mat4_t(T) mat4_mul(T)(uint32_t count, ...)
 #define instantiate_implementation_mat4_mul(T)\
 mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
-	mat4_t(T) m;\
-	m.m00 = m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03 * m2.m30;\
-	m.m01 = m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03 * m2.m31;\
-	m.m02 = m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22 + m1.m03 * m2.m32;\
-	m.m03 = m1.m00 * m2.m03 + m1.m01 * m2.m13 + m1.m02 * m2.m23 + m1.m03 * m2.m33;\
-	m.m10 = m1.m10 * m2.m00 + m1.m11 * m2.m10 + m1.m12 * m2.m20 + m1.m13 * m2.m30;\
-	m.m11 = m1.m10 * m2.m01 + m1.m11 * m2.m11 + m1.m12 * m2.m21 + m1.m13 * m2.m31;\
-	m.m12 = m1.m10 * m2.m02 + m1.m11 * m2.m12 + m1.m12 * m2.m22 + m1.m13 * m2.m32;\
-	m.m13 = m1.m10 * m2.m03 + m1.m11 * m2.m13 + m1.m12 * m2.m23 + m1.m13 * m2.m33;\
-	m.m20 = m1.m20 * m2.m00 + m1.m21 * m2.m10 + m1.m22 * m2.m20 + m1.m23 * m2.m30;\
-	m.m21 = m1.m20 * m2.m01 + m1.m21 * m2.m11 + m1.m22 * m2.m21 + m1.m23 * m2.m31;\
-	m.m22 = m1.m20 * m2.m02 + m1.m21 * m2.m12 + m1.m22 * m2.m22 + m1.m23 * m2.m32;\
-	m.m23 = m1.m20 * m2.m03 + m1.m21 * m2.m13 + m1.m22 * m2.m23 + m1.m23 * m2.m33;\
-	m.m30 = m1.m30 * m2.m00 + m1.m31 * m2.m10 + m1.m32 * m2.m20 + m1.m33 * m2.m30;\
-	m.m31 = m1.m30 * m2.m01 + m1.m31 * m2.m11 + m1.m32 * m2.m21 + m1.m33 * m2.m31;\
-	m.m32 = m1.m30 * m2.m02 + m1.m31 * m2.m12 + m1.m32 * m2.m22 + m1.m33 * m2.m32;\
-	m.m33 = m1.m30 * m2.m03 + m1.m31 * m2.m13 + m1.m32 * m2.m23 + m1.m33 * m2.m33;\
+	mat4_t(T) m =\
+	{\
+		m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03 * m2.m30,\
+		m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03 * m2.m31,\
+		m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22 + m1.m03 * m2.m32,\
+		m1.m00 * m2.m03 + m1.m01 * m2.m13 + m1.m02 * m2.m23 + m1.m03 * m2.m33,\
+		m1.m10 * m2.m00 + m1.m11 * m2.m10 + m1.m12 * m2.m20 + m1.m13 * m2.m30,\
+		m1.m10 * m2.m01 + m1.m11 * m2.m11 + m1.m12 * m2.m21 + m1.m13 * m2.m31,\
+		m1.m10 * m2.m02 + m1.m11 * m2.m12 + m1.m12 * m2.m22 + m1.m13 * m2.m32,\
+		m1.m10 * m2.m03 + m1.m11 * m2.m13 + m1.m12 * m2.m23 + m1.m13 * m2.m33,\
+		m1.m20 * m2.m00 + m1.m21 * m2.m10 + m1.m22 * m2.m20 + m1.m23 * m2.m30,\
+		m1.m20 * m2.m01 + m1.m21 * m2.m11 + m1.m22 * m2.m21 + m1.m23 * m2.m31,\
+		m1.m20 * m2.m02 + m1.m21 * m2.m12 + m1.m22 * m2.m22 + m1.m23 * m2.m32,\
+		m1.m20 * m2.m03 + m1.m21 * m2.m13 + m1.m22 * m2.m23 + m1.m23 * m2.m33,\
+		m1.m30 * m2.m00 + m1.m31 * m2.m10 + m1.m32 * m2.m20 + m1.m33 * m2.m30,\
+		m1.m30 * m2.m01 + m1.m31 * m2.m11 + m1.m32 * m2.m21 + m1.m33 * m2.m31,\
+		m1.m30 * m2.m02 + m1.m31 * m2.m12 + m1.m32 * m2.m22 + m1.m33 * m2.m32,\
+		m1.m30 * m2.m03 + m1.m31 * m2.m13 + m1.m32 * m2.m23 + m1.m33 * m2.m33,\
+	};\
 	return m;\
 }\
 mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
@@ -100,7 +102,25 @@ mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
 	}\
 	va_end(args);\
 	return result;\
-} 
+}
+
+#define mat4_build_cofactor(T) template(mat4_build_cofactor, T)
+// #define mat4_build_cofactor(m, out_mptr, row, column) mat4_build_cofactor(mat4_data(&m), __mat4_data(out_mptr), 4, row, column)
+#define instantiate_declaration_mat4_build_cofactor(T) void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)
+#define instantiate_implementation_mat4_build_cofactor(T) void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)\
+{\
+	T* const* const baseMatrix = mat4_data(T)(&m);\
+	for(u32 i = 0, g = 0; i < 3; i++, g++)\
+	{\
+		if(g == row) g++;\
+		for(u32 j = 0, h = 0; j < 3; j++, h++)\
+		{\
+			if(h == column) h++;\
+			cofactorMatrix[i][j] = baseMatrix[g][h];\
+		}\
+	}\
+}
+
 
 #define mat4_add(T) template(mat4_add, T)
 #define mat4_sub(T) template(mat4_sub, T)
@@ -598,21 +618,22 @@ mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 	_m.m13 = m.m00 * (m.m12 * m.m23 - m.m13 * m.m22) - m.m02 * (m.m10 * m.m23 - m.m13 * m.m20) + m.m03 * (m.m10 * m.m22 - m.m12 * m.m20);\
 	_m.m23 = m.m00 * (m.m11 * m.m23 - m.m13 * m.m21) - m.m01 * (m.m10 * m.m23 - m.m13 * m.m20) + m.m03 * (m.m10 * m.m21 - m.m11 * m.m20);\
 	_m.m33 = m.m00 * (m.m11 * m.m22 - m.m12 * m.m21) - m.m01 * (m.m10 * m.m22 - m.m12 * m.m20) + m.m02 * (m.m10 * m.m21 - m.m11 * m.m20);\
-	_m.m01 = -_m.m01 * inverse_det;\
+	_m.m00 *= inverse_det;\
+	_m.m01 *= -inverse_det;\
 	_m.m02 *= inverse_det;\
-	_m.m03 = -_m.m03 * inverse_det;\
-	_m.m10 *= inverse_det;\
-	_m.m11 = -_m.m11 * inverse_det;\
-	_m.m12 *= inverse_det;\
-	_m.m13 = -_m.m13 * inverse_det;\
+	_m.m03 *= -inverse_det;\
+	_m.m10 *= -inverse_det;\
+	_m.m11 *= inverse_det;\
+	_m.m12 *= -inverse_det;\
+	_m.m13 *= inverse_det;\
 	_m.m20 *= inverse_det;\
-	_m.m21 = -_m.m21 * inverse_det;\
+	_m.m21 *= -inverse_det;\
 	_m.m22 *= inverse_det;\
-	_m.m23 = -_m.m23 * inverse_det;\
-	_m.m30 *= inverse_det;\
-	_m.m31 = -_m.m31 * inverse_det;\
-	_m.m32 *= inverse_det;\
-	_m.m33 = -_m.m33 * inverse_det;\
+	_m.m23 *= -inverse_det;\
+	_m.m30 *= -inverse_det;\
+	_m.m31 *= inverse_det;\
+	_m.m32 *= -inverse_det;\
+	_m.m33 *= inverse_det;\
 	return _m;\
 }
 /*End: Template Definitions*/
