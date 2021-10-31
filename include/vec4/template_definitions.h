@@ -9,6 +9,8 @@
 #include <no_compile_header.h>
 #include <defines.h>
 
+#include <stdarg.h>
+
 /*DATA*/
 /*vec4_t(T) struct*/
 #define vec4_t(T) template(vec4_t, T)
@@ -65,24 +67,92 @@ typedef struct\
 
 /*ARITHMETIC*/
 /*vec4_add*/
+#define __vec4_add(T) template(__vec4_add, T)
 #define vec4_add(T) template(vec4_add, T)
-#define instantiate_declaration_vec4_add(T) vec4_t(T) vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_add(T) vec4_t(T) vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w }; }
+#define instantiate_declaration_vec4_add(T)\
+vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_add(T)(u32 count, ...)
+#define instantiate_implementation_vec4_add(T)\
+vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w }; }\
+vec4_t(T) vec4_add(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_add(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*vec4_sub*/
+#define __vec4_sub(T) template(__vec4_sub, T)
 #define vec4_sub(T) template(vec4_sub, T)
-#define instantiate_declaration_vec4_sub(T) vec4_t(T) vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_sub(T) vec4_t(T) vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }
+#define instantiate_declaration_vec4_sub(T)\
+vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_sub(T)(u32 count, ...)
+#define instantiate_implementation_vec4_sub(T)\
+vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x  v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }\
+vec4_t(T) vec4_sub(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_sub(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*vec4_mul*/
+#define __vec4_mul(T) template(__vec4_mul, T)
 #define vec4_mul(T) template(vec4_mul, T)
-#define instantiate_declaration_vec4_mul(T) vec4_t(T) vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_mul(T) vec4_t(T) vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t) { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w }; }
+#define instantiate_declaration_vec4_mul(T)\
+vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_mul(T)(u32 count, ...)
+#define instantiate_implementation_vec4_mul(T)\
+vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w }; }\
+vec4_t(T) vec4_mul(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_mul(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*vec4_div*/
+#define __vec4_div(T) template(__vec4_div, T)
 #define vec4_div(T) template(vec4_div, T)
-#define instantiate_declaration_vec4_div(T) vec4_t(T) vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_div(T) vec4_t(T) vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t) { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w }; }
+#define instantiate_declaration_vec4_div(T)\
+vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2);\
+vec4_t(T) vec4_div(T)(u32 count, ...)
+#define instantiate_implementation_vec4_div(T)\
+vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w }; }\
+vec4_t(T) vec4_div(T)(u32 count, ...)\
+{\
+	vec4_t(T) result = vec4_zero(T)();\
+	va_list args;\
+	va_start(args, count);\
+	while(count > 0)\
+	{\
+		result = __vec4_div(T)(result, va_arg(args, vec4_t(T)));\
+		--count;\
+	}\
+	va_end(args);\
+	return result;\
+}
 
 /*INTERPOLATION*/
 /*vec4_lerp*/
@@ -106,7 +176,7 @@ typedef struct\
 	)\
 	float inv_sin_angle = 1 / sin(angle);\
 	float temp = slerp_value * angle;\
-	return vec4_add(vec4_scale(T)(v1, sin(angle - temp) * inv_sin_angle), vec4_scale(v2, sin(temp)));\
+	return vec4_add(T)(vec4_scale(T)(v1, sin(angle - temp) * inv_sin_angle), vec4_scale(T)(v2, sin(temp)));\
 }
 
 /*ALGEBRA*/
@@ -162,7 +232,114 @@ EXCEPTION_BLOCK\
 #define instantiate_declaration_vec4_negate(T) vec4_t(T) vec4_negate(T)(vec4_t(T))
 #define instantiate_implementation_vec4_negate(T) vec4_t(T) vec4_negate(T)(vec4_t(T) v) { return (vec4_t(T)) { -v.x, -v.y, -v.z, -v.w }; }
 
+/*vec4_rotate_x*/
+#define vec4_rotate_x(T) template(vec4_rotate_x, T)
+#define instantiate_declaration_vec4_rotate_x(T) vec4_t(T) vec4_rotate_x(T)(vec4_t(T) v, float angle)
+#define instantiate_implementation_vec4_rotate_x(T) vec4_t(T) vec4_rotate_x(T)(vec4_t(T) v, float angle)\
+{\
+	float c = cos(angle);\
+	float s = sin(angle);\
+	return (vec4_t(T)) { v.x, v.y * c - s * v.z, v.y * s + v.z * c, v.w };\
+}
+
+/*vec4_rotate_y*/
+#define vec4_rotate_y(T) template(vec4_rotate_y, T)
+#define instantiate_declaration_vec4_rotate_y(T) vec4_t(T) vec4_rotate_y(T)(vec4_t(T) v, float angle)
+#define instantiate_implementation_vec4_rotate_y(T) vec4_t(T) vec4_rotate_y(T)(vec4_t(T) v, float angle)\
+{\
+	float c = cos(angle);\
+	float s = sin(angle);\
+	return (vec4_t(T)) { v.x * c + v.z * s, v.y, -v.x * s + v.z * c, v.w };\
+}
+
+/*vec4_rotate_z*/
+#define vec4_rotate_z(T) template(vec4_rotate_z, T)
+#define instantiate_declaration_vec4_rotate_z(T) vec4_t(T) vec4_rotate_z(T)(vec4_t(T) v, float angle)
+#define instantiate_implementation_vec4_rotate_z(T) vec4_t(T) vec4_rotate_z(T)(vec4_t(T) v, float angle)\
+{\
+	float c = cos(angle);\
+	float s = sin(angle);\
+	return (vec4_t(T)) { v.x * c - v.y * s, v.x * s + c * v.y, v.z, v.w };\
+}
+
 /*vec4_rotate*/
 #define vec4_rotate(T) template(vec4_rotate, T)
-#define instantiate_declaration_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(vec4_t(T) v, vec4_t(T) axis, float angle)
-#define instantiate_implementation_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(vec4_t(T) v, vec4_t(T) axis, float angle)
+#define instantiate_declaration_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(float x, float y, float z)
+#define instantiate_implementation_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(float x, float y, float z)\
+{\
+	return vec4_rotate_z(T)(vec4_rotate_y(T)(vec4_rotate_x(T)(v, x), y), z);\
+}
+
+/*vec4_axis_rotate*/
+/*
+ let axis = a; 
+ let vector = v; 
+ let angle = r;
+
+ k =  v - (v.a)a
+ j = a X k
+ f = k * cos(r) + j * sin(r)
+ result = f + (v.a)a
+ result = k * cos(r) + j * sin(r) + (v.a)a
+ result = (v - (v.a)a) * cos(r) + (a x k) * sin(r) + (v.a)a
+ result = (v - (v.a)a) * cos(r) + a x (v - (v.a)a) * sin(r) + (v.a)a
+ result = (v - (v.a)a) * cos(r) + a x v * sin(r) + (v.a)a
+ result = (v.a)a * (1 - cos(r)) + a x v * sin(r) + v * cos(r)
+*/
+#define vec4_axis_rotate(T) template(vec4_axis_rotate, T)
+#define instantiate_declaration_vec4_axis_rotate(T) vec4_t(T) vec4_axis_rotate(T)(vec4_t(T) v, float axisX, float axisY, float axisZ, float angle)
+#define instantiate_implementation_vec4_axis_rotate(T) vec4_t(T) vec4_axis_rotate(T)(vec4_t(T) v, float axisX, float axisY, float axisZ, float angle)\
+{\
+	vec4_t(T) p = vec4_unit_project(T)(v, (vec4_t(T)) { axisX, axisY, axisZ, 0 });\
+ 	vec4_t(T) k = vec4_sub(T)(2, v, p);\
+ 	vec4_t(T) j = vec4_cross(T)((vec4_t(T)) { axisX, axisY, axisZ, 0}, k);\
+ 	return vec4_add(T)(3 , vec4_scale(T)(k, cos(angle)), vec4_scale(T)(j, sin(angle)), p);\
+ }
+
+
+/*vec4_project*/
+#define vec4_project(T) template(vec4_project, T)
+#define instantiate_declaration_vec4_project(T) vec4_t(T) vec4_project(T)(vec4_t(T) v, vec4_t(T) a)
+#define instantiate_implementation_vec4_project(T) vec4_t(T) vec4_project(T)(vec4_t(T) v, vec4_t(T) a)\
+{\
+	vec4_t(T) na = vec4_normalize(T)(v);\
+	return vec4_scale(T)(na, vec4_dot(T)(v, na));\
+}
+
+/*vec4_unit_project*/
+#define vec4_unit_project(T) template(vec4_unit_project, T)
+#define instantiate_declaration_vec4_unit_project(T) vec4_t(T) vec4_unit_project(T)(vec4_t(T) v, vec4_t(T) a)
+#define instantiate_implementation_vec4_unit_project(T) vec4_t(T) vec4_unit_project(T)(vec4_t(T) v, vec4_t(T) a)\
+{\
+	return vec4_scale(T)(a, vec4_dot(T)(v, a));\
+}
+
+/*vec4_box*/
+#define vec4_box(T) template(vec4_box, T)
+#define instantiate_declaration_vec4_box(T) float vec4_box(T)(vec4_t(T) from, vec4_t(T) to, vec4_t(T) height)
+#define instantiate_implementation_vec4_box(T) float vec4_box(T)(vec4_t(T) from, vec4_t(T) to, vec4_t(T) height)\
+{\
+	return vec4_dot(T)(height, vec4_cross(T)(from, to));\
+}
+
+/*vec4_dot*/
+#define vec4_dot(T) template(vec4_dot, T)
+#define instantiate_declaration_vec4_dot(T) T vec4_dot(T)(vec4_t(T) v1, vec4_t(T) v2)
+#define instantiate_implementation_vec4_dot(T) T vec4_dot(T)(vec4_t(T) v1, vec4_t(T) v2)\
+{\
+	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;\
+}
+
+/*vec4_cross*/
+#define vec4_cross(T) template(vec4_cross, T)
+#define instantiate_declaration_vec4_cross(T) vec4_t(T) vec4_cross(T)(vec4_t(T) from, vec4_t(T) to)
+#define instantiate_implementation_vec4_cross(T) vec4_t(T) vec4_cross(T)(vec4_t(T) from, vec4_t(T) to)\
+{\
+	vec4_t(T) v = {\
+	from.y * to.z - from.z * to.y,\
+	from.x * to.z - from.z * to.x,\
+	from.x * to.y - from.y * to.x,\\
+	};\
+	return v;\
+}
+
