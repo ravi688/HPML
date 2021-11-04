@@ -1,54 +1,78 @@
+TARGET_STATIC_LIB = ./lib/hpml.a
+TARGET_STATIC_LIB_DIR = ./lib
+TARGET = main
 
+#Dependencies
+DEPENDENCY_LIBS = 
+DEPENDENCY_INCLUDES = 
+
+INCLUDES= -I.\include $(addprefix -I, $(DEPENDENCY_INCLUDES))
+SOURCES= $(wildcard src/*.c)
+OBJECTS= $(addsuffix .o, $(basename $(SOURCES)))
+LIBS = 
+
+#Flags and Defines
+DEBUG_DEFINES =  -DGLOBAL_DEBUG -DDEBUG
+RELEASE_DEFINES =  -DGLOBAL_RELEASE -DRELEASE
 DEFINES = 
 
-#header files (.h)
-INCLUDES = -I.\include
-#source code (.c) 
-SOURCES = $(wildcard src/*.c)
-#output library
-LIB = .\lib\hpml.a
-LIB_DIR = .\lib
-#compilation flags
-CFLAGS = -m64
-STATIC_LIB_COMPILATION_FLAGS = -rc
+COMPILER_FLAGS= -m64
+COMPILER = gcc
+ARCHIVER_FLAGS = -rc
 ARCHIVER = ar
 
 
-OBJECTS =  $(filter-out ./src/main.o, $(addsuffix .o, $(basename $(SOURCES))))
+.PHONY: lib-static
+.PHONY: lib-static-debug
+.PHONY: lib-release-debug
+.PHONY: release
+.PHONY: debug
+.PHONY: $(TARGET)	
+.PHONY: clean
 
 all: release
-.PHONY: main clean
+lib-static: lib-static-release
+lib-static-debug: DEFINES += $(DEBUG_DEFINES)
+lib-static-debug: $(TARGET_STATIC_LIB)
+lib-static-release: DEFINES += $(RELEASE_DEFINES)
+lib-static-release: $(TARGET_STATIC_LIB)
+release: DEFINES += $(RELEASE_DEFINES)
+release: __STATIC_LIB_COMMAND = lib-static-release
+release: $(TARGET)
+debug: DEFINES += $(DEBUG_DEFINES)
+debug: __STATIC_LIB_COMMAND = lib-static-debug
+debug: $(TARGET)
+
 
 %.o : %.c
-	gcc $(DEFINES) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(COMPILER) $(COMPILER_FLAGS) $(DEFINES) $(INCLUDES) -c $< -o $@
 
-.PHONY: debug release
+./dependencies/%.a:
+	@echo [Log] Building $@ ...
+	$(MAKE) --directory=$(subst lib/, ,$(dir $@)) $(__STATIC_LIB_COMMAND)
+	@echo [Log] $@ built successfully!
 
-debug: DEFINES += -DGLOBAL_DEBUG
-debug: main
-
-release: DEFINES += -DGLOBAL_RELEASE
-release: main
-
-.PHONY: lib-static lib-static-debug lib-static-release
-lib-static :  lib-static-release 
-lib-static-debug: DEFINES += -DGLOBAL_DEBUG
-lib-static-debug: $(LIB)
-lib-static-release: DEFINES += -DGLOBAL_RELEASE
-lib-static-release: $(LIB)
-
-$(LIB_DIR) : 
+$(TARGET_STATIC_LIB_DIR): 
 	mkdir $@
 
-$(LIB): $(OBJECTS) | $(LIB_DIR)
-	$(ARCHIVER) $(STATIC_LIB_COMPILATION_FLAGS) $@ $^ 
-	@echo [Log] hpml.a build successfully
+PRINT_MESSAGE: 
+	@echo [Log] Building $(TARGET_STATIC_LIB) ...
 
-main: ./src/main.o  $(LIB)
-	gcc $(DEFINES) $(CFLAGS) $< $(LIB) -o $@
+$(TARGET_STATIC_LIB) : PRINT_MESSAGE $(filter-out src/main.o, $(OBJECTS)) | $(TARGET_STATIC_LIB_DIR) 
+	$(ARCHIVER) $(ARCHIVER_FLAGS) $@ $(filter-out $<, $^)
+	@echo [Log] $@ built successfully!
+
+
+$(TARGET): $(DEPENDENCY_LIBS) $(TARGET_STATIC_LIB) src/main.o
+	$(COMPILER) $(COMPILER_FLAGS) src/main.o $(LIBS) \
+	$(addprefix -L, $(dir $(DEPENDENCY_LIBS) $(TARGET_STATIC_LIB))) \
+	$(addprefix -l:, $(notdir $(DEPENDENCY_LIBS) $(TARGET_STATIC_LIB))) \
+	-o $@
 
 clean: 
-	del $(addprefix src\, $(notdir $(OBJECTS))) src\main.o
+	del $(addprefix src\, $(notdir $(OBJECTS)))
 	del main.exe
-	del $(LIB)
-	rmdir $(LIB_DIR)
+	del $(subst /,\, $(TARGET_STATIC_LIB))
+	rmdir $(subst /,\, $(TARGET_STATIC_LIB_DIR))
+# 	$(MAKE) --directory=./dependencies/HPML clean
+# 	$(MAKE) --directory=./dependencies/tgc clean

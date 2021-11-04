@@ -2,11 +2,15 @@
 #define HEADER_CONFIGURATION_SYSTEM_IMPLEMENTATION
 
 #ifdef GLOBAL_DEBUG
-#define DEBUG
+#	ifndef DEBUG
+#		define DEBUG
+#	endif 
 #endif
 
 #ifdef GLOBAL_RELEASE
-#define RELEASE 
+#	ifndef RELEASE
+#		define RELEASE
+#	endif 
 #endif
 
 #include <header_configuration_system/header_configuration_system.h>
