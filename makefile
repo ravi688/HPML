@@ -15,6 +15,7 @@ PROJECT_NAME = HPML
 STATIC_LIB_NAME = hpml.a
 DYNAMIC_LIB_NAME = #hpml.dll
 EXECUTABLE_NAME = main.exe
+EXTERNAL_INCLUDES = -I.\include\hpml
 DEPENDENCIES = #CallTrace
 DEPENDENCY_LIBS = #CallTrace/lib/calltrace.a
 DEPENDENCIES_DIR = ./dependencies
@@ -101,7 +102,7 @@ TARGET = $(__EXECUTABLE_NAME)
 DEPENDENCY_INCLUDES = $(addsuffix /include, $(__DEPENDENCIES))
 SHARED_DEPENDENCY_INCLUDES = $(addsuffix /include, $(__SHARED_DEPENDENCIES))
 
-INCLUDES= -I.\include $(addprefix -I, $(DEPENDENCY_INCLUDES) $(SHARED_DEPENDENCY_INCLUDES))
+INCLUDES= -I.\include $(EXTERNAL_INCLUDES) $(addprefix -I, $(DEPENDENCY_INCLUDES) $(SHARED_DEPENDENCY_INCLUDES))
 SOURCES= $(wildcard source/*.c)
 OBJECTS= $(addsuffix .o, $(basename $(SOURCES)))
 LIBS = 
