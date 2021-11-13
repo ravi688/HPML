@@ -1,5 +1,5 @@
 
-#include <vec4/template_definitions.h>
+#include <hpml/vec4/template_definitions.h>
 
 instantiate_vec4_struct(int);
 instantiate_declaration_vec4(int);
