@@ -15,5 +15,5 @@
 #	endif 
 #endif
 
-#include <header_configuration_system/header_configuration_system.h>
+#include <hpml/header_configuration_system/header_configuration_system.h>
 /*End: Header Configuration System*/

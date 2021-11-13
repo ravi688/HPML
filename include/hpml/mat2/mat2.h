@@ -6,9 +6,9 @@
 #ifndef __HPML_MAT2_H__
 #define __HPML_MAT2_H__
 
-#include <header_configuration_system/default.h>
+#include <hpml/header_configuration_system/default.h>
 
 #include <mat2/template_instantiations.h>
 
-#include <header_configuration_system/reset.h>
+#include <hpml/header_configuration_system/reset.h>
 #endif

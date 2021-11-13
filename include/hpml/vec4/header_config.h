@@ -15,4 +15,4 @@
 
 #define VEC4_ENABLE_SIMD_ACCELERATION
 
-#include <header_configuration_system/header_configuration_system.h>
+#include <hpml/header_configuration_system/header_configuration_system.h>
