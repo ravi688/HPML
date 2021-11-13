@@ -5,8 +5,8 @@
 #warning "VEC4_ENABLE_SIMD_ACCELERATION switch is enabled but SIMD acceleration isn't supported!"
 #endif
 
-#include <template_system.h>
-#include <no_compile_header.h>
+#include <hpml/template_system.h>
+#include <hpml/no_compile_header.h>
 #include <defines.h>
 
 #include <stdarg.h>

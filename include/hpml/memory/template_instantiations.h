@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <memory/template_definitions.h>
+#include <hpml/memory/template_definitions.h>
 
 
 #if defined(IMPLEMENTATION)

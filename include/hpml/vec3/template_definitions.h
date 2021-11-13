@@ -1,9 +1,9 @@
 #ifndef __HPML_VEC3_TEMPLATE_DEFINITION_H__
 #define __HPML_VEC3_TEMPLATE_DEFINITION_H__
 
-#include <exception/exception.h>
-#include <template_system.h>
-#include <no_compile_header.h>
+#include <hpml/exception/exception.h>
+#include <hpml/template_system.h>
+#include <hpml/no_compile_header.h>
 
 #include <math.h>
 #include <stdio.h>

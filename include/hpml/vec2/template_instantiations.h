@@ -2,7 +2,7 @@
 #ifndef __HPML_VEC2_TEMPLATE_INSTANTIATIONS_H__
 #define __HPML_VEC2_TEMPLATE_INSTANTIATIONS_H__
 
-#include <vec2/template_definitions.h>
+#include <hpml/vec2/template_definitions.h>
 
 /*Begin: Template Instantiations*/
 instantiate_vec2_struct(int);

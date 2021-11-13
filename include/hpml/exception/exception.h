@@ -53,6 +53,6 @@ void __throw_exception(exception_t exception, uint64_t line_no, const char* meth
 
 
 /*Added in version 1.1*/
-#include <exception/exception_declarations.h>
+#include <hpml/exception/exception_declarations.h>
 
 #endif/*__EXCEPTION_H__*/

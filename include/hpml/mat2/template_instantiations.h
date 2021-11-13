@@ -1,7 +1,7 @@
 #ifndef __HPML_MAT2_TEMPLATE_INSTANTIATIONS_H__
 #define __HPML_MAT2_TEMPLATE_INSTANTIATIONS_H__
 
-#include <mat2/template_definitions.h>
+#include <hpml/mat2/template_definitions.h>
 
 /*Begin: Template Instantiations*/
 instantiate_mat2_struct(int);

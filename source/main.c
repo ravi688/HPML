@@ -1,19 +1,19 @@
 
 
-#include <memory/header_config.h>
-#include <memory/memory.h>
+#include <hpml/memory/header_config.h>
+#include <hpml/memory/memory.h>
 
-#include <mat4/header_config.h>
-#include <mat4/mat4.h>
+#include <hpml/mat4/header_config.h>
+#include <hpml/mat4/mat4.h>
 
-#include <vec4/header_config.h>
-#include <vec4/vec4.h>
+#include <hpml/vec4/header_config.h>
+#include <hpml/vec4/vec4.h>
 
-#include <affine_transformation/header_config.h>
-#include <affine_transformation/affine_transformation.h>
+#include <hpml/affine_transformation/header_config.h>
+#include <hpml/affine_transformation/affine_transformation.h>
 
-// #include <mat4/header_config.h>
-// #include <mat4/mat4.h>
+// #include <hpml/mat4/header_config.h>
+// #include <hpml/mat4/mat4.h>
 
 #include <stdio.h>
 

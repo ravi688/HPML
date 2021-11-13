@@ -1,7 +1,7 @@
 #ifndef __HPML_MAT4_TEMPLATE_INSTANTIATIONS_H__
 #define __HPML_MAT4_TEMPLATE_INSTANTIATIONS_H__
 
-#include <mat4/template_definitions.h>
+#include <hpml/mat4/template_definitions.h>
 
 /*Begin: Template Instantiations*/
 instantiate_mat4_struct(int);

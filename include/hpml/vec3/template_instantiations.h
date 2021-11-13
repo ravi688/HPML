@@ -2,7 +2,7 @@
 #ifndef __HPML_VEC3_TEMPLATE_INSTANTIATIONS_H__
 #define __HPML_VEC3_TEMPLATE_INSTANTIATIONS_H__
 
-#include <vec3/template_definitions.h>
+#include <hpml/vec3/template_definitions.h>
 
 /*Begin: Template Instantiations*/
 instantiate_vec3_struct(int);

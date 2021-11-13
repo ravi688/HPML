@@ -1,8 +1,8 @@
 #ifndef __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
 #define __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
 
-#include <template_system.h>
-#include <no_compile_header.h>
+#include <hpml/template_system.h>
+#include <hpml/no_compile_header.h>
 
 #include <math.h>
 

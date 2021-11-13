@@ -4,9 +4,9 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <exception/exception.h>
-#include <template_system.h>
-#include <no_compile_header.h>
+#include <hpml/exception/exception.h>
+#include <hpml/template_system.h>
+#include <hpml/no_compile_header.h>
 
 /*Begin: Template Definitions*/
 /*template signatures*/

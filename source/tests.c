@@ -1,11 +1,11 @@
 
 
-#include <tests.h>
+#include <hpml/tests.h>
 
-#include <vec2/header_config.h>
-#include <vec2/vec2.h>
-#include <mat2/header_config.h>
-#include <mat2/mat2.h>
+#include <hpml/vec2/header_config.h>
+#include <hpml/vec2/vec2.h>
+#include <hpml/mat2/header_config.h>
+#include <hpml/mat2/mat2.h>
 
 #include <stdio.h>
 

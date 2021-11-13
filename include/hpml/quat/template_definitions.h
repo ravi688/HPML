@@ -2,9 +2,9 @@
 #define __HPML_QUAT_TEMPLATE_DEFINITION_H__
 
 
-#include <template_system.h>
-#include <exception/exception.h>
-#include <no_compile_header.h>
+#include <hpml/template_system.h>
+#include <hpml/exception/exception.h>
+#include <hpml/no_compile_header.h>
 
 #include <math.h>
 

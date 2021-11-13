@@ -3,7 +3,7 @@
 #ifndef __HPML_AFFINE_TRANSFORMATION_TEMPLATE_INSTANTIATIONS_H__
 #define __HPML_AFFINE_TRANSFORMATION_TEMPLATE_INSTANTIATIONS_H__
 
-#include <affine_transformation/template_definitions.h>
+#include <hpml/affine_transformation/template_definitions.h>
 
 /*Begin: Template Instantiations*/
 instantiate_declaration_mat4_translation(int);

@@ -7,11 +7,11 @@
  * Version 1.1
  */
 
-#include <exception/exception.h>
+#include <hpml/exception/exception.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <exception/exception_definitions.h>
+#include <hpml/exception/exception_definitions.h>
 
 #ifndef NO_EXCEPTION
 /*Changes: 

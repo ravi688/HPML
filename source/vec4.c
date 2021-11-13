@@ -1,3 +1,3 @@
 
-#include <vec4/header_config.h>
-#include <vec4/vec4.h>
+#include <hpml/vec4/header_config.h>
+#include <hpml/vec4/vec4.h>
