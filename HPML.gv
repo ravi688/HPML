@@ -1,1 +1,3 @@
+#pragma once
+
 digraph HPML { HPML; } 
