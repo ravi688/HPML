@@ -7,7 +7,7 @@
 
 #include <hpml/template_system.h>
 #include <hpml/no_compile_header.h>
-#include <defines.h>
+#include <hpml/defines.h>
 
 #include <stdarg.h>
 
