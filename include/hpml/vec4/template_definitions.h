@@ -17,10 +17,10 @@
 #define instantiate_vec4_struct(T)\
 typedef struct\
 {\
-	float x;\
-	float y;\
-	float z;\
-	float w;\
+	T x;\
+	T y;\
+	T z;\
+	T w;\
 } vec4_t(T)
 
 /*CONSTRUCTOR*/
