@@ -41,6 +41,7 @@ EXCEPTION_BLOCK\
 }
 
 /*mat4_persp_projection*/
+//TODO: This matrix doesn't give correct depth values in the range [-1, 1], to be fixed
 #define mat4_persp_projection(T) template(mat4_persp_projection, T)
 #define instantiate_declaration_mat4_persp_projection(T) mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)
 #define instantiate_implementation_mat4_persp_projection(T) mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)\
@@ -56,9 +57,9 @@ EXCEPTION_BLOCK\
 	float temp = 2 / tan(fieldOfView * 0.5f);\
 	return (mat4_t(T))\
 	{\
-		depth, 0, 0, 0,\
-		0, aspectRatio * temp, 0, 0,\
-		0, 0, temp, 0,\
+		0, 0, temp / aspectRatio, 0,\
+		0, temp, 0, 0,\
+		0, 0, depth, 0,\
 		1, 0, 0, 0,\
 	};\
 }
