@@ -28,8 +28,18 @@
 #define instantiate_implementation_mat4_ortho_projection(T) mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)\
 {\
 	float box_x = farClipPlane - nearClipPlane;\
-	float box_y = height;\
-	float box_z = aspectRatio * height;\
+	float box_y;\
+	float box_z;\
+	if(aspectRatio < 1)\
+	{\
+		box_z = height;\
+		box_y = height / aspectRatio;\
+	}\
+	else\
+	{\
+		box_y = height;\
+		box_z = aspectRatio * height;\
+	}\
 EXCEPTION_BLOCK\
 (\
 	if((box_x == 0) || (box_y == 0) || (box_z == 0))\
@@ -60,10 +70,21 @@ EXCEPTION_BLOCK\
 		throw_exception(DIVIDE_BY_ZERO);\
 )\
 	float temp = 2 / tan(fieldOfView * 0.5f);\
+	float m02, m11;\
+	if(aspectRatio < 1)\
+	{\
+		m02 = temp;\
+		m11 = temp * aspectRatio;\
+	}\
+	else\
+	{\
+		m02 = temp / aspectRatio;\
+		m11 = temp;\
+	}\
 	return (mat4_t(T))\
 	{\
-		0, 0, temp / aspectRatio, 0,\
-		0, temp, 0, 0,\
+		0, 0, m02, 0,\
+		0, m11, 0, 0,\
 		0, 0, 0, 0,\
 		1, 0, 0, 0,\
 	};\
