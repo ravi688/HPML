@@ -37,7 +37,13 @@ EXCEPTION_BLOCK\
 	if((box_x < 0) || (box_y < 0) || (box_z < 0))\
 		throw_exception(NEGATIVE_VALUE);\
 )\
-	return mat4_scale(T)(2 / box_z, 2 / box_y, 1 / box_x );\
+	return (mat4_t(T))\
+	{\
+		0, 0, 2 / box_z, 0,\
+		0, 2 / box_y, 0, 0,\
+		1 / box_x, 0, 0, 0,\
+		0, 0, 0, 1\
+	};\
 }
 
 /*mat4_persp_projection*/
