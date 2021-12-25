@@ -4,6 +4,10 @@
 
 #include <hpml/vec3/template_definitions.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*Begin: Template Instantiations*/
 instantiate_vec3_struct(int);
 instantiate_declaration_vec3_add(int);
@@ -106,7 +110,11 @@ void vec3_print(float)(vec3_t(float) v)
 {
 	printf("vec3_t(float):  { %f, %f }\n", v.x, v.y);
 }
-#endif
+#endif /*IMPLEMENTATION*/
 /*End: Template Instantiations*/
 
-#endif
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
+
+#endif /*__HPML_VEC3_TEMPLATE_INSTANTIATIONS_H__*/

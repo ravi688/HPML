@@ -3,6 +3,10 @@
 
 #include <hpml/mat4/template_definitions.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*Begin: Template Instantiations*/
 instantiate_mat4_struct(int);
 instantiate_declaration_mat4_move(int); 
@@ -124,6 +128,10 @@ void mat4_print(int)(mat4_t(int) m)
 		m.m20, m.m21, m.m22, m.m23,
 		m.m30, m.m31, m.m32, m.m33);
 }
-#endif
+#endif /*IMPLEMENTATION*/
 
-#endif
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
+
+#endif /*__HPML_MAT4_TEMPLATE_INSTANTIATIONS_H__*/

@@ -5,6 +5,10 @@
 
 #include <hpml/affine_transformation/template_definitions.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*Begin: Template Instantiations*/
 instantiate_declaration_mat4_translation(int);
 instantiate_declaration_mat4_scale(int);
@@ -86,5 +90,9 @@ instantiate_implementation_mat4_persp_projection(float);
 #endif /*if defined IMPLEMENTATION*/
 
 /*End: Template Instantiations*/
+
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
 #endif /*__HPML_AFFINE_TRANSFORMATION_TEMPLATE_INSTANTIATIONS_H__*/

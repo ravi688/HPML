@@ -1,6 +1,13 @@
 
+#pragma once
+
 #include <hpml/vec4/template_definitions.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+ 
+/*Begin: Template Instantiations*/
 instantiate_vec4_struct(int);
 instantiate_declaration_vec4(int);
 instantiate_declaration_vec4_add(int);
@@ -109,6 +116,11 @@ instantiate_implementation_vec4_axis_rotate(float);
 instantiate_implementation_vec4_box(float);
 instantiate_implementation_vec4_project(float);
 instantiate_implementation_vec4_unit_project(float);
+/*End: Template Instantiations*/
+
+#endif /*IMPLEMENTATION*/
 
 
-#endif
+#ifdef __cplusplus
+}
+#endif/*__cplusplus*/

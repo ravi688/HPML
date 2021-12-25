@@ -11,7 +11,11 @@
 #ifndef __EXCEPTION_H__
 #define __EXCEPTION_H__
 
-#include <stdint.h>
+#ifdef __cplusplus
+#   include <cstdint>
+#else
+#   include <stdint.h>
+#endif /*__cplusplus*/
 
 #ifdef NO_EXCEPTION
 #	define EXCEPTION_BLOCK(x)
@@ -54,5 +58,9 @@ void __throw_exception(exception_t exception, uint64_t line_no, const char* meth
 
 /*Added in version 1.1*/
 #include <hpml/exception/exception_declarations.h>
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif/*__EXCEPTION_H__*/

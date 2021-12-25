@@ -4,6 +4,10 @@
 
 #include <hpml/vec2/template_definitions.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*Begin: Template Instantiations*/
 instantiate_vec2_struct(int);
 instantiate_declaration_vec2_up(int);
@@ -98,7 +102,12 @@ void vec2_print(float)(vec2_t(float) v)
 {
 	printf("vec2_t(float):  { %f, %f }\n", v.x, v.y);
 }
-#endif
+#endif /*IMPLEMENTATION*/
 /*End: Template Instantiations*/
 
-#endif
+
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
+
+#endif /*__HPML_VEC2_TEMPLATE_INSTANTIATIONS_H__*/

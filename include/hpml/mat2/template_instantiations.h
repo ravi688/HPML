@@ -3,6 +3,11 @@
 
 #include <hpml/mat2/template_definitions.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /*Begin: Template Instantiations*/
 instantiate_mat2_struct(int);
 instantiate_declaration_mat2(int);
@@ -40,7 +45,6 @@ instantiate_declaration_mat2_transpose(float);
 instantiate_declaration_mat2_inverse(float);
 instantiate_declaration_mat2_rotation(float);
 
-/*End: Template Instantiations*/
 
 #if defined(IMPLEMENTATION)
 instantiate_implementation_mat2(int);
@@ -83,6 +87,12 @@ void mat2_print(int)(mat2_t(int) m)
 {
 	printf("mat2_t(int): { %d, %d, %d, %d }\n", m.m0, m.m1, m.m2, m.m3);
 }
+#endif /*IMPLEMENTATION*/
+/*End: Template Instantiations*/
+
+#ifdef __cplusplus
+}
 #endif
 
-#endif
+
+#endif /*__HPML_MAT2_TEMPLATE_INSTANTIATIONS_H__*/

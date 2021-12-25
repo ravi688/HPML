@@ -1,7 +1,13 @@
 
 #pragma once
 
-#include <stdint.h>
+#ifdef __cplusplus
+#	include <cstdint>
+#	include <cstdio>
+#else
+#	include <stdint.h>
+#	include <stdio.h>
+#endif
 
 typedef uint16_t u16; 
 typedef int16_t s16;
