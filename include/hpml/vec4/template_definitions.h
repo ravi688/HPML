@@ -5,6 +5,11 @@
 #warning "VEC4_ENABLE_SIMD_ACCELERATION switch is enabled but SIMD acceleration isn't supported!"
 #endif
 
+#if defined(IMPLEMENTATION)
+#include <exception/exception.h>
+#include <math.h>
+#endif
+
 #include <hpml/template_system.h>
 #include <hpml/no_compile_header.h>
 #include <hpml/defines.h>
@@ -95,7 +100,7 @@ vec4_t(T) vec4_add(T)(u32 count, ...)\
 vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2);\
 vec4_t(T) vec4_sub(T)(u32 count, ...)
 #define instantiate_implementation_vec4_sub(T)\
-vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x  v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }\
+vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }\
 vec4_t(T) vec4_sub(T)(u32 count, ...)\
 {\
 	vec4_t(T) result = vec4_zero(T)();\
@@ -169,17 +174,23 @@ vec4_t(T) vec4_div(T)(u32 count, ...)\
 #define instantiate_declaration_vec4_slerp(T) vec4_t(T) vec4_slerp(T)(vec4_t(T) from, vec4_t(T) to, float t)
 #define instantiate_implementation_vec4_slerp(T) vec4_t(T) vec4_slerp(T)(vec4_t(T) from, vec4_t(T) to, float t)\
 {\
-	float angle = vec4_angle(T)(v1, v2);\
-	EXCEPTION_BLOCK(\
+	float angle = vec4_angle(T)(from, to);\
+	EXCEPTION_BLOCK\
+	(\
 		if((angle == 0) || (angle == 3.145926f) || (angle == 2 * 3.145926f))\
 			THROW_EXCEPTION(DIVIDE_BY_ZERO);\
 	)\
 	float inv_sin_angle = 1 / sin(angle);\
-	float temp = slerp_value * angle;\
-	return vec4_add(T)(vec4_scale(T)(v1, sin(angle - temp) * inv_sin_angle), vec4_scale(T)(v2, sin(temp)));\
+	float temp = t * angle;\
+	return vec4_add(T)(2, vec4_scale(T)(from, sin(angle - temp) * inv_sin_angle), vec4_scale(T)(to, sin(temp)));\
 }
 
 /*ALGEBRA*/
+
+/*vec4_scale*/
+#define vec4_scale(T) template(vec4_scale, T)
+#define instantiate_declaration_vec4_scale(T) vec4_t(T) vec4_scale(T)(vec4_t(T) v, T value)
+#define instantiate_implementation_vec4_scale(T) vec4_t(T) vec4_scale(T)(vec4_t(T) v, T value) { return (vec4_t(T)) { v.x * value, v.y * value, v.z * value, v.w * value }; }
 
 /*vec4_magnitude*/
 #define vec4_magnitude(T) template(vec4_magnitude, T)
@@ -264,8 +275,8 @@ EXCEPTION_BLOCK\
 
 /*vec4_rotate*/
 #define vec4_rotate(T) template(vec4_rotate, T)
-#define instantiate_declaration_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(float x, float y, float z)
-#define instantiate_implementation_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(float x, float y, float z)\
+#define instantiate_declaration_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(vec4_t(T) v, float x, float y, float z)
+#define instantiate_implementation_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(vec4_t(T) v, float x, float y, float z)\
 {\
 	return vec4_rotate_z(T)(vec4_rotate_y(T)(vec4_rotate_x(T)(v, x), y), z);\
 }
@@ -338,8 +349,14 @@ EXCEPTION_BLOCK\
 	vec4_t(T) v = {\
 	from.y * to.z - from.z * to.y,\
 	from.x * to.z - from.z * to.x,\
-	from.x * to.y - from.y * to.x,\\
+	from.x * to.y - from.y * to.x,\
 	};\
 	return v;\
 }
 
+/*DEBUGGING*/
+
+/*vec4_print*/
+#define vec4_print(T) template(vec4_print, T)
+#define instantiate_declaration_vec4_print(T) void vec4_print(T)(vec4_t(T) v)
+#define instantiate_implementation_vec4_print(T) /*specialized*/

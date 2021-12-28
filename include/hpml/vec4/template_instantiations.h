@@ -26,6 +26,11 @@ instantiate_declaration_vec4_right(int);
 instantiate_declaration_vec4_forward(int);
 instantiate_declaration_vec4_back(int);
 
+instantiate_declaration_vec4_print(int);
+instantiate_declaration_vec4_normalize(int);
+instantiate_declaration_vec4_magnitude(int);
+instantiate_declaration_vec4_angle(int);
+instantiate_declaration_vec4_scale(int);
 instantiate_declaration_vec4_dot(int);
 instantiate_declaration_vec4_cross(int);
 instantiate_declaration_vec4_rotate_x(int);
@@ -55,6 +60,11 @@ instantiate_declaration_vec4_right(float);
 instantiate_declaration_vec4_forward(float);
 instantiate_declaration_vec4_back(float);
 
+instantiate_declaration_vec4_print(float);
+instantiate_declaration_vec4_normalize(float);
+instantiate_declaration_vec4_magnitude(float);
+instantiate_declaration_vec4_angle(float);
+instantiate_declaration_vec4_scale(float);
 instantiate_declaration_vec4_dot(float);
 instantiate_declaration_vec4_cross(float);
 instantiate_declaration_vec4_rotate_x(float);
@@ -65,7 +75,7 @@ instantiate_declaration_vec4_box(float);
 instantiate_declaration_vec4_project(float);
 instantiate_declaration_vec4_unit_project(float);
 
-#if(IMPLEMENTATION)
+#if defined(IMPLEMENTATION)
 instantiate_implementation_vec4(int);
 instantiate_implementation_vec4_zero(int);
 instantiate_implementation_vec4_add(int);
@@ -83,6 +93,11 @@ instantiate_implementation_vec4_right(int);
 instantiate_implementation_vec4_forward(int);
 instantiate_implementation_vec4_back(int);
 
+void vec4_print(int)(vec4_t(int) v) { printf("vec4_t(int): { %d, %d, %d, %d }\n", v.x, v.y, v.z, v.w); }
+instantiate_implementation_vec4_normalize(int);
+instantiate_implementation_vec4_magnitude(int);
+instantiate_implementation_vec4_angle(int);
+instantiate_implementation_vec4_scale(int);
 instantiate_implementation_vec4_dot(int);
 instantiate_implementation_vec4_cross(int);
 instantiate_implementation_vec4_rotate_x(int);
@@ -111,6 +126,11 @@ instantiate_implementation_vec4_right(float);
 instantiate_implementation_vec4_forward(float);
 instantiate_implementation_vec4_back(float);
 
+void vec4_print(float)(vec4_t(float) v) { printf("vec4_t(float): { %f, %f, %f, %f }\n", v.x, v.y, v.z, v.w); }
+instantiate_implementation_vec4_normalize(float);
+instantiate_implementation_vec4_magnitude(float);
+instantiate_implementation_vec4_angle(float);
+instantiate_implementation_vec4_scale(float);
 instantiate_implementation_vec4_dot(float);
 instantiate_implementation_vec4_cross(float);
 instantiate_implementation_vec4_rotate_x(float);
