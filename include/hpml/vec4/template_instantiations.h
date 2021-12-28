@@ -10,6 +10,7 @@ extern "C" {
 /*Begin: Template Instantiations*/
 instantiate_vec4_struct(int);
 instantiate_declaration_vec4(int);
+instantiate_declaration_vec4_zero(int);
 instantiate_declaration_vec4_add(int);
 instantiate_declaration_vec4_sub(int);
 instantiate_declaration_vec4_mul(int);
@@ -38,6 +39,7 @@ instantiate_declaration_vec4_unit_project(int);
 
 instantiate_vec4_struct(float);
 instantiate_declaration_vec4(float);
+instantiate_declaration_vec4_zero(float);
 instantiate_declaration_vec4_add(float);
 instantiate_declaration_vec4_sub(float);
 instantiate_declaration_vec4_mul(float);
@@ -65,6 +67,7 @@ instantiate_declaration_vec4_unit_project(float);
 
 #if(IMPLEMENTATION)
 instantiate_implementation_vec4(int);
+instantiate_implementation_vec4_zero(int);
 instantiate_implementation_vec4_add(int);
 instantiate_implementation_vec4_sub(int);
 instantiate_implementation_vec4_mul(int);
@@ -92,6 +95,7 @@ instantiate_implementation_vec4_unit_project(int);
 
 
 instantiate_implementation_vec4(float);
+instantiate_implementation_vec4_zero(float);
 instantiate_implementation_vec4_add(float);
 instantiate_implementation_vec4_sub(float);
 instantiate_implementation_vec4_mul(float);
