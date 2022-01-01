@@ -26,6 +26,7 @@ instantiate_declaration_mat2_mul_with_scalar(int);
 instantiate_declaration_mat2_transpose(int);
 instantiate_declaration_mat2_inverse(int);
 instantiate_declaration_mat2_rotation(int);
+instantiate_declaration_mat2_identity(int);
 
 instantiate_mat2_struct(float);
 instantiate_declaration_mat2(float);
@@ -44,7 +45,7 @@ instantiate_declaration_mat2_mul_with_scalar(float);
 instantiate_declaration_mat2_transpose(float);
 instantiate_declaration_mat2_inverse(float);
 instantiate_declaration_mat2_rotation(float);
-
+instantiate_declaration_mat2_identity(float);
 
 #if defined(IMPLEMENTATION)
 instantiate_implementation_mat2(int);
@@ -62,6 +63,7 @@ instantiate_implementation_mat2_mul_with_scalar(int);
 instantiate_implementation_mat2_transpose(int);
 instantiate_implementation_mat2_inverse(int);
 instantiate_implementation_mat2_rotation(int);
+instantiate_implementation_mat2_identity(int);
 
 instantiate_implementation_mat2(float);
 instantiate_implementation_mat2_add(float);
@@ -78,6 +80,7 @@ instantiate_implementation_mat2_mul_with_scalar(float);
 instantiate_implementation_mat2_transpose(float);
 instantiate_implementation_mat2_inverse(float);
 instantiate_implementation_mat2_rotation(float);
+instantiate_implementation_mat2_identity(float);
 
 void mat2_print(float)(mat2_t(float) m)
 {

@@ -23,7 +23,7 @@
 #define mat2_zero(T) mat2_null(T)
 #define mat2_print(T) template(mat2_print, T)
 #define mat2_negate(T) template(mat2_negate, T)
-#define mat2_identity(T) mat2(T)(1, 0, 1, 0)
+#define mat2_identity(T) template(mat2_identity, T)
 #define mat2_lerp(T) template(mat2_lerp, T)
 #define mat2_mul_with_scalar(T) template(mat2_mul_with_scalar, T)
 #define mat2_inverse(T) template(mat2_inverse, T)
@@ -37,6 +37,9 @@ typedef struct mat2_t(T)\
 	T m0, m1, m2, m3;\
 } mat2_t(T)
 
+/*mat2_identity(T)*/
+#define instantiate_declaration_mat2_identity(T) mat2_t(T) mat2_identity(T)()
+#define instantiate_implementation_mat2_identity(T) mat2_t(T) mat2_identity(T)() { return (mat2_t(T)) { 1, 0, 0, 1 }; }
 
 #define instantiate_declaration_mat2_print(T) void mat2_print(T)(mat2_t(T) m)
 #define instantiate_declaration_mat2(T) mat2_t(T) mat2(T)(T v0, T v1, T v2, T v3)
@@ -49,7 +52,6 @@ typedef struct mat2_t(T)\
 #define instantiate_declaration_mat2_is_equal(T) bool mat2_is_equal(T)(mat2_t(T) m1, mat2_t(T) m2)
 #define instantiate_declaration_mat2_null(T) mat2_t(T) mat2_null(T)()
 #define instantiate_declaration_mat2_negate(T) mat2_t(T) mat2_negate(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2_identity(T) mat2_t(T) mat2_identity(T)()
 #define instantiate_declaration_mat2_lerp(T) mat2_t(T) mat2_lerp(T)(mat2_t(T) m1, mat2_t(T) m2, float lerp_value)
 #define instantiate_declaration_mat2_mul_with_scalar(T) mat2_t(T) mat2_mul_with_scalar(T)(mat2_t(T) m, T s)
 #define instantiate_declaration_mat2_inverse(T) mat2_t(T) mat2_inverse(T)(mat2_t(T) m)

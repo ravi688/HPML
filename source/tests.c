@@ -113,7 +113,7 @@ void mat2_test()
 	printf("Trace of {1.0f, 2.0f, 3.0f, 4.0f }: %f\n", mat2_trace(float)(m1));
 	puts("mat2_null()"); 
 	puts("mat2_identity()"); 
-	mat2_print(float)(mat2_identity(float)); 
+	mat2_print(float)(mat2_identity(float)()); 
 	puts("mat2_negate()"); 
 	mat2_print(float)(mat2(float)(1.0f, 1.0f, 1.0f, 1.0f)); 
 	mat2_print(float)(mat2_negate(float)(mat2(float)(1.0f, 1.0f, 1.0f, 1.0f)));
