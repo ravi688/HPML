@@ -47,11 +47,12 @@ EXCEPTION_BLOCK\
 	if((box_x < 0) || (box_y < 0) || (box_z < 0))\
 		throw_exception(NEGATIVE_VALUE);\
 )\
+	float t = 1 / box_x;\
 	return (mat4_t(T))\
 	{\
 		0, 0, 2 / box_z, 0,\
 		0, 2 / box_y, 0, 0,\
-		1 / box_x, 0, 0, 0,\
+		t, 0, 0, - nearClipPlane * t,\
 		0, 0, 0, 1\
 	};\
 }
@@ -81,12 +82,13 @@ EXCEPTION_BLOCK\
 		m02 = temp / aspectRatio;\
 		m11 = temp;\
 	}\
+	float t = 1 / (farClipPlane - nearClipPlane);\
 	return (mat4_t(T))\
 	{\
-		0, 0, m02, 0,\
-		0, m11, 0, 0,\
-		0, 0, 0, 0,\
-		1, 0, 0, 0,\
+		0,   0, m02, 0,\
+		0, m11,   0, 0,\
+		t,   0,   0, -nearClipPlane * t,\
+		0,   0,   0, 1,\
 	};\
 }
 

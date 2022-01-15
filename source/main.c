@@ -27,5 +27,16 @@ int main()
 
 	vec4_print(float)(vec4_add(float)(2, v1, vec4(float)(3.4f, -5.6f, 0.0f, 1.2f)));
 	puts("Hello World");
+
+
+	mat4_t(float) mat =
+	{
+		0, 1, 2, 3,
+		1, 0, 4, 5,
+		5, 5, 0, 5,
+		7, 2, 4, 0
+	};
+
+	printf("Determinant: %f\n", mat4_det(float)(mat));
 	return 0;
 }
