@@ -70,7 +70,7 @@ EXCEPTION_BLOCK\
 	if((farClipPlane == nearClipPlane) || (fieldOfView == 0))\
 		throw_exception(DIVIDE_BY_ZERO);\
 )\
-	float temp = 2 / tan(fieldOfView * 0.5f);\
+	float temp = 1 / tan(fieldOfView * 0.5f);\
 	float m02, m11;\
 	if(aspectRatio < 1)\
 	{\
@@ -82,13 +82,13 @@ EXCEPTION_BLOCK\
 		m02 = temp / aspectRatio;\
 		m11 = temp;\
 	}\
-	float t = 1 / (farClipPlane - nearClipPlane);\
+	float t = farClipPlane / (farClipPlane - nearClipPlane);\
 	return (mat4_t(T))\
 	{\
 		0,   0, m02, 0,\
 		0, m11,   0, 0,\
 		t,   0,   0, -nearClipPlane * t,\
-		0,   0,   0, 1,\
+		1,   0,   0, 0,\
 	};\
 }
 
