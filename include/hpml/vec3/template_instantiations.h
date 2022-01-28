@@ -82,7 +82,7 @@ instantiate_implementation_vec3_negate(int);
 
 void vec3_print(int)(vec3_t(int) v)
 {
-	printf("vec3_t(int): { %d, %d }\n", v.x, v.y);
+	printf("vec3_t(int): { %d, %d, %d }\n", v.x, v.y, v.z);
 }
 
 instantiate_implementation_vec3_add(float); 
@@ -108,7 +108,7 @@ instantiate_implementation_vec3_box(float);
 instantiate_implementation_vec3_negate(float);
 void vec3_print(float)(vec3_t(float) v)
 {
-	printf("vec3_t(float):  { %f, %f }\n", v.x, v.y);
+	printf("vec3_t(float):  { %f, %f, %f }\n", v.x, v.y, v.z);
 }
 #endif /*IMPLEMENTATION*/
 /*End: Template Instantiations*/
