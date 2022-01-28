@@ -399,7 +399,7 @@ vec3_t(T) vec3_null(T)()\
 #define instantiate_implementation_vec3_is_null(T)\
 bool vec3_is_null(T)(vec3_t(T) v)\
 {\
-	return (v.x == 0) || (v.y == 0) || (v.z == 0);\
+	return (v.x == 0) && (v.y == 0) && (v.z == 0);\
 }
 
 /* vec3_add: Adds two vector3 vectors component wise, i.e. v1 + v2

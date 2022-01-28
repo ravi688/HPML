@@ -15,6 +15,7 @@
 #include <hpml/defines.h>
 
 #include <stdarg.h>
+#include <stdbool.h>
 
 /*DATA*/
 /*vec4_t(T) struct*/
@@ -352,6 +353,14 @@ EXCEPTION_BLOCK\
 	from.x * to.y - from.y * to.x,\
 	};\
 	return v;\
+}
+
+/*MISC*/
+#define vec4_is_null(T) template(vec4_is_null, T)
+#define instantiate_declaration_vec4_is_null(T) bool vec4_is_null(T)(vec4_t(T) v)
+#define instantiate_implementation_vec4_is_null(T) bool vec4_is_null(T)(vec4_t(T) v)\
+{\
+	return (v.x == 0) && (v.y == 0) && (v.z == 0) && (v.w == 0);\
 }
 
 /*DEBUGGING*/
