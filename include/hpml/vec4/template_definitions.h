@@ -32,43 +32,43 @@ typedef struct\
 /*CONSTRUCTOR*/
 /*vec4*/
 #define vec4(T) template(vec4, T)
-#define instantiate_declaration_vec4(T) vec4_t(T) vec4(T)(T x, T y, T z, T w)
-#define instantiate_implementation_vec4(T) vec4_t(T) vec4(T)(T x, T y, T z, T w) { return (vec4_t(T)) { x, y, z, w }; }
+#define instantiate_declaration_vec4(T) HPML_API vec4_t(T) vec4(T)(T x, T y, T z, T w)
+#define instantiate_implementation_vec4(T) HPML_API vec4_t(T) vec4(T)(T x, T y, T z, T w) { return (vec4_t(T)) { x, y, z, w }; }
 
 /*vec4_zero*/
 #define vec4_zero(T) template(vec4_zero, T)
-#define instantiate_declaration_vec4_zero(T) vec4_t(T) vec4_zero(T)()
-#define instantiate_implementation_vec4_zero(T) vec4_t(T) vec4_zero(T)() { return (vec4_t(T)) { 0, 0, 0, 0 }; }
+#define instantiate_declaration_vec4_zero(T) HPML_API vec4_t(T) vec4_zero(T)()
+#define instantiate_implementation_vec4_zero(T) HPML_API vec4_t(T) vec4_zero(T)() { return (vec4_t(T)) { 0, 0, 0, 0 }; }
 
 /*vec4_up*/
 #define vec4_up(T) template(vec4_up, T)
-#define instantiate_declaration_vec4_up(T) vec4_t(T) vec4_up(T)()
-#define instantiate_implementation_vec4_up(T) vec4_t(T) vec4_up(T)() { return (vec4_t(T)) { 0, 1, 0, 0 }; }
+#define instantiate_declaration_vec4_up(T) HPML_API vec4_t(T) vec4_up(T)()
+#define instantiate_implementation_vec4_up(T) HPML_API vec4_t(T) vec4_up(T)() { return (vec4_t(T)) { 0, 1, 0, 0 }; }
 
 /*vec4_down*/
 #define vec4_down(T) template(vec4_down, T)
-#define instantiate_declaration_vec4_down(T) vec4_t(T) vec4_down(T)()
-#define instantiate_implementation_vec4_down(T) vec4_t(T) vec4_down(T)() { return (vec4_t(T)) { 0, -1, 0, 0 }; }
+#define instantiate_declaration_vec4_down(T) HPML_API vec4_t(T) vec4_down(T)()
+#define instantiate_implementation_vec4_down(T) HPML_API vec4_t(T) vec4_down(T)() { return (vec4_t(T)) { 0, -1, 0, 0 }; }
 
 /*vec4_right*/
 #define vec4_right(T) template(vec4_right, T)
-#define instantiate_declaration_vec4_right(T) vec4_t(T) vec4_right(T)()
-#define instantiate_implementation_vec4_right(T) vec4_t(T) vec4_right(T)() { return (vec4_t(T)) { -1, 0, 0, 0 }; }
+#define instantiate_declaration_vec4_right(T) HPML_API vec4_t(T) vec4_right(T)()
+#define instantiate_implementation_vec4_right(T) HPML_API vec4_t(T) vec4_right(T)() { return (vec4_t(T)) { -1, 0, 0, 0 }; }
 
 /*vec4_left*/
 #define vec4_left(T) template(vec4_left, T)
-#define instantiate_declaration_vec4_left(T) vec4_t(T) vec4_left(T)()
-#define instantiate_implementation_vec4_left(T) vec4_t(T) vec4_left(T)() { return (vec4_t(T)) { -1, 0, 0, 0 }; }
+#define instantiate_declaration_vec4_left(T) HPML_API vec4_t(T) vec4_left(T)()
+#define instantiate_implementation_vec4_left(T) HPML_API vec4_t(T) vec4_left(T)() { return (vec4_t(T)) { -1, 0, 0, 0 }; }
 
 /*vec4_forward*/
 #define vec4_forward(T) template(vec4_forward, T)
-#define instantiate_declaration_vec4_forward(T) vec4_t(T) vec4_forward(T)()
-#define instantiate_implementation_vec4_forward(T) vec4_t(T) vec4_forward(T)() { return (vec4_t(T)) { 0, 0, 1, 0 }; }
+#define instantiate_declaration_vec4_forward(T) HPML_API vec4_t(T) vec4_forward(T)()
+#define instantiate_implementation_vec4_forward(T) HPML_API vec4_t(T) vec4_forward(T)() { return (vec4_t(T)) { 0, 0, 1, 0 }; }
 
 /*vec4_back*/
 #define vec4_back(T) template(vec4_back, T)
-#define instantiate_declaration_vec4_back(T) vec4_t(T) vec4_back(T)()
-#define instantiate_implementation_vec4_back(T) vec4_t(T) vec4_back(T)() { return (vec4_t(T)) { 0, 0, 1, 0 }; }
+#define instantiate_declaration_vec4_back(T) HPML_API vec4_t(T) vec4_back(T)()
+#define instantiate_implementation_vec4_back(T) HPML_API vec4_t(T) vec4_back(T)() { return (vec4_t(T)) { 0, 0, 1, 0 }; }
 
 
 /*ARITHMETIC*/
@@ -76,11 +76,11 @@ typedef struct\
 #define __vec4_add(T) template(__vec4_add, T)
 #define vec4_add(T) template(vec4_add, T)
 #define instantiate_declaration_vec4_add(T)\
-vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2);\
-vec4_t(T) vec4_add(T)(u32 count, ...)
+HPML_API vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2);\
+HPML_API vec4_t(T) vec4_add(T)(u32 count, ...)
 #define instantiate_implementation_vec4_add(T)\
-vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w }; }\
-vec4_t(T) vec4_add(T)(u32 count, ...)\
+HPML_API vec4_t(T) __vec4_add(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w }; }\
+HPML_API vec4_t(T) vec4_add(T)(u32 count, ...)\
 {\
 	vec4_t(T) result = vec4_zero(T)();\
 	va_list args;\
@@ -98,11 +98,11 @@ vec4_t(T) vec4_add(T)(u32 count, ...)\
 #define __vec4_sub(T) template(__vec4_sub, T)
 #define vec4_sub(T) template(vec4_sub, T)
 #define instantiate_declaration_vec4_sub(T)\
-vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2);\
-vec4_t(T) vec4_sub(T)(u32 count, ...)
+HPML_API vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2);\
+HPML_API vec4_t(T) vec4_sub(T)(u32 count, ...)
 #define instantiate_implementation_vec4_sub(T)\
-vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }\
-vec4_t(T) vec4_sub(T)(u32 count, ...)\
+HPML_API vec4_t(T) __vec4_sub(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w }; }\
+HPML_API vec4_t(T) vec4_sub(T)(u32 count, ...)\
 {\
 	vec4_t(T) result = vec4_zero(T)();\
 	va_list args;\
@@ -120,11 +120,11 @@ vec4_t(T) vec4_sub(T)(u32 count, ...)\
 #define __vec4_mul(T) template(__vec4_mul, T)
 #define vec4_mul(T) template(vec4_mul, T)
 #define instantiate_declaration_vec4_mul(T)\
-vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2);\
-vec4_t(T) vec4_mul(T)(u32 count, ...)
+HPML_API vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2);\
+HPML_API vec4_t(T) vec4_mul(T)(u32 count, ...)
 #define instantiate_implementation_vec4_mul(T)\
-vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w }; }\
-vec4_t(T) vec4_mul(T)(u32 count, ...)\
+HPML_API vec4_t(T) __vec4_mul(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w }; }\
+HPML_API vec4_t(T) vec4_mul(T)(u32 count, ...)\
 {\
 	vec4_t(T) result = vec4_zero(T)();\
 	va_list args;\
@@ -142,11 +142,11 @@ vec4_t(T) vec4_mul(T)(u32 count, ...)\
 #define __vec4_div(T) template(__vec4_div, T)
 #define vec4_div(T) template(vec4_div, T)
 #define instantiate_declaration_vec4_div(T)\
-vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2);\
-vec4_t(T) vec4_div(T)(u32 count, ...)
+HPML_API vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2);\
+HPML_API vec4_t(T) vec4_div(T)(u32 count, ...)
 #define instantiate_implementation_vec4_div(T)\
-vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w }; }\
-vec4_t(T) vec4_div(T)(u32 count, ...)\
+HPML_API vec4_t(T) __vec4_div(T)(vec4_t(T) v1, vec4_t(T) v2) { return (vec4_t(T)) { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w }; }\
+HPML_API vec4_t(T) vec4_div(T)(u32 count, ...)\
 {\
 	vec4_t(T) result = vec4_zero(T)();\
 	va_list args;\
@@ -163,8 +163,8 @@ vec4_t(T) vec4_div(T)(u32 count, ...)\
 /*INTERPOLATION*/
 /*vec4_lerp*/
 #define vec4_lerp(T) template(vec4_lerp, T)
-#define instantiate_declaration_vec4_lerp(T) vec4_t(T) vec4_lerp(T)(vec4_t(T) from, vec4_t(T) to, float t)
-#define instantiate_implementation_vec4_lerp(T) vec4_t(T) vec4_lerp(T)(vec4_t(T) from, vec4_t(T) to, float t)\
+#define instantiate_declaration_vec4_lerp(T) HPML_API vec4_t(T) vec4_lerp(T)(vec4_t(T) from, vec4_t(T) to, float t)
+#define instantiate_implementation_vec4_lerp(T) HPML_API vec4_t(T) vec4_lerp(T)(vec4_t(T) from, vec4_t(T) to, float t)\
 {\
 	float _t = 1 - t;\
 	return (vec4_t(T)) { from.x * _t + to.x * t, from.y * _t + to.y * t, from.z * _t + to.z * t, from.w * _t + to.w * t };\
@@ -172,8 +172,8 @@ vec4_t(T) vec4_div(T)(u32 count, ...)\
 
 /*vec4_slerp*/
 #define vec4_slerp(T) template(vec4_slerp, T)
-#define instantiate_declaration_vec4_slerp(T) vec4_t(T) vec4_slerp(T)(vec4_t(T) from, vec4_t(T) to, float t)
-#define instantiate_implementation_vec4_slerp(T) vec4_t(T) vec4_slerp(T)(vec4_t(T) from, vec4_t(T) to, float t)\
+#define instantiate_declaration_vec4_slerp(T) HPML_API vec4_t(T) vec4_slerp(T)(vec4_t(T) from, vec4_t(T) to, float t)
+#define instantiate_implementation_vec4_slerp(T) HPML_API vec4_t(T) vec4_slerp(T)(vec4_t(T) from, vec4_t(T) to, float t)\
 {\
 	float angle = vec4_angle(T)(from, to);\
 	EXCEPTION_BLOCK\
@@ -190,23 +190,23 @@ vec4_t(T) vec4_div(T)(u32 count, ...)\
 
 /*vec4_scale*/
 #define vec4_scale(T) template(vec4_scale, T)
-#define instantiate_declaration_vec4_scale(T) vec4_t(T) vec4_scale(T)(vec4_t(T) v, T value)
-#define instantiate_implementation_vec4_scale(T) vec4_t(T) vec4_scale(T)(vec4_t(T) v, T value) { return (vec4_t(T)) { v.x * value, v.y * value, v.z * value, v.w * value }; }
+#define instantiate_declaration_vec4_scale(T) HPML_API vec4_t(T) vec4_scale(T)(vec4_t(T) v, T value)
+#define instantiate_implementation_vec4_scale(T) HPML_API vec4_t(T) vec4_scale(T)(vec4_t(T) v, T value) { return (vec4_t(T)) { v.x * value, v.y * value, v.z * value, v.w * value }; }
 
 /*vec4_magnitude*/
 #define vec4_magnitude(T) template(vec4_magnitude, T)
-#define instantiate_declaration_vec4_magnitude(T) float vec4_magnitude(T)(vec4_t(T))
-#define instantiate_implementation_vec4_magnitude(T) float vec4_magnitude(T)(vec4_t(T) v) { return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w); }
+#define instantiate_declaration_vec4_magnitude(T) HPML_API float vec4_magnitude(T)(vec4_t(T))
+#define instantiate_implementation_vec4_magnitude(T) HPML_API float vec4_magnitude(T)(vec4_t(T) v) { return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w); }
 
 /*vec4_sqrmagnitude*/
 #define vec4_sqrmagnitude(T) template(vec4_sqrmagnitude, T)
-#define instantiate_declaration_vec4_sqrmagnitude(T) float vec4_sqrmagnitude(T)(vec4_t(T))
-#define instantiate_implementation_vec4_sqrmagnitude(T) float vec4_sqrmagnitude(T)(vec4_t(T) v) { return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w); }
+#define instantiate_declaration_vec4_sqrmagnitude(T) HPML_API float vec4_sqrmagnitude(T)(vec4_t(T))
+#define instantiate_implementation_vec4_sqrmagnitude(T) HPML_API float vec4_sqrmagnitude(T)(vec4_t(T) v) { return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w); }
 
 /*vec4_normalize*/
 #define vec4_normalize(T) template(vec4_normalize, T)
-#define instantiate_declaration_vec4_normalize(T) vec4_t(T) vec4_normalize(T)(vec4_t(T))
-#define instantiate_implementation_vec4_normalize(T) vec4_t(T) vec4_normalize(T)(vec4_t(T) v)\
+#define instantiate_declaration_vec4_normalize(T) HPML_API vec4_t(T) vec4_normalize(T)(vec4_t(T))
+#define instantiate_implementation_vec4_normalize(T) HPML_API vec4_t(T) vec4_normalize(T)(vec4_t(T) v)\
 {\
 	float inv_mag = 1 / vec4_magnitude(T)(v);\
 	return (vec4_t(T)) { v.x * inv_mag, v.y * inv_mag, v.z * inv_mag, v.w * inv_mag };\
@@ -218,8 +218,8 @@ v1 dot v2 = mag(v1) * mag(v2) * cos(angle)
 angle = acos((v1 dot v2) / mag(v1)mag(v2))
 */
 #define vec4_angle(T) template(vec4_angle, T)
-#define instantiate_declaration_vec4_angle(T) float vec4_angle(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_angle(T) float vec4_angle(T)(vec4_t(T) v1, vec4_t(T) v2)\
+#define instantiate_declaration_vec4_angle(T) HPML_API float vec4_angle(T)(vec4_t(T) v1, vec4_t(T) v2)
+#define instantiate_implementation_vec4_angle(T) HPML_API float vec4_angle(T)(vec4_t(T) v1, vec4_t(T) v2)\
 {\
 	float m1 = vec4_magnitude(T)(v1);\
 	float m2 = vec4_magnitude(T)(v2);\
@@ -233,21 +233,21 @@ EXCEPTION_BLOCK\
 
 /*vec4_unit_angle*/
 #define vec4_unit_angle(T) template(vec4_unit_angle, T)
-#define instantiate_declaration_vec4_unit_angle(T) float vec4_unit_angle(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_unit_angle(T) float vec4_unit_angle(T)(vec4_t(T) v1, vec4_t(T) v2)\
+#define instantiate_declaration_vec4_unit_angle(T) HPML_API float vec4_unit_angle(T)(vec4_t(T) v1, vec4_t(T) v2)
+#define instantiate_implementation_vec4_unit_angle(T) HPML_API float vec4_unit_angle(T)(vec4_t(T) v1, vec4_t(T) v2)\
 {\
 	return acos(vec4_dot(T)(v1, v2));\
 }
 
 /*vec4_negate*/
 #define vec4_negate(T) template(vec4_negate, T)
-#define instantiate_declaration_vec4_negate(T) vec4_t(T) vec4_negate(T)(vec4_t(T))
-#define instantiate_implementation_vec4_negate(T) vec4_t(T) vec4_negate(T)(vec4_t(T) v) { return (vec4_t(T)) { -v.x, -v.y, -v.z, -v.w }; }
+#define instantiate_declaration_vec4_negate(T) HPML_API vec4_t(T) vec4_negate(T)(vec4_t(T))
+#define instantiate_implementation_vec4_negate(T) HPML_API vec4_t(T) vec4_negate(T)(vec4_t(T) v) { return (vec4_t(T)) { -v.x, -v.y, -v.z, -v.w }; }
 
 /*vec4_rotate_x*/
 #define vec4_rotate_x(T) template(vec4_rotate_x, T)
-#define instantiate_declaration_vec4_rotate_x(T) vec4_t(T) vec4_rotate_x(T)(vec4_t(T) v, float angle)
-#define instantiate_implementation_vec4_rotate_x(T) vec4_t(T) vec4_rotate_x(T)(vec4_t(T) v, float angle)\
+#define instantiate_declaration_vec4_rotate_x(T) HPML_API vec4_t(T) vec4_rotate_x(T)(vec4_t(T) v, float angle)
+#define instantiate_implementation_vec4_rotate_x(T) HPML_API vec4_t(T) vec4_rotate_x(T)(vec4_t(T) v, float angle)\
 {\
 	float c = cos(angle);\
 	float s = sin(angle);\
@@ -256,8 +256,8 @@ EXCEPTION_BLOCK\
 
 /*vec4_rotate_y*/
 #define vec4_rotate_y(T) template(vec4_rotate_y, T)
-#define instantiate_declaration_vec4_rotate_y(T) vec4_t(T) vec4_rotate_y(T)(vec4_t(T) v, float angle)
-#define instantiate_implementation_vec4_rotate_y(T) vec4_t(T) vec4_rotate_y(T)(vec4_t(T) v, float angle)\
+#define instantiate_declaration_vec4_rotate_y(T) HPML_API vec4_t(T) vec4_rotate_y(T)(vec4_t(T) v, float angle)
+#define instantiate_implementation_vec4_rotate_y(T) HPML_API vec4_t(T) vec4_rotate_y(T)(vec4_t(T) v, float angle)\
 {\
 	float c = cos(angle);\
 	float s = sin(angle);\
@@ -266,8 +266,8 @@ EXCEPTION_BLOCK\
 
 /*vec4_rotate_z*/
 #define vec4_rotate_z(T) template(vec4_rotate_z, T)
-#define instantiate_declaration_vec4_rotate_z(T) vec4_t(T) vec4_rotate_z(T)(vec4_t(T) v, float angle)
-#define instantiate_implementation_vec4_rotate_z(T) vec4_t(T) vec4_rotate_z(T)(vec4_t(T) v, float angle)\
+#define instantiate_declaration_vec4_rotate_z(T) HPML_API vec4_t(T) vec4_rotate_z(T)(vec4_t(T) v, float angle)
+#define instantiate_implementation_vec4_rotate_z(T) HPML_API vec4_t(T) vec4_rotate_z(T)(vec4_t(T) v, float angle)\
 {\
 	float c = cos(angle);\
 	float s = sin(angle);\
@@ -276,8 +276,8 @@ EXCEPTION_BLOCK\
 
 /*vec4_rotate*/
 #define vec4_rotate(T) template(vec4_rotate, T)
-#define instantiate_declaration_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(vec4_t(T) v, float x, float y, float z)
-#define instantiate_implementation_vec4_rotate(T) vec4_t(T) vec4_rotate(T)(vec4_t(T) v, float x, float y, float z)\
+#define instantiate_declaration_vec4_rotate(T) HPML_API vec4_t(T) vec4_rotate(T)(vec4_t(T) v, float x, float y, float z)
+#define instantiate_implementation_vec4_rotate(T) HPML_API vec4_t(T) vec4_rotate(T)(vec4_t(T) v, float x, float y, float z)\
 {\
 	return vec4_rotate_z(T)(vec4_rotate_y(T)(vec4_rotate_x(T)(v, x), y), z);\
 }
@@ -299,8 +299,8 @@ EXCEPTION_BLOCK\
  result = (v.a)a * (1 - cos(r)) + a x v * sin(r) + v * cos(r)
 */
 #define vec4_axis_rotate(T) template(vec4_axis_rotate, T)
-#define instantiate_declaration_vec4_axis_rotate(T) vec4_t(T) vec4_axis_rotate(T)(vec4_t(T) v, float axisX, float axisY, float axisZ, float angle)
-#define instantiate_implementation_vec4_axis_rotate(T) vec4_t(T) vec4_axis_rotate(T)(vec4_t(T) v, float axisX, float axisY, float axisZ, float angle)\
+#define instantiate_declaration_vec4_axis_rotate(T) HPML_API vec4_t(T) vec4_axis_rotate(T)(vec4_t(T) v, float axisX, float axisY, float axisZ, float angle)
+#define instantiate_implementation_vec4_axis_rotate(T) HPML_API vec4_t(T) vec4_axis_rotate(T)(vec4_t(T) v, float axisX, float axisY, float axisZ, float angle)\
 {\
 	vec4_t(T) p = vec4_unit_project(T)(v, (vec4_t(T)) { axisX, axisY, axisZ, 0 });\
  	vec4_t(T) k = vec4_sub(T)(2, v, p);\
@@ -311,8 +311,8 @@ EXCEPTION_BLOCK\
 
 /*vec4_project*/
 #define vec4_project(T) template(vec4_project, T)
-#define instantiate_declaration_vec4_project(T) vec4_t(T) vec4_project(T)(vec4_t(T) v, vec4_t(T) a)
-#define instantiate_implementation_vec4_project(T) vec4_t(T) vec4_project(T)(vec4_t(T) v, vec4_t(T) a)\
+#define instantiate_declaration_vec4_project(T) HPML_API vec4_t(T) vec4_project(T)(vec4_t(T) v, vec4_t(T) a)
+#define instantiate_implementation_vec4_project(T) HPML_API vec4_t(T) vec4_project(T)(vec4_t(T) v, vec4_t(T) a)\
 {\
 	vec4_t(T) na = vec4_normalize(T)(v);\
 	return vec4_scale(T)(na, vec4_dot(T)(v, na));\
@@ -320,32 +320,32 @@ EXCEPTION_BLOCK\
 
 /*vec4_unit_project*/
 #define vec4_unit_project(T) template(vec4_unit_project, T)
-#define instantiate_declaration_vec4_unit_project(T) vec4_t(T) vec4_unit_project(T)(vec4_t(T) v, vec4_t(T) a)
-#define instantiate_implementation_vec4_unit_project(T) vec4_t(T) vec4_unit_project(T)(vec4_t(T) v, vec4_t(T) a)\
+#define instantiate_declaration_vec4_unit_project(T) HPML_API vec4_t(T) vec4_unit_project(T)(vec4_t(T) v, vec4_t(T) a)
+#define instantiate_implementation_vec4_unit_project(T) HPML_API vec4_t(T) vec4_unit_project(T)(vec4_t(T) v, vec4_t(T) a)\
 {\
 	return vec4_scale(T)(a, vec4_dot(T)(v, a));\
 }
 
 /*vec4_box*/
 #define vec4_box(T) template(vec4_box, T)
-#define instantiate_declaration_vec4_box(T) float vec4_box(T)(vec4_t(T) from, vec4_t(T) to, vec4_t(T) height)
-#define instantiate_implementation_vec4_box(T) float vec4_box(T)(vec4_t(T) from, vec4_t(T) to, vec4_t(T) height)\
+#define instantiate_declaration_vec4_box(T) HPML_API float vec4_box(T)(vec4_t(T) from, vec4_t(T) to, vec4_t(T) height)
+#define instantiate_implementation_vec4_box(T) HPML_API float vec4_box(T)(vec4_t(T) from, vec4_t(T) to, vec4_t(T) height)\
 {\
 	return vec4_dot(T)(height, vec4_cross(T)(from, to));\
 }
 
 /*vec4_dot*/
 #define vec4_dot(T) template(vec4_dot, T)
-#define instantiate_declaration_vec4_dot(T) T vec4_dot(T)(vec4_t(T) v1, vec4_t(T) v2)
-#define instantiate_implementation_vec4_dot(T) T vec4_dot(T)(vec4_t(T) v1, vec4_t(T) v2)\
+#define instantiate_declaration_vec4_dot(T) HPML_API T vec4_dot(T)(vec4_t(T) v1, vec4_t(T) v2)
+#define instantiate_implementation_vec4_dot(T) HPML_API T vec4_dot(T)(vec4_t(T) v1, vec4_t(T) v2)\
 {\
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;\
 }
 
 /*vec4_cross*/
 #define vec4_cross(T) template(vec4_cross, T)
-#define instantiate_declaration_vec4_cross(T) vec4_t(T) vec4_cross(T)(vec4_t(T) from, vec4_t(T) to)
-#define instantiate_implementation_vec4_cross(T) vec4_t(T) vec4_cross(T)(vec4_t(T) from, vec4_t(T) to)\
+#define instantiate_declaration_vec4_cross(T) HPML_API vec4_t(T) vec4_cross(T)(vec4_t(T) from, vec4_t(T) to)
+#define instantiate_implementation_vec4_cross(T) HPML_API vec4_t(T) vec4_cross(T)(vec4_t(T) from, vec4_t(T) to)\
 {\
 	vec4_t(T) v = {\
 	from.y * to.z - from.z * to.y,\
@@ -357,8 +357,8 @@ EXCEPTION_BLOCK\
 
 /*MISC*/
 #define vec4_is_null(T) template(vec4_is_null, T)
-#define instantiate_declaration_vec4_is_null(T) bool vec4_is_null(T)(vec4_t(T) v)
-#define instantiate_implementation_vec4_is_null(T) bool vec4_is_null(T)(vec4_t(T) v)\
+#define instantiate_declaration_vec4_is_null(T) HPML_API bool vec4_is_null(T)(vec4_t(T) v)
+#define instantiate_implementation_vec4_is_null(T) HPML_API bool vec4_is_null(T)(vec4_t(T) v)\
 {\
 	return (v.x == 0) && (v.y == 0) && (v.z == 0) && (v.w == 0);\
 }
@@ -367,5 +367,5 @@ EXCEPTION_BLOCK\
 
 /*vec4_print*/
 #define vec4_print(T) template(vec4_print, T)
-#define instantiate_declaration_vec4_print(T) void vec4_print(T)(vec4_t(T) v)
+#define instantiate_declaration_vec4_print(T) HPML_API void vec4_print(T)(vec4_t(T) v)
 #define instantiate_implementation_vec4_print(T) /*specialized*/

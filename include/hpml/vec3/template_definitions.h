@@ -4,6 +4,7 @@
 #include <hpml/exception/exception.h>
 #include <hpml/template_system.h>
 #include <hpml/no_compile_header.h>
+#include <hpml/defines.h>
 
 #include <math.h>
 #include <stdio.h>
@@ -54,37 +55,37 @@ typedef struct vec3_t(T)\
 	T z;\
 } vec3_t(T)
 
-#define instantiate_declaration_vec3_is_equal(T) bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T v2) v2)
-#define instantiate_declaration_vec3_slerp(T) vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)
-#define instantiate_declaration_vec3_add(T) vec3_t(T) vec3_add(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_sub(T) vec3_t(T) vec3_sub(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_mul(T) vec3_t(T) vec3_mul(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_div(T) vec3_t(T) vec3_div(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_is_null(T) bool vec3_is_null(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3_null(T) vec3_t(T) vec3_null(T)()
-#define instantiate_declaration_vec3_zero(T) instantiate_declaration_vec3_null(T)
-#define instantiate_declaration_vec3_print(T) void vec3_print(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3(T) vec3_t(T) vec3(T)(T x, T y, T z)
-#define instantiate_declaration_vec3_dot(T) float vec3_dot(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_magnitude(T) float vec3_magnitude(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3_negate(T) vec3_t(T) vec3_negate(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3_normalize(T) vec3_t(T) vec3_normalize(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3_rotate(T) vec3_t(T) vec3_rotate(T)(vec3_t(T) v, vec3_t(T) axis, float angle)
-#define instantiate_declaration_vec3_angle(T) float vec3_angle(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_abs(T) vec3_t(T) vec3_abs(T)(vec3_t(T) v)
-#define instantiate_declaration_vec3_up(T) vec3_t(T) vec3_up(T)()
-#define instantiate_declaration_vec3_down(T) vec3_t(T) vec3_down(T)()
-#define instantiate_declaration_vec3_left(T) vec3_t(T) vec3_left(T)()
-#define instantiate_declaration_vec3_right(T) vec3_t(T) vec3_right(T)()
-#define instantiate_declaration_vec3_forward(T) vec3_t(T) vec3_forward(T)()
-#define instantiate_declaration_vec3_backward(T) vec3_t(T) vec3_backward(T)()
-#define instantiate_declaration_vec3_project(T) vec3_t(T) vec3_project(T)(T)(vec3_t(T) v1, vec3_t(T) v2)
-#define instantiate_declaration_vec3_lerp(T) vec3_t(T) vec3_lerp(T)(vec3_t(T) v1, vec3_t(T) v2, float interpolation_value)
-#define instantiate_declaration_vec3_internal_division(T) vec3_t(T) vec3_internal_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)
-#define instantiate_declaration_vec3_external_division(T) vec3_t(T) vec3_external_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)
-#define instantiate_declaration_vec3_scale(T) vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)
-#define instantiate_declaration_vec3_cross(T) vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)
-#define instantiate_declaration_vec3_box(T) float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)
+#define instantiate_declaration_vec3_is_equal(T) HPML_API bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T v2) v2)
+#define instantiate_declaration_vec3_slerp(T) HPML_API vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)
+#define instantiate_declaration_vec3_add(T) HPML_API vec3_t(T) vec3_add(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_sub(T) HPML_API vec3_t(T) vec3_sub(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_mul(T) HPML_API vec3_t(T) vec3_mul(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_div(T) HPML_API vec3_t(T) vec3_div(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_is_null(T) HPML_API bool vec3_is_null(T)(vec3_t(T) v)
+#define instantiate_declaration_vec3_null(T) HPML_API vec3_t(T) vec3_null(T)()
+#define instantiate_declaration_vec3_zero(T) HPML_API instantiate_declaration_vec3_null(T) HPML_API
+#define instantiate_declaration_vec3_print(T) HPML_API void vec3_print(T)(vec3_t(T) v)
+#define instantiate_declaration_vec3(T) HPML_API vec3_t(T) vec3(T)(T x, T y, T z)
+#define instantiate_declaration_vec3_dot(T) HPML_API float vec3_dot(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_magnitude(T) HPML_API float vec3_magnitude(T)(vec3_t(T) v)
+#define instantiate_declaration_vec3_negate(T) HPML_API vec3_t(T) vec3_negate(T)(vec3_t(T) v)
+#define instantiate_declaration_vec3_normalize(T) HPML_API vec3_t(T) vec3_normalize(T)(vec3_t(T) v)
+#define instantiate_declaration_vec3_rotate(T) HPML_API vec3_t(T) vec3_rotate(T)(vec3_t(T) v, vec3_t(T) axis, float angle)
+#define instantiate_declaration_vec3_angle(T) HPML_API float vec3_angle(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_abs(T) HPML_API vec3_t(T) vec3_abs(T)(vec3_t(T) v)
+#define instantiate_declaration_vec3_up(T) HPML_API vec3_t(T) vec3_up(T)()
+#define instantiate_declaration_vec3_down(T) HPML_API vec3_t(T) vec3_down(T)()
+#define instantiate_declaration_vec3_left(T) HPML_API vec3_t(T) vec3_left(T)()
+#define instantiate_declaration_vec3_right(T) HPML_API vec3_t(T) vec3_right(T)()
+#define instantiate_declaration_vec3_forward(T) HPML_API vec3_t(T) vec3_forward(T)()
+#define instantiate_declaration_vec3_backward(T) HPML_API vec3_t(T) vec3_backward(T)()
+#define instantiate_declaration_vec3_project(T) HPML_API vec3_t(T) vec3_project(T)(T)(vec3_t(T) v1, vec3_t(T) v2)
+#define instantiate_declaration_vec3_lerp(T) HPML_API vec3_t(T) vec3_lerp(T)(vec3_t(T) v1, vec3_t(T) v2, float interpolation_value)
+#define instantiate_declaration_vec3_internal_division(T) HPML_API vec3_t(T) vec3_internal_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)
+#define instantiate_declaration_vec3_external_division(T) HPML_API vec3_t(T) vec3_external_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)
+#define instantiate_declaration_vec3_scale(T) HPML_API vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)
+#define instantiate_declaration_vec3_cross(T) HPML_API vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)
+#define instantiate_declaration_vec3_box(T) HPML_API float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)
 
 /* vec3_is_equal(T): Checks whether the two vectors are equal or not
  * vec3_t(T) v1: First vector to be checked against
@@ -92,7 +93,7 @@ typedef struct vec3_t(T)\
  * returns: bool true if both vectors are approximetly equal, otherwise false
  */
 #define instantiate_implementation_vec3_is_equal(T)\
-bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	return (v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z);\
 }
@@ -104,7 +105,7 @@ bool vec3_is_equal(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec3_t(T) spherically interpolated value
  */
 #define instantiate_implementation_vec3_slerp(T)\
-vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)\
+HPML_API vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)\
 {\
 	float angle = vec3_angle(T)(v1, v2);\
 	EXCEPTION_BLOCK(\
@@ -122,7 +123,7 @@ vec3_t(T) vec3_slerp(T)(vec3_t(T) v1, vec3_t(T) v2, float slerp_value)\
  * returns: float box product of from, to, and height vectors
  */
 #define instantiate_implementation_vec3_box(T)\
-float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
+HPML_API float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
 {\
 	return vec3_dot(T)(height, vec3_cross(T)(from, to));\
 }
@@ -133,7 +134,7 @@ float vec3_box(T)(vec3_t(T) from, vec3_t(T) to, vec3_t(T) height)\
  * returns: vec3_t(T) cross product, pseudo vector
  */
 #define instantiate_implementation_vec3_cross(T)\
-vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)\
+HPML_API vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)\
 {\
 	vec3_t(T) v;\
 	v.x = from.y * to.z - from.z * to.y;\
@@ -148,7 +149,7 @@ vec3_t(T) vec3_cross(T)(vec3_t(T) from, vec3_t(T) to)\
  * returns: vec3_t(T) scaled vector
  */
 #define instantiate_implementation_vec3_scale(T)\
-vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)\
+HPML_API vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)\
 {\
 	vec3_t(T) scaled_v =  { v.x * scalar_value, v.y * scalar_value, v.z * scalar_value };\
 	return scaled_v;\
@@ -162,7 +163,7 @@ vec3_t(T) vec3_scale(T)(vec3_t(T) v, float scalar_value)\
  * NOTE: if m + n = 0 then it will return first vector
  */
 #define instantiate_implementation_vec3_internal_division(T)\
-vec3_t(T) vec3_internal_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)\
+HPML_API vec3_t(T) vec3_internal_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)\
 {\
 	float ratio_sum = m + n;\
 	if(ratio_sum == 0)\
@@ -178,7 +179,7 @@ vec3_t(T) vec3_internal_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n
  * NOTE: if m - n = 0 then it will return second vector
  */
 #define instantiate_implementation_vec3_external_division(T)\
-vec3_t(T) vec3_external_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)\
+HPML_API vec3_t(T) vec3_external_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n)\
 {\
 	float ratio_sum = m - n;\
 	if(ratio_sum == 0)\
@@ -193,7 +194,7 @@ vec3_t(T) vec3_external_division(T)(vec3_t(T) v1, vec3_t(T) v2, float m, float n
  * returns: vec3_t(T) interpolated vector
  */
 #define instantiate_implementation_vec3_lerp(T)\
-vec3_t(T) vec3_lerp(T)(vec3_t(T) v1, vec3_t(T) v2, float interpolation_value)\
+HPML_API vec3_t(T) vec3_lerp(T)(vec3_t(T) v1, vec3_t(T) v2, float interpolation_value)\
 {\
 	return vec3_add(T)(vec3_scale(T)(v1, 1 - interpolation_value), vec3_scale(T)(v2, interpolation_value));\
 }
@@ -204,7 +205,7 @@ vec3_t(T) vec3_lerp(T)(vec3_t(T) v1, vec3_t(T) v2, float interpolation_value)\
  * returns: vec3_t(T) projected vector in the direction of vector v1
  */
 #define instantiate_implementation_vec3_project(T)\
-vec3_t(T) vec3_project(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API vec3_t(T) vec3_project(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	vec3_t(T) unit_dir = vec3_normalize(T)(v2);\
 	float projection_value = vec3_dot(T)(v1, unit_dir);\
@@ -215,7 +216,7 @@ vec3_t(T) vec3_project(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec3_t(T) forward direction, i.e. Vector3.forward [+ve z axis direction]
  */
 #define instantiate_implementation_vec3_forward(T)\
-vec3_t(T) vec3_forward(T)()\
+HPML_API vec3_t(T) vec3_forward(T)()\
 {\
 	vec3_t(T) v = { 0, 0, 1 };\
 	return v;\
@@ -225,7 +226,7 @@ vec3_t(T) vec3_forward(T)()\
  * returns: vec3_t(T) backward direction, i.e. Vector3.backward [-ve z axis direction]
  */
 #define instantiate_implementation_vec3_backward(T)\
-vec3_t(T) vec3_backward(T)()\
+HPML_API vec3_t(T) vec3_backward(T)()\
 {\
 	vec3_t(T) v = { 0, 0, -1 };\
 	return v;\
@@ -235,7 +236,7 @@ vec3_t(T) vec3_backward(T)()\
  * returns: vec3_t(T) right direction, i.e. Vector3.right [+ve x axis direction]
  */
 #define instantiate_implementation_vec3_right(T)\
-vec3_t(T) vec3_right(T)()\
+HPML_API vec3_t(T) vec3_right(T)()\
 {\
 	vec3_t(T) v =  { 1, 0, 0 };\
 	return v;\
@@ -245,7 +246,7 @@ vec3_t(T) vec3_right(T)()\
  * returns: vec3_t(T) left direction, i.e. Vector3.left [-ve x axis direction]
  */
 #define instantiate_implementation_vec3_left(T)\
-vec3_t(T) vec3_left(T)()\
+HPML_API vec3_t(T) vec3_left(T)()\
 {\
 	vec3_t(T) v =  { -1, 0, 0 };\
 	return v;\
@@ -255,7 +256,7 @@ vec3_t(T) vec3_left(T)()\
  * returns: vec3_t(T) down direction, i.e. Vector3.down [-ve y axis direction]
  */
 #define instantiate_implementation_vec3_down(T)\
-vec3_t(T) vec3_down(T)()\
+HPML_API vec3_t(T) vec3_down(T)()\
 {\
 	vec3_t(T) v =  { 0, -1, 0 };\
 	return v;\
@@ -265,7 +266,7 @@ vec3_t(T) vec3_down(T)()\
  * returns: vec3_t(T) up direction, i.e. Vector3.up [+ve y axis direction]
  */
 #define instantiate_implementation_vec3_up(T)\
-vec3_t(T) vec3_up(T)()\
+HPML_API vec3_t(T) vec3_up(T)()\
 {\
 	vec3_t(T) v =  { 0, 1, 0 };\
 	return v;\
@@ -276,7 +277,7 @@ vec3_t(T) vec3_up(T)()\
  * returns: vec3_t(T) vector having absolute value components
  */
 #define instantiate_implementation_vec3_abs(T)\
-vec3_t(T) vec3_abs(T)(vec3_t(T) v)\
+HPML_API vec3_t(T) vec3_abs(T)(vec3_t(T) v)\
 {\
 	vec3_t(T) v;\
 	v.x = abs(v.x);\
@@ -291,7 +292,7 @@ vec3_t(T) vec3_abs(T)(vec3_t(T) v)\
  * returns: float +ve angle always
  */
 #define instantiate_implementation_vec3_angle(T)\
-float vec3_angle(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API float vec3_angle(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	if(!(vec3_is_null(T)(v1) && vec3_is_null(T)(v2)))\
 		return 0.0f;\
@@ -304,7 +305,7 @@ float vec3_angle(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec3_t(T) rotated vector
  */
 #define instantiate_implementation_vec3_rotate(T)\
-vec3_t(T) vec3_rotate(T)(vec3_t(T) v, vec3_t(T) axis, float angle)\
+HPML_API vec3_t(T) vec3_rotate(T)(vec3_t(T) v, vec3_t(T) axis, float angle)\
 {\
 	vec3_t(T) rot_v;\
 	float cos_angle = cos(angle);\
@@ -319,7 +320,7 @@ vec3_t(T) vec3_rotate(T)(vec3_t(T) v, vec3_t(T) axis, float angle)\
  * returns: vec3_t(T) normalized vector
  */
 #define instantiate_implementation_vec3_normalize(T)\
-vec3_t(T) vec3_normalize(T)(vec3_t(T) v)\
+HPML_API vec3_t(T) vec3_normalize(T)(vec3_t(T) v)\
 {\
 	if(vec3_is_null(T)(v))\
 		return v;\
@@ -336,7 +337,7 @@ vec3_t(T) vec3_normalize(T)(vec3_t(T) v)\
  * returns: vec3_t(T) negated vector
  */
 #define instantiate_implementation_vec3_negate(T)\
-vec3_t(T) vec3_negate(T)(vec3_t(T) v)\
+HPML_API vec3_t(T) vec3_negate(T)(vec3_t(T) v)\
 {\
 	vec3_t(T) neg_v;\
 	neg_v.x = -v.x;\
@@ -350,7 +351,7 @@ vec3_t(T) vec3_negate(T)(vec3_t(T) v)\
  * returns: float magnitude of vector3 v
  */
 #define instantiate_implementation_vec3_magnitude(T)\
-float vec3_magnitude(T)(vec3_t(T) v)\
+HPML_API float vec3_magnitude(T)(vec3_t(T) v)\
 {\
 	return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);\
 }
@@ -361,7 +362,7 @@ float vec3_magnitude(T)(vec3_t(T) v)\
  * returns: float dot product of v1 and v2
  */
 #define instantiate_implementation_vec3_dot(T)\
-float vec3_dot(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API float vec3_dot(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;\
 }
@@ -372,7 +373,7 @@ float vec3_dot(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec_t(T) vector having x, y
  */
 #define instantiate_implementation_vec3(T)\
-vec3_t(T) vec3(T)(T x, T y, T z)\
+HPML_API vec3_t(T) vec3(T)(T x, T y, T z)\
 {\
 	vec3_t(T) v = { x, y, z };\
 	return v;\
@@ -386,7 +387,7 @@ vec3_t(T) vec3(T)(T x, T y, T z)\
  * returns: vec3_t(T) vector having x = 0, y = 0
  */
 #define instantiate_implementation_vec3_null(T)\
-vec3_t(T) vec3_null(T)()\
+HPML_API vec3_t(T) vec3_null(T)()\
 {\
 	vec3_t(T) null_vector =  { 0, 0, 0 };\
 	return null_vector;\
@@ -397,7 +398,7 @@ vec3_t(T) vec3_null(T)()\
  * returns: true if vector3 is null vector, otherwise false [boolean]
  */
 #define instantiate_implementation_vec3_is_null(T)\
-bool vec3_is_null(T)(vec3_t(T) v)\
+HPML_API bool vec3_is_null(T)(vec3_t(T) v)\
 {\
 	return (v.x == 0) && (v.y == 0) && (v.z == 0);\
 }
@@ -408,7 +409,7 @@ bool vec3_is_null(T)(vec3_t(T) v)\
  * returns: vec3_t(T) resulting vector3 vector
  */
 #define instantiate_implementation_vec3_add(T)\
-vec3_t(T) vec3_add(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API vec3_t(T) vec3_add(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	vec3_t(T) result;\
 	result.x = v1.x + v2.x;\
@@ -423,7 +424,7 @@ vec3_t(T) vec3_add(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec3_t(T) resulting vector3 vector
  */
 #define instantiate_implementation_vec3_sub(T)\
-vec3_t(T) vec3_sub(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API vec3_t(T) vec3_sub(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	vec3_t(T) result;\
 	result.x = v1.x - v2.x;\
@@ -438,7 +439,7 @@ vec3_t(T) vec3_sub(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * returns: vec3_t(T) resulting vector3 vector
  */
 #define instantiate_implementation_vec3_mul(T)\
-vec3_t(T) vec3_mul(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API vec3_t(T) vec3_mul(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	vec3_t(T) result;\
 	result.x = v1.x * v2.x;\
@@ -454,7 +455,7 @@ vec3_t(T) vec3_mul(T)(vec3_t(T) v1, vec3_t(T) v2)\
  * exceptions: throws DIVIDE_BY_ZERO exception if v2 is a null vector
  */
 #define instantiate_implementation_vec3_div(T)\
-vec3_t(T) vec3_div(T)(vec3_t(T) v1, vec3_t(T) v2)\
+HPML_API vec3_t(T) vec3_div(T)(vec3_t(T) v1, vec3_t(T) v2)\
 {\
 	EXCEPTION_BLOCK\
 	(\

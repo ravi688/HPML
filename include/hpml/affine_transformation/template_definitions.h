@@ -1,8 +1,8 @@
-#ifndef __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
-#define __HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__
+#pragma once
 
 #include <hpml/template_system.h>
 #include <hpml/no_compile_header.h>
+#include <hpml/defines.h>
 
 #include <math.h>
 
@@ -16,16 +16,16 @@
 
 /*mat4_rotation*/
 #define mat4_rotation(T) template(mat4_rotation, T)
-#define instantiate_declaration_mat4_rotation(T) mat4_t(T) mat4_rotation(T)(T x, T y, T z)
-#define instantiate_implementation_mat4_rotation(T) mat4_t(T) mat4_rotation(T)(T x, T y, T z)\
+#define instantiate_declaration_mat4_rotation(T) HPML_API mat4_t(T) mat4_rotation(T)(T x, T y, T z)
+#define instantiate_implementation_mat4_rotation(T) HPML_API mat4_t(T) mat4_rotation(T)(T x, T y, T z)\
 {\
 	return mat4_mul(T)(3, mat4_rotation_x(T)(x), mat4_rotation_y(T)(y), mat4_rotation_z(T)(z));\
 }
 
 /*mat4_ortho_projection*/
 #define mat4_ortho_projection(T) template(mat4_ortho_projection, T)
-#define instantiate_declaration_mat4_ortho_projection(T) mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)
-#define instantiate_implementation_mat4_ortho_projection(T) mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)\
+#define instantiate_declaration_mat4_ortho_projection(T) HPML_API mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)
+#define instantiate_implementation_mat4_ortho_projection(T) HPML_API mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)\
 {\
 	float box_x = farClipPlane - nearClipPlane;\
 	float box_y;\
@@ -60,8 +60,8 @@ EXCEPTION_BLOCK\
 /*mat4_persp_projection*/
 //TODO: This matrix doesn't give correct depth values in the range [-1, 1], to be fixed
 #define mat4_persp_projection(T) template(mat4_persp_projection, T)
-#define instantiate_declaration_mat4_persp_projection(T) mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)
-#define instantiate_implementation_mat4_persp_projection(T) mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)\
+#define instantiate_declaration_mat4_persp_projection(T) HPML_API mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)
+#define instantiate_implementation_mat4_persp_projection(T) HPML_API mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)\
 {\
 EXCEPTION_BLOCK\
 (\
@@ -107,21 +107,21 @@ EXCEPTION_BLOCK\
 
 
 /*		Begin: template declarations*/
-#define instantiate_declaration_mat4_mul_vec4(T) vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)
-#define instantiate_declaration_mat4_translation(T) mat4_t(T) mat4_translation(T)(T x, T y, T z)
-#define instantiate_declaration_mat4_scale(T) mat4_t(T) mat4_scale(T)(T x, T y, T z)
-#define instantiate_declaration_mat4_axis_rotation(T) mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)
-#define instantiate_declaration_mat4_shear(T) mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)
-#define instantiate_declaration_mat4_reflection(T) mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)
-#define instantiate_declaration_mat4_shear_xy(T) mat4_t(T) mat4_shear_xy(T)(T angle)
-#define instantiate_declaration_mat4_shear_yx(T) mat4_t(T) mat4_shear_yx(T)(T angle)
-#define instantiate_declaration_mat4_shear_zx(T) mat4_t(T) mat4_shear_zx(T)(T angle)
-#define instantiate_declaration_mat4_shear_xz(T) mat4_t(T) mat4_shear_xz(T)(T angle)
-#define instantiate_declaration_mat4_shear_yz(T) mat4_t(T) mat4_shear_yz(T)(T angle)
-#define instantiate_declaration_mat4_shear_zy(T) mat4_t(T) mat4_shear_zy(T)(T angle)
-#define instantiate_declaration_mat4_rotation_x(T) mat4_t(T) mat4_rotation_x(T)(T angle)
-#define instantiate_declaration_mat4_rotation_y(T) mat4_t(T) mat4_rotation_y(T)(T angle)
-#define instantiate_declaration_mat4_rotation_z(T) mat4_t(T) mat4_rotation_z(T)(T angle)
+#define instantiate_declaration_mat4_mul_vec4(T) HPML_API vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)
+#define instantiate_declaration_mat4_translation(T) HPML_API mat4_t(T) mat4_translation(T)(T x, T y, T z)
+#define instantiate_declaration_mat4_scale(T) HPML_API mat4_t(T) mat4_scale(T)(T x, T y, T z)
+#define instantiate_declaration_mat4_axis_rotation(T) HPML_API mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)
+#define instantiate_declaration_mat4_shear(T) HPML_API mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)
+#define instantiate_declaration_mat4_reflection(T) HPML_API mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)
+#define instantiate_declaration_mat4_shear_xy(T) HPML_API mat4_t(T) mat4_shear_xy(T)(T angle)
+#define instantiate_declaration_mat4_shear_yx(T) HPML_API mat4_t(T) mat4_shear_yx(T)(T angle)
+#define instantiate_declaration_mat4_shear_zx(T) HPML_API mat4_t(T) mat4_shear_zx(T)(T angle)
+#define instantiate_declaration_mat4_shear_xz(T) HPML_API mat4_t(T) mat4_shear_xz(T)(T angle)
+#define instantiate_declaration_mat4_shear_yz(T) HPML_API mat4_t(T) mat4_shear_yz(T)(T angle)
+#define instantiate_declaration_mat4_shear_zy(T) HPML_API mat4_t(T) mat4_shear_zy(T)(T angle)
+#define instantiate_declaration_mat4_rotation_x(T) HPML_API mat4_t(T) mat4_rotation_x(T)(T angle)
+#define instantiate_declaration_mat4_rotation_y(T) HPML_API mat4_t(T) mat4_rotation_y(T)(T angle)
+#define instantiate_declaration_mat4_rotation_z(T) HPML_API mat4_t(T) mat4_rotation_z(T)(T angle)
 /*		End: template declarations*/
 
 
@@ -136,7 +136,7 @@ EXCEPTION_BLOCK\
  * returns: vec4_t(T) resultant vector4
  */
 #define instantiate_implementation_mat4_mul_vec4(T)\
-vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
+HPML_API vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
 {\
 	vec4_t(T) _mat =\
 	{\
@@ -201,7 +201,7 @@ vec4_t(T) mat4_mul_vec4(T)(mat4_t(T) mat, T x, T y, T z, T w)\
  * returns: mat4_t(T) 4x4 reflection matrix
  */
 #define instantiate_implementation_mat4_reflection(T)\
-mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)\
+HPML_API mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)\
 {\
 	mat4_t(T) N = mat4_diagonal(T)(nx, ny, nz, 0);\
 	mat4_t(T) M = \
@@ -219,7 +219,7 @@ mat4_t(T) mat4_reflection(T)(T nx, T ny, T nz)\
  * returns: mat4_t(T) 4x4 rotation matrix
  */
 #define instantiate_implementation_mat4_rotation_x(T)\
-mat4_t(T) mat4_rotation_x(T)(T angle)\
+HPML_API mat4_t(T) mat4_rotation_x(T)(T angle)\
 {\
 	T cos_angle = cos(angle);\
 	T sin_angle = sin(angle);\
@@ -238,7 +238,7 @@ mat4_t(T) mat4_rotation_x(T)(T angle)\
  * returns: mat4_t(T) 4x4 rotation matrix
  */
 #define instantiate_implementation_mat4_rotation_y(T)\
-mat4_t(T) mat4_rotation_y(T)(T angle)\
+HPML_API mat4_t(T) mat4_rotation_y(T)(T angle)\
 {\
 	T cos_angle = cos(angle);\
 	T sin_angle = sin(angle);\
@@ -257,7 +257,7 @@ mat4_t(T) mat4_rotation_y(T)(T angle)\
  * returns: mat4_t(T) 4x4 rotation matrix
  */
 #define instantiate_implementation_mat4_rotation_z(T)\
-mat4_t(T) mat4_rotation_z(T)(T angle)\
+HPML_API mat4_t(T) mat4_rotation_z(T)(T angle)\
 {\
 	T cos_angle = cos(angle);\
 	T sin_angle = sin(angle);\
@@ -282,7 +282,7 @@ mat4_t(T) mat4_rotation_z(T)(T angle)\
  * returns: mat4_t(T) shear matrix along x axis in xy plane
  */
 #define instantiate_implementation_mat4_shear_xy(T)\
-mat4_t(T) mat4_shear_xy(T)(T angle)\
+HPML_API mat4_t(T) mat4_shear_xy(T)(T angle)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -305,7 +305,7 @@ mat4_t(T) mat4_shear_xy(T)(T angle)\
  * returns: mat4_t(T) shear matrix along y axis in xy plane
  */
 #define instantiate_implementation_mat4_shear_yx(T)\
-mat4_t(T) mat4_shear_yx(T)(T angle)\
+HPML_API mat4_t(T) mat4_shear_yx(T)(T angle)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -328,7 +328,7 @@ mat4_t(T) mat4_shear_yx(T)(T angle)\
  * returns: mat4_t(T) shear matrix along z axis in zx plane
  */
 #define instantiate_implementation_mat4_shear_zx(T)\
-mat4_t(T) mat4_shear_zx(T)(T angle)\
+HPML_API mat4_t(T) mat4_shear_zx(T)(T angle)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -351,7 +351,7 @@ mat4_t(T) mat4_shear_zx(T)(T angle)\
  * returns: mat4_t(T) shear matrix along x axis in xz plane
  */
 #define instantiate_implementation_mat4_shear_xz(T)\
-mat4_t(T) mat4_shear_xz(T)(T angle)\
+HPML_API mat4_t(T) mat4_shear_xz(T)(T angle)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -374,7 +374,7 @@ mat4_t(T) mat4_shear_xz(T)(T angle)\
  * returns: mat4_t(T) shear matrix along y axis in yz plane
  */
 #define instantiate_implementation_mat4_shear_yz(T)\
-mat4_t(T) mat4_shear_yz(T)(T angle)\
+HPML_API mat4_t(T) mat4_shear_yz(T)(T angle)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -397,7 +397,7 @@ mat4_t(T) mat4_shear_yz(T)(T angle)\
  * returns: mat4_t(T) shear matrix along y axis in zy plane
  */
 #define instantiate_implementation_mat4_shear_zy(T)\
-mat4_t(T) mat4_shear_zy(T)(T angle)\
+HPML_API mat4_t(T) mat4_shear_zy(T)(T angle)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -417,7 +417,7 @@ mat4_t(T) mat4_shear_zy(T)(T angle)\
  * returns: mat4_t(T) translation matrix having vec3(x, y, z) displacement
  */
 #define instantiate_implementation_mat4_translation(T)\
-mat4_t(T) mat4_translation(T)(T x, T y, T z)\
+HPML_API mat4_t(T) mat4_translation(T)(T x, T y, T z)\
 {\
 	mat4_t(T) mat = \
 	{\
@@ -437,7 +437,7 @@ mat4_t(T) mat4_translation(T)(T x, T y, T z)\
  * returns: mat4_t(T) scale matrix having (x, y, z) scale factors
  */
 #define instantiate_implementation_mat4_scale(T)\
-mat4_t(T) mat4_scale(T)(T x, T y, T z)\
+HPML_API mat4_t(T) mat4_scale(T)(T x, T y, T z)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -458,7 +458,7 @@ mat4_t(T) mat4_scale(T)(T x, T y, T z)\
  * returns: mat4_t(T) resultant rotation matrix
  */
 #define instantiate_implementation_mat4_axis_rotation(T)\
-mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)\
+HPML_API mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)\
 {\
 	EXCEPTION_BLOCK(\
 		if((x == 0) && (y == 0) && (z == 0))\
@@ -485,7 +485,7 @@ mat4_t(T) mat4_axis_rotation(T)(T angle, T x, T y, T z)\
  * returns: mat4_t(T) shear matrix in 3D space
  */
 #define instantiate_implementation_mat4_shear(T)\
-mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)\
+HPML_API mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_angle, T zy_angle)\
 {\
 	mat4_t(T) xy_mat = mat4_shear_xy(T)(xy_angle);\
 	mat4_t(T) yx_mat = mat4_shear_yx(T)(yx_angle);\
@@ -499,4 +499,3 @@ mat4_t(T) mat4_shear(T)(T xy_angle, T yx_angle, T zx_angle, T xz_angle, T yz_ang
 
 /*End: Template Definitions*/
 
-#endif /*__HPML_AFFINE_TRANSFORMATION_TEMPLATE_DEFINITION_H__*/

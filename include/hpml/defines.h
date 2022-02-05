@@ -41,3 +41,13 @@ do\
 #else 
 #	define ASSERT(boolean, ...)
 #endif
+
+#ifdef HPML_STATIC_LIBRARY
+#	define HPML_API
+#elif HPML_DYNAMIC_LIBRARY
+#	define HPML_API __declspec(dllimport)
+#elif BUILD_DYNAMIC_LIBRARY
+#	define HPML_API __declspec(dllexport)
+#else
+#	define HPML_API
+#endif

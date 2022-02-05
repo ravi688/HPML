@@ -11,6 +11,8 @@
 #ifndef __EXCEPTION_H__
 #define __EXCEPTION_H__
 
+#include <hpml/defines.h>
+
 #ifdef __cplusplus
 #   include <cstdint>
 #else
@@ -52,7 +54,7 @@ typedef char* exception_t;
  * Version 1.0: __throw
  * Version 1.1: __throw_exception
  */
-void __throw_exception(exception_t exception, uint64_t line_no, const char* method_name, const char* file_name);
+HPML_API void __throw_exception(exception_t exception, uint64_t line_no, const char* method_name, const char* file_name);
 #endif
 
 

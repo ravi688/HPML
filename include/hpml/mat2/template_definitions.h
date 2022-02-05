@@ -1,5 +1,4 @@
-#ifndef __HPML_MAT2_TEMPLATE_DEFINITION_H__
-#define __HPML_MAT2_TEMPLATE_DEFINITION_H__
+#pragma once
 
 #include <math.h>
 #include <stdio.h>
@@ -7,6 +6,7 @@
 #include <hpml/exception/exception.h>
 #include <hpml/template_system.h>
 #include <hpml/no_compile_header.h>
+#include <hpml/defines.h>
 
 /*Begin: Template Definitions*/
 /*template signatures*/
@@ -38,26 +38,26 @@ typedef struct mat2_t(T)\
 } mat2_t(T)
 
 /*mat2_identity(T)*/
-#define instantiate_declaration_mat2_identity(T) mat2_t(T) mat2_identity(T)()
-#define instantiate_implementation_mat2_identity(T) mat2_t(T) mat2_identity(T)() { return (mat2_t(T)) { 1, 0, 0, 1 }; }
+#define instantiate_declaration_mat2_identity(T) HPML_API mat2_t(T) mat2_identity(T)()
+#define instantiate_implementation_mat2_identity(T) HPML_API mat2_t(T) mat2_identity(T)() { return (mat2_t(T)) { 1, 0, 0, 1 }; }
 
-#define instantiate_declaration_mat2_print(T) void mat2_print(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2(T) mat2_t(T) mat2(T)(T v0, T v1, T v2, T v3)
-#define instantiate_declaration_mat2_add(T) mat2_t(T) mat2_add(T)(mat2_t(T) m1, mat2_t(T) m2)
-#define instantiate_declaration_mat2_sub(T) mat2_t(T) mat2_sub(T)(mat2_t(T) m1, mat2_t(T) m2)
-#define instantiate_declaration_mat2_mul(T) mat2_t(T) mat2_mul(T)(mat2_t(T) m1, mat2_t(T) m2)
-#define instantiate_declaration_mat2_div(T) mat2_t(T) mat2_div(T)(mat2_t(T) m1, mat2_t(T) m2)
-#define instantiate_declaration_mat2_mul_component_wise(T) mat2_t(T) mat2_mul_component_wise(T)(mat2_t(T) m1, mat2_t(T) m2)
-#define instantiate_declaration_mat2_is_null(T) bool mat2_is_null(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2_is_equal(T) bool mat2_is_equal(T)(mat2_t(T) m1, mat2_t(T) m2)
-#define instantiate_declaration_mat2_null(T) mat2_t(T) mat2_null(T)()
-#define instantiate_declaration_mat2_negate(T) mat2_t(T) mat2_negate(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2_lerp(T) mat2_t(T) mat2_lerp(T)(mat2_t(T) m1, mat2_t(T) m2, float lerp_value)
-#define instantiate_declaration_mat2_mul_with_scalar(T) mat2_t(T) mat2_mul_with_scalar(T)(mat2_t(T) m, T s)
-#define instantiate_declaration_mat2_inverse(T) mat2_t(T) mat2_inverse(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2_transpose(T) mat2_t(T) mat2_transpose(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2_trace(T) T mat2_trace(T)(mat2_t(T) m)
-#define instantiate_declaration_mat2_rotation(T) mat2_t(T) mat2_rotation(T)(T angle)
+#define instantiate_declaration_mat2_print(T) HPML_API void mat2_print(T)(mat2_t(T) m)
+#define instantiate_declaration_mat2(T) HPML_API mat2_t(T) mat2(T)(T v0, T v1, T v2, T v3)
+#define instantiate_declaration_mat2_add(T) HPML_API mat2_t(T) mat2_add(T)(mat2_t(T) m1, mat2_t(T) m2)
+#define instantiate_declaration_mat2_sub(T) HPML_API mat2_t(T) mat2_sub(T)(mat2_t(T) m1, mat2_t(T) m2)
+#define instantiate_declaration_mat2_mul(T) HPML_API mat2_t(T) mat2_mul(T)(mat2_t(T) m1, mat2_t(T) m2)
+#define instantiate_declaration_mat2_div(T) HPML_API mat2_t(T) mat2_div(T)(mat2_t(T) m1, mat2_t(T) m2)
+#define instantiate_declaration_mat2_mul_component_wise(T) HPML_API mat2_t(T) mat2_mul_component_wise(T)(mat2_t(T) m1, mat2_t(T) m2)
+#define instantiate_declaration_mat2_is_null(T) HPML_API bool mat2_is_null(T)(mat2_t(T) m)
+#define instantiate_declaration_mat2_is_equal(T) HPML_API bool mat2_is_equal(T)(mat2_t(T) m1, mat2_t(T) m2)
+#define instantiate_declaration_mat2_null(T) HPML_API mat2_t(T) mat2_null(T)()
+#define instantiate_declaration_mat2_negate(T) HPML_API mat2_t(T) mat2_negate(T)(mat2_t(T) m)
+#define instantiate_declaration_mat2_lerp(T) HPML_API mat2_t(T) mat2_lerp(T)(mat2_t(T) m1, mat2_t(T) m2, float lerp_value)
+#define instantiate_declaration_mat2_mul_with_scalar(T) HPML_API mat2_t(T) mat2_mul_with_scalar(T)(mat2_t(T) m, T s)
+#define instantiate_declaration_mat2_inverse(T) HPML_API mat2_t(T) mat2_inverse(T)(mat2_t(T) m)
+#define instantiate_declaration_mat2_transpose(T) HPML_API mat2_t(T) mat2_transpose(T)(mat2_t(T) m)
+#define instantiate_declaration_mat2_trace(T) HPML_API T mat2_trace(T)(mat2_t(T) m)
+#define instantiate_declaration_mat2_rotation(T) HPML_API mat2_t(T) mat2_rotation(T)(T angle)
 
 /* mat2(T): mat2 contructor taking four parameter to initialize the components
  * T v0: element at [0, 0] -> [Row, Column]
@@ -67,7 +67,7 @@ typedef struct mat2_t(T)\
  * returns: mat2_t(T) initialized matrix
  */
 #define instantiate_implementation_mat2(T)\
-mat2_t(T) mat2(T)(T v0, T v1, T v2, T v3)\
+HPML_API mat2_t(T) mat2(T)(T v0, T v1, T v2, T v3)\
 {\
 	mat2_t(T) m = { v0, v1, v2, v3 };\
 	return m;\
@@ -78,7 +78,7 @@ mat2_t(T) mat2(T)(T v0, T v1, T v2, T v3)\
  * returns: T trace value
  */
 #define instantiate_implementation_mat2_trace(T)\
-T mat2_trace(T)(mat2_t(T) m)\
+HPML_API T mat2_trace(T)(mat2_t(T) m)\
 {\
 	return m.m0 + m.m3;\
 }
@@ -89,7 +89,7 @@ T mat2_trace(T)(mat2_t(T) m)\
  * returns: mat2_t(T) addition resultant matrix
  */
 #define instantiate_implementation_mat2_add(T)\
-mat2_t(T) mat2_add(T)(mat2_t(T) m1, mat2_t(T) m2)\
+HPML_API mat2_t(T) mat2_add(T)(mat2_t(T) m1, mat2_t(T) m2)\
 {\
 	mat2_t(T) m;\
 	m.m0 = m1.m0 + m2.m0;\
@@ -105,7 +105,7 @@ mat2_t(T) mat2_add(T)(mat2_t(T) m1, mat2_t(T) m2)\
  * returns: mat2_t(T) subtraction resultant matrix
  */
 #define instantiate_implementation_mat2_sub(T)\
-mat2_t(T) mat2_sub(T)(mat2_t(T) m1, mat2_t(T) m2)\
+HPML_API mat2_t(T) mat2_sub(T)(mat2_t(T) m1, mat2_t(T) m2)\
 {\
 	mat2_t(T) m;\
 	m.m0 = m1.m0 - m2.m0;\
@@ -122,7 +122,7 @@ mat2_t(T) mat2_sub(T)(mat2_t(T) m1, mat2_t(T) m2)\
  * returns: mat2_t(T) resultant matrix
  */
 #define instantiate_implementation_mat2_mul(T)\
-mat2_t(T) mat2_mul(T)(mat2_t(T) m1, mat2_t(T) m2)\
+HPML_API mat2_t(T) mat2_mul(T)(mat2_t(T) m1, mat2_t(T) m2)\
 {\
 	mat2_t(T) m;\
 	m.m0 = m1.m0 * m2.m0 + m1.m1 * m2.m2;\
@@ -138,7 +138,7 @@ mat2_t(T) mat2_mul(T)(mat2_t(T) m1, mat2_t(T) m2)\
  * returns: mat2_t(T) resultant matrix
  */
 #define instantiate_implementation_mat2_mul_with_scalar(T)\
-mat2_t(T) mat2_mul_with_scalar(T)(mat2_t(T) m, T scalar)\
+HPML_API mat2_t(T) mat2_mul_with_scalar(T)(mat2_t(T) m, T scalar)\
 {\
 	mat2_t(T) _m = m;\
 	_m.m0 *= scalar;\
@@ -154,7 +154,7 @@ mat2_t(T) mat2_mul_with_scalar(T)(mat2_t(T) m, T scalar)\
  * returns: mat2_t(T) quotient matrix
  */
 #define instantiate_implementation_mat2_div(T)\
-mat2_t(T) mat2_div(T)(mat2_t(T) m1, mat2_t(T) m2)\
+HPML_API mat2_t(T) mat2_div(T)(mat2_t(T) m1, mat2_t(T) m2)\
 {\
 	EXCEPTION_BLOCK(\
 		if(mat2_is_null(T)(m2))\
@@ -174,7 +174,7 @@ mat2_t(T) mat2_div(T)(mat2_t(T) m1, mat2_t(T) m2)\
  * returns: bool true if the matrix is null, otherwise false
  */
 #define instantiate_implementation_mat2_is_null(T)\
-bool mat2_is_null(T)(mat2_t(T) m)\
+HPML_API bool mat2_is_null(T)(mat2_t(T) m)\
 {\
 	return (m.m0 == 0) && (m.m1 == 0) && (m.m2 == 0) && (m.m3 == 0);\
 }
@@ -186,7 +186,7 @@ bool mat2_is_null(T)(mat2_t(T) m)\
  * returns: bool true if the two matrix are approximately equal, otherwise false
  */
 #define instantiate_implementation_mat2_is_equal(T)\
-bool mat2_is_equal(T)(mat2_t(T) m1, mat2_t(T) m2)\
+HPML_API bool mat2_is_equal(T)(mat2_t(T) m1, mat2_t(T) m2)\
 {\
 	return (m1.m0 == m2.m0) && (m1.m1 == m2.m1) && (m1.m2 == m2.m2) && (m1.m3 == m2.m3);\
 }
@@ -196,7 +196,7 @@ bool mat2_is_equal(T)(mat2_t(T) m1, mat2_t(T) m2)\
  * returns: mat2_t(T) negated matrix
  */
 #define instantiate_implementation_mat2_negate(T)\
-mat2_t(T) mat2_negate(T)(mat2_t(T) m)\
+HPML_API mat2_t(T) mat2_negate(T)(mat2_t(T) m)\
 {\
 	mat2_t(T) _m;\
 	_m.m0 = -m.m0;\
@@ -212,7 +212,7 @@ mat2_t(T) mat2_negate(T)(mat2_t(T) m)\
  * returns: mat2_t(T) resultant matrix
  */
 #define instantiate_implementation_mat2_mul_component_wise(T)\
-mat2_t(T) mat2_mul_component_wise(T)(mat2_t(T) m1, mat2_t(T) m2)\
+HPML_API mat2_t(T) mat2_mul_component_wise(T)(mat2_t(T) m1, mat2_t(T) m2)\
 {\
 	mat2_t(T) m = m1;\
 	m.m0 *= m2.m0;\
@@ -227,7 +227,7 @@ mat2_t(T) mat2_mul_component_wise(T)(mat2_t(T) m1, mat2_t(T) m2)\
  * returns: mat2_t(T) transposed matrix
  */
 #define instantiate_implementation_mat2_transpose(T)\
-mat2_t(T) mat2_transpose(T)(mat2_t(T) m)\
+HPML_API mat2_t(T) mat2_transpose(T)(mat2_t(T) m)\
 {\
 	mat2_t(T) _m = m;\
 	_m.m1 = m.m2;\
@@ -242,7 +242,7 @@ mat2_t(T) mat2_transpose(T)(mat2_t(T) m)\
  * returns: mat2_t(T) interpolated matrix
  */
 #define instantiate_implementation_mat2_lerp(T)\
-mat2_t(T) mat2_lerp(T)(mat2_t(T) m1, mat2_t(T) m2, float lerp_value)\
+HPML_API mat2_t(T) mat2_lerp(T)(mat2_t(T) m1, mat2_t(T) m2, float lerp_value)\
 {\
 	mat2_t(T) m;\
 	float _lerp_value = 1 - lerp_value;\
@@ -258,7 +258,7 @@ mat2_t(T) mat2_lerp(T)(mat2_t(T) m1, mat2_t(T) m2, float lerp_value)\
  * returns: mat2_t(T) inverted 2x2 matrix
  */
 #define instantiate_implementation_mat2_inverse(T)\
-mat2_t(T) mat2_inverse(T)(mat2_t(T) m)\
+HPML_API mat2_t(T) mat2_inverse(T)(mat2_t(T) m)\
 {\
 	float det = m.m0 * m.m1 - m.m2 * m.m3;\
 	EXCEPTION_BLOCK(\
@@ -275,7 +275,7 @@ mat2_t(T) mat2_inverse(T)(mat2_t(T) m)\
 }
 
 #define instantiate_implementation_mat2_rotation(T)\
-mat2_t(T) mat2_rotation(T)(T angle)\
+HPML_API mat2_t(T) mat2_rotation(T)(T angle)\
 {\
 	float cos_angle = cos(angle);\
 	float sin_angle = sin(angle);\
@@ -288,5 +288,3 @@ mat2_t(T) mat2_rotation(T)(T angle)\
 }
 
 /*End: Template Definitions*/
-
-#endif

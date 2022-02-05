@@ -96,7 +96,7 @@ instantiate_implementation_vec4_forward(int);
 instantiate_implementation_vec4_back(int);
 instantiate_implementation_vec4_is_null(int);
 
-void vec4_print(int)(vec4_t(int) v) { printf("vec4_t(int): { %d, %d, %d, %d }\n", v.x, v.y, v.z, v.w); }
+HPML_API void vec4_print(int)(vec4_t(int) v) { printf("vec4_t(int): { %d, %d, %d, %d }\n", v.x, v.y, v.z, v.w); }
 instantiate_implementation_vec4_normalize(int);
 instantiate_implementation_vec4_magnitude(int);
 instantiate_implementation_vec4_angle(int);
@@ -129,7 +129,7 @@ instantiate_implementation_vec4_forward(float);
 instantiate_implementation_vec4_back(float);
 instantiate_implementation_vec4_is_null(float);
 
-void vec4_print(float)(vec4_t(float) v) { printf("vec4_t(float): { %f, %f, %f, %f }\n", v.x, v.y, v.z, v.w); }
+HPML_API void vec4_print(float)(vec4_t(float) v) { printf("vec4_t(float): { %f, %f, %f, %f }\n", v.x, v.y, v.z, v.w); }
 instantiate_implementation_vec4_normalize(float);
 instantiate_implementation_vec4_magnitude(float);
 instantiate_implementation_vec4_angle(float);

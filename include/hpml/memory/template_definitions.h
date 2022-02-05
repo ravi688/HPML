@@ -3,13 +3,10 @@
 
 #include <hpml/template_system.h>
 
-#ifdef __cplusplus
-#	include <memory>
-#else
-#	include <memory.h>
-#endif
+#include <string.h>
 
 #include <hpml/no_compile_header.h>
+#include <hpml/defines.h>
 
 #ifdef __cplusplus
 #define EXTERN_C extern "C"
@@ -18,9 +15,9 @@
 #endif
 
 #define move(T) template(move, T)
-#define instantiate_declaration_move(T) EXTERN_C void move(T)(T* dst, T src)
+#define instantiate_declaration_move(T) EXTERN_C HPML_API void move(T)(T* dst, T src)
 #define instantiate_implementation_move(T)\
-void move(T)(T* dst, T src)\
+EXTERN_C HPML_API void move(T)(T* dst, T src)\
 {\
 	memcpy(dst, &src, sizeof(T));\
 }

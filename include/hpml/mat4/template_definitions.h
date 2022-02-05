@@ -1,5 +1,5 @@
-#ifndef __HPML_MAT4_TEMPLATE_DEFINITION_H__
-#define __HPML_MAT4_TEMPLATE_DEFINITION_H__
+#pragma once
+
 
 #include <math.h>
 #include <stdio.h>
@@ -21,9 +21,9 @@
 /*mat4_data*/
 #define __mat4_data(T) template(__mat4_data, T)
 #define mat4_data(T) __mat4_data(T)
-#define instantiate_declaration_mat4_data(T) T* const* const __mat4_data(T)(mat4_t(T)* m)
+#define instantiate_declaration_mat4_data(T) HPML_API T* const* const __mat4_data(T)(mat4_t(T)* m)
 #define instantiate_implementation_mat4_data(T)\
-T* const* const __mat4_data(T)(mat4_t(T)* m)\
+HPML_API T* const* const __mat4_data(T)(mat4_t(T)* m)\
 {\
 	IGNORE_CONST(T*,m->data[0]) = &m->m00;\
 	IGNORE_CONST(T*,m->data[1]) = &m->m10;\
@@ -45,9 +45,9 @@ T* const* const __mat4_data(T)(mat4_t(T)* m)\
 /*mat4_determinant*/
 #define mat4_det(T) template(mat4_det, T)
 #define mat4_determinant(T) mat4_det(T)
-#define instantiate_declaration_mat4_det(T) T mat4_det(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_det(T) HPML_API T mat4_det(T)(mat4_t(T) m)
 #define instantiate_implementation_mat4_det(T)\
-T mat4_det(T)(mat4_t(T) m)\
+HPML_API T mat4_det(T)(mat4_t(T) m)\
 {\
 	return m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -\
 	m.m01 * (m.m10 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m20 * m.m33 - m.m23 * m.m30) + m.m13 * (m.m20 * m.m32 - m.m22 * m.m30)) +\
@@ -64,10 +64,10 @@ T mat4_det(T)(mat4_t(T) m)\
 #define mat4_mul(T) template(mat4_mul, T)
 #define __mat4_mul(T) template(__mat4_mul, T)
 #define instantiate_declaration_mat4_mul(T)\
-mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2);\
-mat4_t(T) mat4_mul(T)(uint32_t count, ...)
+HPML_API mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2);\
+HPML_API mat4_t(T) mat4_mul(T)(uint32_t count, ...)
 #define instantiate_implementation_mat4_mul(T)\
-mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
+HPML_API mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 	mat4_t(T) m =\
 	{\
@@ -90,7 +90,7 @@ mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2)\
 	};\
 	return m;\
 }\
-mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
+HPML_API mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
 {\
 	mat4_t(T) result = mat4_identity(T)();\
 	va_list args;\
@@ -106,8 +106,8 @@ mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
 
 #define mat4_build_cofactor(T) template(mat4_build_cofactor, T)
 // #define mat4_build_cofactor(m, out_mptr, row, column) mat4_build_cofactor(mat4_data(&m), __mat4_data(out_mptr), 4, row, column)
-#define instantiate_declaration_mat4_build_cofactor(T) void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)
-#define instantiate_implementation_mat4_build_cofactor(T) void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)\
+#define instantiate_declaration_mat4_build_cofactor(T) HPML_API void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)
+#define instantiate_implementation_mat4_build_cofactor(T) HPML_API void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)\
 {\
 	T* const* const baseMatrix = mat4_data(T)(&m);\
 	for(u32 i = 0, g = 0; i < 3; i++, g++)\
@@ -158,33 +158,33 @@ typedef struct mat4_t(T)\
 } mat4_t(T)
 
 
-#define instantiate_declaration_mat4_print(T) void mat4_print(T)(mat4_t(T) m)
-#define instantiate_declaration_mat4(T) mat4_t(T) mat4(T) (\
+#define instantiate_declaration_mat4_print(T) HPML_API void mat4_print(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4(T) HPML_API mat4_t(T) mat4(T) (\
 																T v00, T v01, T v02, T v03,\
 																T v10, T v11, T v12, T v13,\
 																T v20, T v21, T v22, T v23,\
 																T v30, T v31, T v32, T v33\
 															 )
-#define instantiate_declaration_mat4_add(T) mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)
-#define instantiate_declaration_mat4_sub(T) mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)
-#define instantiate_declaration_mat4_div(T) mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)
-#define instantiate_declaration_mat4_mul_component_wise(T) mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)
-#define instantiate_declaration_mat4_is_null(T) bool mat4_is_null(T)(mat4_t(T) m)
-#define instantiate_declaration_mat4_is_equal(T) bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)
-#define instantiate_declaration_mat4_null(T) mat4_t(T) mat4_null(T)()
-#define instantiate_declaration_mat4_negate(T) mat4_t(T) mat4_negate(T)(mat4_t(T) m)
-#define instantiate_declaration_mat4_identity(T) mat4_t(T) mat4_identity(T)()
-#define instantiate_declaration_mat4_lerp(T) mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)
-#define instantiate_declaration_mat4_mul_scalar(T) mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T s)
-#define instantiate_declaration_mat4_inverse(T) mat4_t(T) mat4_inverse(T)(mat4_t(T) m)
-#define instantiate_declaration_mat4_transpose(T) mat4_t(T) mat4_transpose(T)(mat4_t(T) m)
-#define instantiate_declaration_mat4_trace(T) T mat4_trace(T)(mat4_t(T) m)
-#define instantiate_declaration_mat4_diagonal(T) mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)
+#define instantiate_declaration_mat4_add(T) HPML_API mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_sub(T) HPML_API mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_div(T) HPML_API mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_mul_component_wise(T) HPML_API mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_is_null(T) HPML_API bool mat4_is_null(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_is_equal(T) HPML_API bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)
+#define instantiate_declaration_mat4_null(T) HPML_API mat4_t(T) mat4_null(T)()
+#define instantiate_declaration_mat4_negate(T) HPML_API mat4_t(T) mat4_negate(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_identity(T) HPML_API mat4_t(T) mat4_identity(T)()
+#define instantiate_declaration_mat4_lerp(T) HPML_API mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)
+#define instantiate_declaration_mat4_mul_scalar(T) HPML_API mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T s)
+#define instantiate_declaration_mat4_inverse(T) HPML_API mat4_t(T) mat4_inverse(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_transpose(T) HPML_API mat4_t(T) mat4_transpose(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_trace(T) HPML_API T mat4_trace(T)(mat4_t(T) m)
+#define instantiate_declaration_mat4_diagonal(T) HPML_API mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)
 
 /* mat4_identity(T): returns an 4x4 identity matrix
  */
 #define instantiate_implementation_mat4_identity(T)\
-mat4_t(T) mat4_identity(T)()\
+HPML_API mat4_t(T) mat4_identity(T)()\
 {\
 	return mat4(T)(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);\
 }
@@ -209,7 +209,7 @@ mat4_t(T) mat4_identity(T)()\
  * returns: mat4_t(T) initialized matrix
  */
 #define instantiate_implementation_mat4(T)\
-mat4_t(T) mat4(T)(T v00, T v01, T v02, T v03,\
+HPML_API mat4_t(T) mat4(T)(T v00, T v01, T v02, T v03,\
 					T v10, T v11, T v12, T v13,\
 					T v20, T v21, T v22, T v23,\
 					T v30, T v31, T v32, T v33)\
@@ -232,7 +232,7 @@ mat4_t(T) mat4(T)(T v00, T v01, T v02, T v03,\
  * returns: mat4_t(T) 4x4 diagonal matrix
  */
 #define instantiate_implementation_mat4_diagonal(T)\
-mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)\
+HPML_API mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)\
 {\
 	mat4_t(T) mat =\
 	{\
@@ -249,7 +249,7 @@ mat4_t(T) mat4_diagonal(T)(T x, T y, T z, T w)\
  * returns: T trace value
  */
 #define instantiate_implementation_mat4_trace(T)\
-T mat4_trace(T)(mat4_t(T) m)\
+HPML_API T mat4_trace(T)(mat4_t(T) m)\
 {\
 	return m.m00 + m.m11 + m.m22 + m.m33;\
 }
@@ -260,7 +260,7 @@ T mat4_trace(T)(mat4_t(T) m)\
  * returns: mat4_t(T) addition resultant matrix
  */
 #define instantiate_implementation_mat4_add(T)\
-mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)\
+HPML_API mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 	mat4_t(T) m;\
 	m.m00 = m1.m00 + m2.m00;\
@@ -288,7 +288,7 @@ mat4_t(T) mat4_add(T)(mat4_t(T) m1, mat4_t(T) m2)\
  * returns: mat4_t(T) subtraction resultant matrix
  */
 #define instantiate_implementation_mat4_sub(T)\
-mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)\
+HPML_API mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 	mat4_t(T) m;\
 	m.m00 = m1.m00 - m2.m00;\
@@ -323,7 +323,7 @@ mat4_t(T) mat4_sub(T)(mat4_t(T) m1, mat4_t(T) m2)\
  * returns: mat4_t(T) resultant matrix
  */
 #define instantiate_implementation_mat4_mul_scalar(T)\
-mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T scalar)\
+HPML_API mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T scalar)\
 {\
 	mat4_t(T) _m = m;\
 	_m.values[0] *= scalar;\
@@ -351,7 +351,7 @@ mat4_t(T) mat4_mul_scalar(T)(mat4_t(T) m, T scalar)\
  * returns: mat4_t(T) quotient matrix
  */
 #define instantiate_implementation_mat4_div(T)\
-mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)\
+HPML_API mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 	EXCEPTION_BLOCK(\
 		if(mat4_is_null(T)(m2))\
@@ -383,7 +383,7 @@ mat4_t(T) mat4_div(T)(mat4_t(T) m1, mat4_t(T) m2)\
  * returns: bool true if the matrix is null, otherwise false
  */
 #define instantiate_implementation_mat4_is_null(T)\
-bool mat4_is_null(T)(mat4_t(T) m)\
+HPML_API bool mat4_is_null(T)(mat4_t(T) m)\
 {\
 	return (m.values[0] == 0) &&\
 		   (m.values[1] == 0) &&\
@@ -410,7 +410,7 @@ bool mat4_is_null(T)(mat4_t(T) m)\
  * returns: bool true if the two matrix are approximately equal, otherwise false
  */
 #define instantiate_implementation_mat4_is_equal(T)\
-bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)\
+HPML_API bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 		return (m1.values[0]  == m2.values[0] ) &&\
 		   	   (m1.values[1]  == m2.values[1] ) &&\
@@ -435,7 +435,7 @@ bool mat4_is_equal(T)(mat4_t(T) m1, mat4_t(T) m2)\
  * returns: mat4_t(T) negated matrix
  */
 #define instantiate_implementation_mat4_negate(T)\
-mat4_t(T) mat4_negate(T)(mat4_t(T) m)\
+HPML_API mat4_t(T) mat4_negate(T)(mat4_t(T) m)\
 {\
 	mat4_t(T) m1;\
 	m1.values[0]  = -m.values[0] ;\
@@ -463,7 +463,7 @@ mat4_t(T) mat4_negate(T)(mat4_t(T) m)\
  * returns: mat4_t(T) resultant matrix
  */
 #define instantiate_implementation_mat4_mul_component_wise(T)\
-mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)\
+HPML_API mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)\
 {\
 	mat4_t(T) m = m1;\
 	m.values[0]  *= m2.values[0] ;\
@@ -490,7 +490,7 @@ mat4_t(T) mat4_mul_component_wise(T)(mat4_t(T) m1, mat4_t(T) m2)\
  * returns: mat4_t(T) transposed matrix
  */
 #define instantiate_implementation_mat4_transpose(T)\
-mat4_t(T) mat4_transpose(T)(mat4_t(T) m)\
+HPML_API mat4_t(T) mat4_transpose(T)(mat4_t(T) m)\
 {\
 	mat4_t(T) _m = m;\
 	_m.m01 = m.m10;\
@@ -515,7 +515,7 @@ mat4_t(T) mat4_transpose(T)(mat4_t(T) m)\
  * returns: mat4_t(T) interpolated matrix
  */
 #define instantiate_implementation_mat4_lerp(T)\
-mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)\
+HPML_API mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)\
 {\
 	mat4_t(T) m;\
 	float _lerp_value = 1 - lerp_value;\
@@ -593,7 +593,7 @@ mat4_t(T) mat4_lerp(T)(mat4_t(T) m1, mat4_t(T) m2, float lerp_value)\
  * returns: mat4_t(T) inverted 4x4 matrix
  */
 #define instantiate_implementation_mat4_inverse(T)\
-mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
+HPML_API mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 {\
 	float det = mat4_det(T)(m);\
 	EXCEPTION_BLOCK(\
@@ -637,5 +637,3 @@ mat4_t(T) mat4_inverse(T)(mat4_t(T) m)\
 	return _m;\
 }
 /*End: Template Definitions*/
-
-#endif

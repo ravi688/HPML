@@ -1,10 +1,9 @@
-#ifndef __HPML_QUAT_TEMPLATE_DEFINITION_H__
-#define __HPML_QUAT_TEMPLATE_DEFINITION_H__
-
+#pragma once
 
 #include <hpml/template_system.h>
 #include <hpml/exception/exception.h>
 #include <hpml/no_compile_header.h>
+#include <hpml/defines.h>
 
 #include <math.h>
 
@@ -21,14 +20,14 @@
 /* End: template signatures*/
 
 /* Begin: template declarations*/
-#define quat(T) quat_t(T) quat(T)(T x, T y, T z, T w)
-#define quat_add(T) quat_t(T) quat_add(T)(quat_t(T) q1, quat_t(T) q2)
-#define quat_sub(T) quat_t(T) quat_sub(T)(quat_t(T) q1, quat_t(T) q2)
-#define quat_mul(T) quat_t(T) quat_mul(T)(quat_t(T) q1, quat_t(T) q2)
-#define quat_div(T) quat_t(T) quat_div(T)(quat_t(T) q1, quat_t(T) q2)
-#define quat_mul_component_wise(T) quat_t(T) quat_mul_component_wise(T)(quat_t(T) q1, quat_t(T) q2)
-#define quat_identity(T) NOT_IMPLEMENTED
-#define quat_inverse(T) quat_t(T) quat_inverse(T)(quat_t(T) q)
+#define instantiate_declaration_quat(T) HPML_API quat_t(T) quat(T)(T x, T y, T z, T w)
+#define instantiate_declaration_quat_add(T) HPML_API quat_t(T) quat_add(T)(quat_t(T) q1, quat_t(T) q2)
+#define instantiate_declaration_quat_sub(T) HPML_API quat_t(T) quat_sub(T)(quat_t(T) q1, quat_t(T) q2)
+#define instantiate_declaration_quat_mul(T) HPML_API quat_t(T) quat_mul(T)(quat_t(T) q1, quat_t(T) q2)
+#define instantiate_declaration_quat_div(T) HPML_API quat_t(T) quat_div(T)(quat_t(T) q1, quat_t(T) q2)
+#define instantiate_declaration_quat_mul_component_wise(T) HPML_API quat_t(T) quat_mul_component_wise(T)(quat_t(T) q1, quat_t(T) q2)
+#define instantiate_declaration_quat_identity(T) NOT_IMPLEMENTED
+#define instantiate_declaration_quat_inverse(T) HPML_API quat_t(T) quat_inverse(T)(quat_t(T) q)
 /* End: template dclarations*/
 
 /* Begin: template definitiosn*/
@@ -42,21 +41,21 @@ typedef struct quat_t(T)\
 } quat_t(T)
 
 #define instantiate_implementation_quat(T)\
-quat_t(T) quat(T)(T x, T y, T z, T w)\
+HPML_API quat_t(T) quat(T)(T x, T y, T z, T w)\
 {\
 	quat_t(T) q = { x, y, z, w };\
 	return q;\
 }
 
 #define instantiate_implementation_quat_add(T)\
-quat_t(T) quat_add(T)(quat_t(T) q1, quat_t(T) q2)\
+HPML_API quat_t(T) quat_add(T)(quat_t(T) q1, quat_t(T) q2)\
 {\
 	quat_t(T) q = { q1.x + q2.x, q1.y + q2.y, q1.z + q2.z, q1.w + q2.w };\
 	return q;\
 }
 
 #define instantiate_implementation_quat_sub(T)\
-quat_t(T) quat_sub(T)(quat_t(T) q1, quat_t(T) q2)\
+HPML_API quat_t(T) quat_sub(T)(quat_t(T) q1, quat_t(T) q2)\
 {\
 	quat_t(T) q = { q1.x - q2.x, q1.y - q2.y, q1.z - q2.z, q1.w - q2.w };\
 	return q;\

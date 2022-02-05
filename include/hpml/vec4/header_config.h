@@ -13,6 +13,6 @@
 #	endif 
 #endif
 
-#define VEC4_ENABLE_SIMD_ACCELERATION
+// #define VEC4_ENABLE_SIMD_ACCELERATION
 
 #include <hpml/header_configuration_system/header_configuration_system.h>

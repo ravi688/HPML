@@ -1,5 +1,4 @@
-#ifndef __HPML_VEC2_TEMPLATE_DEFINITION_H__
-#define __HPML_VEC2_TEMPLATE_DEFINITION_H__
+#pragma once
 
 #include <math.h>
 #include <stdio.h>
@@ -7,6 +6,7 @@
 #include <hpml/exception/exception.h>
 #include <hpml/template_system.h>
 #include <hpml/no_compile_header.h>
+#include <hpml/defines.h>
 
 /*Begin: Template Definitions*/
 /*template signatures*/
@@ -53,36 +53,36 @@ typedef struct vec2_t(T)\
 	T y;\
 } vec2_t(T)
 
-#define instantiate_delcaration_vec2_slerp(T) vec2_t(T) vec2_slerp(T)(vec2_t(T) v1, vec2_t(T) v2, T slerp_value)
-#define instantiate_declaration_vec2_add(T) vec2_t(T) vec2_add(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_sub(T) vec2_t(T) vec2_sub(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_mul(T) vec2_t(T) vec2_mul(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_div(T) vec2_t(T) vec2_div(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_is_null(T) bool vec2_is_null(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2_is_equal(T) bool vec2_is_equal(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_null(T) vec2_t(T) vec2_null(T)()
+#define instantiate_declaration_vec2_slerp(T) HPML_API vec2_t(T) vec2_slerp(T)(vec2_t(T) v1, vec2_t(T) v2, T slerp_value)
+#define instantiate_declaration_vec2_add(T) HPML_API vec2_t(T) vec2_add(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_sub(T) HPML_API vec2_t(T) vec2_sub(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_mul(T) HPML_API vec2_t(T) vec2_mul(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_div(T) HPML_API vec2_t(T) vec2_div(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_is_null(T) HPML_API bool vec2_is_null(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2_is_equal(T) HPML_API bool vec2_is_equal(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_null(T) HPML_API vec2_t(T) vec2_null(T)()
 #define instantiate_declaration_vec2_zero(T) instantiate_declaration_vec2_null(T)
-#define instantiate_declaration_vec2_print(T) void vec2_print(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2(T) vec2_t(T) vec2(T)(T x, T y)
-#define instantiate_declaration_vec2_dot(T) float vec2_dot(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_magnitude(T) float vec2_magnitude(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2_sqrmagnitude(T) float vec2_sqrmagnitude(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2_negate(T) vec2_t(T) vec2_negate(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2_normalize(T) vec2_t(T) vec2_normalize(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2_rotate(T) vec2_t(T) vec2_rotate(T)(vec2_t(T) v, float angle)
-#define instantiate_declaration_vec2_angle(T) float vec2_angle(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_abs(T) vec2_t(T) vec2_abs(T)(vec2_t(T) v)
-#define instantiate_declaration_vec2_up(T) vec2_t(T) vec2_up(T)()
-#define instantiate_declaration_vec2_down(T) vec2_t(T) vec2_down(T)()
-#define instantiate_declaration_vec2_left(T) vec2_t(T) vec2_left(T)()
-#define instantiate_declaration_vec2_right(T) vec2_t(T) vec2_right(T)()
-#define instantiate_declaration_vec2_project(T) vec2_t(T) vec2_project(T)(vec2_t(T) v1, vec2_t(T) v2)
-#define instantiate_declaration_vec2_lerp(T) vec2_t(T) vec2_lerp(vec2_t(T) v1, vec2_t(T) v2, float interpolation_value)
-#define instantiate_declaration_vec2_internal_division(T) vec2_t(T) vec2_internal_division(vec2_t(T) v1, vec2_t(T) v2, float m, float n)
-#define instantiate_declaration_vec2_external_division(T) vec2_t(T) vec2_external_division(vec2_t(T) v1, vec2_t(T) v2, float m, float n)
-#define instantiate_declaration_vec2_normal_anticlockwise(T) vec2_t(T) vec2_normal_anticlockwise(vec2_t(T) v)
-#define instantiate_declaration_vec2_normal_clockwise(T) vec2_t(T) vec2_normal_clockwise(vec2_t(T) v)
-#define instantiate_declaration_vec2_scale(T) vec2_t(T) vec2_scale(vec2_t(T) v, float scalar_value)
+#define instantiate_declaration_vec2_print(T) HPML_API void vec2_print(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2(T) HPML_API vec2_t(T) vec2(T)(T x, T y)
+#define instantiate_declaration_vec2_dot(T) HPML_API float vec2_dot(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_magnitude(T) HPML_API float vec2_magnitude(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2_sqrmagnitude(T) HPML_API float vec2_sqrmagnitude(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2_negate(T) HPML_API vec2_t(T) vec2_negate(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2_normalize(T) HPML_API vec2_t(T) vec2_normalize(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2_rotate(T) HPML_API vec2_t(T) vec2_rotate(T)(vec2_t(T) v, float angle)
+#define instantiate_declaration_vec2_angle(T) HPML_API float vec2_angle(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_abs(T) HPML_API vec2_t(T) vec2_abs(T)(vec2_t(T) v)
+#define instantiate_declaration_vec2_up(T) HPML_API vec2_t(T) vec2_up(T)()
+#define instantiate_declaration_vec2_down(T) HPML_API vec2_t(T) vec2_down(T)()
+#define instantiate_declaration_vec2_left(T) HPML_API vec2_t(T) vec2_left(T)()
+#define instantiate_declaration_vec2_right(T) HPML_API vec2_t(T) vec2_right(T)()
+#define instantiate_declaration_vec2_project(T) HPML_API vec2_t(T) vec2_project(T)(vec2_t(T) v1, vec2_t(T) v2)
+#define instantiate_declaration_vec2_lerp(T) HPML_API vec2_t(T) vec2_lerp(vec2_t(T) v1, vec2_t(T) v2, float interpolation_value)
+#define instantiate_declaration_vec2_internal_division(T) HPML_API vec2_t(T) vec2_internal_division(vec2_t(T) v1, vec2_t(T) v2, float m, float n)
+#define instantiate_declaration_vec2_external_division(T) HPML_API vec2_t(T) vec2_external_division(vec2_t(T) v1, vec2_t(T) v2, float m, float n)
+#define instantiate_declaration_vec2_normal_anticlockwise(T) HPML_API vec2_t(T) vec2_normal_anticlockwise(vec2_t(T) v)
+#define instantiate_declaration_vec2_normal_clockwise(T) HPML_API vec2_t(T) vec2_normal_clockwise(vec2_t(T) v)
+#define instantiate_declaration_vec2_scale(T) HPML_API vec2_t(T) vec2_scale(vec2_t(T) v, float scalar_value)
 
 
 /* vec2_slerp: Calculates the spherical interpolation value in between vector v1 and v2
@@ -91,7 +91,7 @@ typedef struct vec2_t(T)\
  * returns: vec2_t(T) spherically interpolated value
  */
 #define instantiate_implementation_vec2_slerp(T)\
-vec2_t(T) vec2_slerp(T)(vec2_t(T) v1, vec2_t(T) v2, float slerp_value)\
+HPML_API vec2_t(T) vec2_slerp(T)(vec2_t(T) v1, vec2_t(T) v2, float slerp_value)\
 {\
 	float angle = vec2_angle(T)(v1, v2);\
 	float inverse_sin = 1 / sin(angle);\
@@ -105,7 +105,7 @@ vec2_t(T) vec2_slerp(T)(vec2_t(T) v1, vec2_t(T) v2, float slerp_value)\
  * returns: vec2_t(T) scaled vector
  */
 #define instantiate_implementation_vec2_scale(T)\
-vec2_t(T) vec2_scale(T)(vec2_t(T) v, float scalar_value)\
+HPML_API vec2_t(T) vec2_scale(T)(vec2_t(T) v, float scalar_value)\
 {\
 	vec2_t(T) scaled_v =  { v.x * scalar_value, v.y * scalar_value };\
 	return scaled_v;\
@@ -116,7 +116,7 @@ vec2_t(T) vec2_scale(T)(vec2_t(T) v, float scalar_value)\
  * returns: vec2_t(T) normal vector in anticlockwise sense
  */
 #define instantiate_implementation_vec2_normal_anticlockwise(T)\
-vec2_t(T) vec2_normal_anticlockwise(T)(vec2_t(T) v)\
+HPML_API vec2_t(T) vec2_normal_anticlockwise(T)(vec2_t(T) v)\
 {\
 	vec2_t(T) normal;\
 	normal.x = -v.y;\
@@ -129,7 +129,7 @@ vec2_t(T) vec2_normal_anticlockwise(T)(vec2_t(T) v)\
  * returns: vec2_t(T) normal vector in clockwise sense
  */
 #define instantiate_implementation_vec2_normal_clockwise(T)\
-vec2_t(T) vec2_normal_clockwise(T)(vec2_t(T) v)\
+HPML_API vec2_t(T) vec2_normal_clockwise(T)(vec2_t(T) v)\
 {\
 	vec2_t(T) normal;\
 	normal.x = v.y;\
@@ -145,7 +145,7 @@ vec2_t(T) vec2_normal_clockwise(T)(vec2_t(T) v)\
  * NOTE: if m + n = 0 then it will return first vector
  */
 #define instantiate_implementation_vec2_internal_division(T)\
-vec2_t(T) vec2_internal_division(T)(vec2_t(T) v1, vec2_t(T) v2, float m, float n)\
+HPML_API vec2_t(T) vec2_internal_division(T)(vec2_t(T) v1, vec2_t(T) v2, float m, float n)\
 {\
 	float ratio_sum = m + n;\
 	if(ratio_sum == 0)\
@@ -161,7 +161,7 @@ vec2_t(T) vec2_internal_division(T)(vec2_t(T) v1, vec2_t(T) v2, float m, float n
  * NOTE: if m - n = 0 then it will return second vector
  */
 #define instantiate_implementation_vec2_external_division(T)\
-vec2_t(T) vec2_external_division(T)(vec2_t(T) v1, vec2_t(T) v2, float m, float n)\
+HPML_API vec2_t(T) vec2_external_division(T)(vec2_t(T) v1, vec2_t(T) v2, float m, float n)\
 {\
 	float ratio_sum = m - n;\
 	if(ratio_sum == 0)\
@@ -176,7 +176,7 @@ vec2_t(T) vec2_external_division(T)(vec2_t(T) v1, vec2_t(T) v2, float m, float n
  * returns: vec2_t(T) interpolated vector
  */
 #define instantiate_implementation_vec2_lerp(T)\
-vec2_t(T) vec2_lerp(T)(vec2_t(T) v1, vec2_t(T) v2, float interpolation_value)\
+HPML_API vec2_t(T) vec2_lerp(T)(vec2_t(T) v1, vec2_t(T) v2, float interpolation_value)\
 {\
 	return vec2_add(T)(vec2_scale(T)(v1, 1 - interpolation_value), vec2_scale(T)(v2, interpolation_value));\
 }
@@ -187,7 +187,7 @@ vec2_t(T) vec2_lerp(T)(vec2_t(T) v1, vec2_t(T) v2, float interpolation_value)\
  * returns: vec2_t(T) projected vector in the direction of vector v1
  */
 #define instantiate_implementation_vec2_project(T)\
-vec2_t(T) vec2_project(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API vec2_t(T) vec2_project(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	vec2_t(T) unit_dir = vec2_normalize(T)(v2);\
 	float projection_value = vec2_dot(T)(v1, unit_dir);\
@@ -198,7 +198,7 @@ vec2_t(T) vec2_project(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * returns: vec2_t(T) right direction, i.e. Vector2.right [+ve x axis direction]
  */
 #define instantiate_implementation_vec2_right(T)\
-vec2_t(T) vec2_right(T)()\
+HPML_API vec2_t(T) vec2_right(T)()\
 {\
 	vec2_t(T) v =  { 1, 0 };\
 	return v;\
@@ -208,7 +208,7 @@ vec2_t(T) vec2_right(T)()\
  * returns: vec2_t(T) left direction, i.e. Vector2.left [-ve x axis direction]
  */
 #define instantiate_implementation_vec2_left(T)\
-vec2_t(T) vec2_left(T)()\
+HPML_API vec2_t(T) vec2_left(T)()\
 {\
 	vec2_t(T) v =  { -1, 0 };\
 	return v;\
@@ -218,7 +218,7 @@ vec2_t(T) vec2_left(T)()\
  * returns: vec2_t(T) down direction, i.e. Vector2.down [-ve y axis direction]
  */
 #define instantiate_implementation_vec2_down(T)\
-vec2_t(T) vec2_down(T)()\
+HPML_API vec2_t(T) vec2_down(T)()\
 {\
 	vec2_t(T) v =  { 0, -1 };\
 	return v;\
@@ -228,7 +228,7 @@ vec2_t(T) vec2_down(T)()\
  * returns: vec2_t(T) up direction, i.e. Vector2.up [+ve y axis direction]
  */
 #define instantiate_implementation_vec2_up(T)\
-vec2_t(T) vec2_up(T)()\
+HPML_API vec2_t(T) vec2_up(T)()\
 {\
 	vec2_t(T) v =  { 0, 1 };\
 	return v;\
@@ -239,7 +239,7 @@ vec2_t(T) vec2_up(T)()\
  * returns: vec2_t(T) vector having absolute value components
  */
 #define instantiate_implementation_vec2_abs(T)\
-vec2_t(T) vec2_abs(T)(vec2_t(T) v)\
+HPML_API vec2_t(T) vec2_abs(T)(vec2_t(T) v)\
 {\
 	vec2_t(T) v;\
 	v.x = abs(v.x);\
@@ -253,7 +253,7 @@ vec2_t(T) vec2_abs(T)(vec2_t(T) v)\
  * returns: float +ve angle always
  */
 #define instantiate_implementation_vec2_angle(T)\
-float vec2_angle(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API float vec2_angle(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	if(!(vec2_is_null(T)(v1) && vec2_is_null(T)(v2)))\
 		return 0.0f;\
@@ -266,7 +266,7 @@ float vec2_angle(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * returns: vec2_t(T) rotated vector
  */
 #define instantiate_implementation_vec2_rotate(T)\
-vec2_t(T) vec2_rotate(T)(vec2_t(T) v, float angle)\
+HPML_API vec2_t(T) vec2_rotate(T)(vec2_t(T) v, float angle)\
 {\
 	vec2_t(T) rot_v;\
 	float cos_angle = cos(angle);\
@@ -281,7 +281,7 @@ vec2_t(T) vec2_rotate(T)(vec2_t(T) v, float angle)\
  * returns: vec2_t(T) normalized vector
  */
 #define instantiate_implementation_vec2_normalize(T)\
-vec2_t(T) vec2_normalize(T)(vec2_t(T) v)\
+HPML_API vec2_t(T) vec2_normalize(T)(vec2_t(T) v)\
 {\
 	if(vec2_is_null(T)(v))\
 		return v;\
@@ -297,7 +297,7 @@ vec2_t(T) vec2_normalize(T)(vec2_t(T) v)\
  * returns: vec2_t(T) negated vector
  */
 #define instantiate_implementation_vec2_negate(T)\
-vec2_t(T) vec2_negate(T)(vec2_t(T) v)\
+HPML_API vec2_t(T) vec2_negate(T)(vec2_t(T) v)\
 {\
 	vec2_t(T) neg_v;\
 	neg_v.x = -v.x;\
@@ -310,7 +310,7 @@ vec2_t(T) vec2_negate(T)(vec2_t(T) v)\
  * returns: float magnitude of vector2 v
  */
 #define instantiate_implementation_vec2_magnitude(T)\
-float vec2_magnitude(T)(vec2_t(T) v)\
+HPML_API float vec2_magnitude(T)(vec2_t(T) v)\
 {\
 	return sqrt(v.x * v.x + v.y * v.y);\
 }
@@ -320,7 +320,7 @@ float vec2_magnitude(T)(vec2_t(T) v)\
  * returns: float squared magnitude of vector2 v
  */
 #define instantiate_implementation_vec2_sqrmagnitude(T)\
-float vec2_sqrmagnitude(T)(vec2_t(T) v)\
+HPML_API float vec2_sqrmagnitude(T)(vec2_t(T) v)\
 {\
 	return v.x * v.x + v.y * v.y;\
 }
@@ -331,7 +331,7 @@ float vec2_sqrmagnitude(T)(vec2_t(T) v)\
  * returns: float dot product of v1 and v2
  */
 #define instantiate_implementation_vec2_dot(T)\
-float vec2_dot(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API float vec2_dot(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	return v1.x * v2.x + v1.y * v2.y;\
 }
@@ -342,7 +342,7 @@ float vec2_dot(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * returns: vec_t(T) vector having x, y
  */
 #define instantiate_implementation_vec2(T)\
-vec2_t(T) vec2(T)(T x, T y)\
+HPML_API vec2_t(T) vec2(T)(T x, T y)\
 {\
 	vec2_t(T) v = { x, y };\
 	return v;\
@@ -351,12 +351,12 @@ vec2_t(T) vec2(T)(T x, T y)\
 /* See: vec2_null
  */
 #define instantiate_implementation_vec2_zero(T) instantiate_implementation_vec2_null(T)
-
+HPML_API 
 /* vec2_null: Creates a vector2 object in memory having x = 0, and y = 0
  * returns: vec2_t(T) vector having x = 0, y = 0
  */
 #define instantiate_implementation_vec2_null(T)\
-vec2_t(T) vec2_null(T)()\
+HPML_API vec2_t(T) vec2_null(T)()\
 {\
 	vec2_t(T) null_vector =  { 0, 0 };\
 	return null_vector;\
@@ -367,7 +367,7 @@ vec2_t(T) vec2_null(T)()\
  * returns: true if vector2 is null vector, otherwise false [boolean]
  */
 #define instantiate_implementation_vec2_is_null(T)\
-bool vec2_is_null(T)(vec2_t(T) v)\
+HPML_API bool vec2_is_null(T)(vec2_t(T) v)\
 {\
 	return (v.x == 0) && (v.y == 0);\
 }
@@ -379,7 +379,7 @@ bool vec2_is_null(T)(vec2_t(T) v)\
  * returns: true if v2 approximately equals to v1, otherwise false
  */
 #define instantiate_implementation_vec2_is_equal(T)\
-bool vec2_is_equal(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API bool vec2_is_equal(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	return (v1.x == v2.x) && (v1.y == v2.y);\
 }
@@ -390,7 +390,7 @@ bool vec2_is_equal(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * returns: vec2_t(T) resulting vector2 vector
  */
 #define instantiate_implementation_vec2_add(T)\
-vec2_t(T) vec2_add(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API vec2_t(T) vec2_add(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	vec2_t(T) result;\
 	result.x = v1.x + v2.x;\
@@ -404,7 +404,7 @@ vec2_t(T) vec2_add(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * returns: vec2_t(T) resulting vector2 vector
  */
 #define instantiate_implementation_vec2_sub(T)\
-vec2_t(T) vec2_sub(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API vec2_t(T) vec2_sub(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	vec2_t(T) result;\
 	result.x = v1.x - v2.x;\
@@ -418,7 +418,7 @@ vec2_t(T) vec2_sub(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * returns: vec2_t(T) resulting vector2 vector
  */
 #define instantiate_implementation_vec2_mul(T)\
-vec2_t(T) vec2_mul(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API vec2_t(T) vec2_mul(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	vec2_t(T) result;\
 	result.x = v1.x * v2.x;\
@@ -433,7 +433,7 @@ vec2_t(T) vec2_mul(T)(vec2_t(T) v1, vec2_t(T) v2)\
  * exceptions: throws DIVIDE_BY_ZERO exception if v2 is a null vector
  */
 #define instantiate_implementation_vec2_div(T)\
-vec2_t(T) vec2_div(T)(vec2_t(T) v1, vec2_t(T) v2)\
+HPML_API vec2_t(T) vec2_div(T)(vec2_t(T) v1, vec2_t(T) v2)\
 {\
 	EXCEPTION_BLOCK\
 	(\
@@ -446,5 +446,3 @@ vec2_t(T) vec2_div(T)(vec2_t(T) v1, vec2_t(T) v2)\
 	return result;\
 }
 /*End: Template Definitions*/
-
-#endif

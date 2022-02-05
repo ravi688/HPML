@@ -1,16 +1,15 @@
 
-#ifndef __TESTS_H__
-#define __TESTS_H__
+#pragma once
+
+#include <hpml/defines.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void vec2_test(); 
-void mat22_test();
+HPML_API void vec2_test(); 
+HPML_API void mat22_test();
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
