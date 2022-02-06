@@ -9,13 +9,13 @@
 /*Begin: Template Definitions*/
 
 /*		Begin: template signatures*/
-#define mat4_mul_vec4(T) template(mat4_mul_vec4, T)
-#define mat4_translation(T) template(mat4_translation, T)
-#define mat4_scale(T) template(mat4_scale, T)
-#define mat4_axis_rotation(T) template(mat4_axis_rotation, T)
+#define mat4_mul_vec4(T) c_template(mat4_mul_vec4, T)
+#define mat4_translation(T) c_template(mat4_translation, T)
+#define mat4_scale(T) c_template(mat4_scale, T)
+#define mat4_axis_rotation(T) c_template(mat4_axis_rotation, T)
 
 /*mat4_rotation*/
-#define mat4_rotation(T) template(mat4_rotation, T)
+#define mat4_rotation(T) c_template(mat4_rotation, T)
 #define instantiate_declaration_mat4_rotation(T) HPML_API mat4_t(T) mat4_rotation(T)(T x, T y, T z)
 #define instantiate_implementation_mat4_rotation(T) HPML_API mat4_t(T) mat4_rotation(T)(T x, T y, T z)\
 {\
@@ -23,7 +23,7 @@
 }
 
 /*mat4_ortho_projection*/
-#define mat4_ortho_projection(T) template(mat4_ortho_projection, T)
+#define mat4_ortho_projection(T) c_template(mat4_ortho_projection, T)
 #define instantiate_declaration_mat4_ortho_projection(T) HPML_API mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)
 #define instantiate_implementation_mat4_ortho_projection(T) HPML_API mat4_t(T) mat4_ortho_projection(T)(float nearClipPlane, float farClipPlane, float height, float aspectRatio)\
 {\
@@ -59,7 +59,7 @@ EXCEPTION_BLOCK\
 
 /*mat4_persp_projection*/
 //TODO: This matrix doesn't give correct depth values in the range [-1, 1], to be fixed
-#define mat4_persp_projection(T) template(mat4_persp_projection, T)
+#define mat4_persp_projection(T) c_template(mat4_persp_projection, T)
 #define instantiate_declaration_mat4_persp_projection(T) HPML_API mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)
 #define instantiate_implementation_mat4_persp_projection(T) HPML_API mat4_t(T) mat4_persp_projection(T)(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)\
 {\
@@ -92,17 +92,17 @@ EXCEPTION_BLOCK\
 	};\
 }
 
-#define mat4_shear(T) template(mat4_shear, T)
-#define mat4_reflection(T) template(mat4_reflection, T)
-#define mat4_shear_xy(T) template(mat4_shear_xy, T)
-#define mat4_shear_yx(T) template(mat4_shear_yx, T)
-#define mat4_shear_zx(T) template(mat4_shear_zx, T)
-#define mat4_shear_xz(T) template(mat4_shear_xz, T)
-#define mat4_shear_yz(T) template(mat4_shear_yz, T)
-#define mat4_shear_zy(T) template(mat4_shear_zy, T)
-#define mat4_rotation_x(T) template(mat4_rotation_x, T)
-#define mat4_rotation_y(T) template(mat4_rotation_y, T)
-#define mat4_rotation_z(T) template(mat4_rotation_z, T)
+#define mat4_shear(T) c_template(mat4_shear, T)
+#define mat4_reflection(T) c_template(mat4_reflection, T)
+#define mat4_shear_xy(T) c_template(mat4_shear_xy, T)
+#define mat4_shear_yx(T) c_template(mat4_shear_yx, T)
+#define mat4_shear_zx(T) c_template(mat4_shear_zx, T)
+#define mat4_shear_xz(T) c_template(mat4_shear_xz, T)
+#define mat4_shear_yz(T) c_template(mat4_shear_yz, T)
+#define mat4_shear_zy(T) c_template(mat4_shear_zy, T)
+#define mat4_rotation_x(T) c_template(mat4_rotation_x, T)
+#define mat4_rotation_y(T) c_template(mat4_rotation_y, T)
+#define mat4_rotation_z(T) c_template(mat4_rotation_z, T)
 /*		End: template signatures*/
 
 

@@ -14,12 +14,12 @@
 
 /*Begin: Template Definitions*/
 /*template signatures*/
-#define mat4_t(T) template(mat4_t, T)
-#define mat4(T) template(mat4, T)
+#define mat4_t(T) c_template(mat4_t, T)
+#define mat4(T) c_template(mat4, T)
 
 
 /*mat4_data*/
-#define __mat4_data(T) template(__mat4_data, T)
+#define __mat4_data(T) c_template(__mat4_data, T)
 #define mat4_data(T) __mat4_data(T)
 #define instantiate_declaration_mat4_data(T) HPML_API T* const* const __mat4_data(T)(mat4_t(T)* m)
 #define instantiate_implementation_mat4_data(T)\
@@ -43,7 +43,7 @@ HPML_API T* const* const __mat4_data(T)(mat4_t(T)* m)\
 #define instantiate_implementation_mat4_copy(T) instantiate_implementation_copy(mat4_t(T))
 
 /*mat4_determinant*/
-#define mat4_det(T) template(mat4_det, T)
+#define mat4_det(T) c_template(mat4_det, T)
 #define mat4_determinant(T) mat4_det(T)
 #define instantiate_declaration_mat4_det(T) HPML_API T mat4_det(T)(mat4_t(T) m)
 #define instantiate_implementation_mat4_det(T)\
@@ -61,8 +61,8 @@ HPML_API T mat4_det(T)(mat4_t(T) m)\
  * mat4_t(T) m2: right side matrix in mulitplication
  * returns: mat4_t(T) resultant matrix
  */
-#define mat4_mul(T) template(mat4_mul, T)
-#define __mat4_mul(T) template(__mat4_mul, T)
+#define mat4_mul(T) c_template(mat4_mul, T)
+#define __mat4_mul(T) c_template(__mat4_mul, T)
 #define instantiate_declaration_mat4_mul(T)\
 HPML_API mat4_t(T) __mat4_mul(T)(mat4_t(T) m1, mat4_t(T) m2);\
 HPML_API mat4_t(T) mat4_mul(T)(uint32_t count, ...)
@@ -104,7 +104,7 @@ HPML_API mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
 	return result;\
 }
 
-#define mat4_build_cofactor(T) template(mat4_build_cofactor, T)
+#define mat4_build_cofactor(T) c_template(mat4_build_cofactor, T)
 // #define mat4_build_cofactor(m, out_mptr, row, column) mat4_build_cofactor(mat4_data(&m), __mat4_data(out_mptr), 4, row, column)
 #define instantiate_declaration_mat4_build_cofactor(T) HPML_API void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)
 #define instantiate_implementation_mat4_build_cofactor(T) HPML_API void mat4_build_cofactor(T)(mat4_t(T) m, T* const* const cofactorMatrix, u32 row, u32 column)\
@@ -122,23 +122,23 @@ HPML_API mat4_t(T) mat4_mul(T)(uint32_t count, ...)\
 }
 
 
-#define mat4_add(T) template(mat4_add, T)
-#define mat4_sub(T) template(mat4_sub, T)
-#define mat4_mul_component_wise(T) template(mat4_mul_component_wise, T)
-#define mat4_div(T) template(mat4_div, T)
-#define mat4_is_null(T) template(mat4_is_null, T)
-#define mat4_is_equal(T) template(mat4_is_equal, T)
+#define mat4_add(T) c_template(mat4_add, T)
+#define mat4_sub(T) c_template(mat4_sub, T)
+#define mat4_mul_component_wise(T) c_template(mat4_mul_component_wise, T)
+#define mat4_div(T) c_template(mat4_div, T)
+#define mat4_is_null(T) c_template(mat4_is_null, T)
+#define mat4_is_equal(T) c_template(mat4_is_equal, T)
 #define mat4_null(T) mat4(T)(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 #define mat4_zero(T) mat4_null(T)
-#define mat4_print(T) template(mat4_print, T)
-#define mat4_negate(T) template(mat4_negate, T)
-#define mat4_identity(T) template(mat4_identity, T)
-#define mat4_lerp(T) template(mat4_lerp, T)
-#define mat4_mul_scalar(T) template(mat4_mul_scalar, T)
-#define mat4_inverse(T) template(mat4_inverse, T)
-#define mat4_transpose(T) template(mat4_transpose, T)
-#define mat4_trace(T) template(mat4_trace, T)
-#define mat4_diagonal(T) template(mat4_diagonal, T)
+#define mat4_print(T) c_template(mat4_print, T)
+#define mat4_negate(T) c_template(mat4_negate, T)
+#define mat4_identity(T) c_template(mat4_identity, T)
+#define mat4_lerp(T) c_template(mat4_lerp, T)
+#define mat4_mul_scalar(T) c_template(mat4_mul_scalar, T)
+#define mat4_inverse(T) c_template(mat4_inverse, T)
+#define mat4_transpose(T) c_template(mat4_transpose, T)
+#define mat4_trace(T) c_template(mat4_trace, T)
+#define mat4_diagonal(T) c_template(mat4_diagonal, T)
 
 #define instantiate_mat4_struct(T)\
 typedef struct mat4_t(T)\

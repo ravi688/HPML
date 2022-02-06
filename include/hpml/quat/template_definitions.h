@@ -8,15 +8,15 @@
 #include <math.h>
 
 /* Begin: template signatures*/
-#define quat_t(T) template(quat_t, T)
-#define quat(T) template(quat, T)
-#define quat_add(T) template(quat_add, T)
-#define quat_sub(T) template(quat_sub, T)
-#define quat_mul(T) template(quat_mul, T)
-#define quat_div(T) template(quat_div, T)
-#define quat_mul_component_wise(T) template(quat_mul_component_wise, T)
+#define quat_t(T) c_template(quat_t, T)
+#define quat(T) c_template(quat, T)
+#define quat_add(T) c_template(quat_add, T)
+#define quat_sub(T) c_template(quat_sub, T)
+#define quat_mul(T) c_template(quat_mul, T)
+#define quat_div(T) c_template(quat_div, T)
+#define quat_mul_component_wise(T) c_template(quat_mul_component_wise, T)
 #define quat_identity(T) NOT_IMPLEMENTED
-#define quat_inverse(T) template(quat_inverse, T)
+#define quat_inverse(T) c_template(quat_inverse, T)
 /* End: template signatures*/
 
 /* Begin: template declarations*/

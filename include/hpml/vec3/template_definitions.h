@@ -12,40 +12,40 @@
 
 /*Begin: Template Definitions*/
 /*template signatures*/
-#define vec3_t(T) template(vec3_t, T)
-#define vec3(T) template(vec3, T)
-#define vec3_add(T) template(vec3_add, T)
-#define vec3_sub(T) template(vec3_sub, T)
-#define vec3_mul(T) template(vec3_mul, T)
-#define vec3_div(T) template(vec3_div, T)
-#define vec3_is_null(T) template(vec3_is_null, T)
-#define vec3_is_equal(T) template(vec3_is_equal, T)
-#define vec3_null(T) template(vec3_null, T)
+#define vec3_t(T) c_template(vec3_t, T)
+#define vec3(T) c_template(vec3, T)
+#define vec3_add(T) c_template(vec3_add, T)
+#define vec3_sub(T) c_template(vec3_sub, T)
+#define vec3_mul(T) c_template(vec3_mul, T)
+#define vec3_div(T) c_template(vec3_div, T)
+#define vec3_is_null(T) c_template(vec3_is_null, T)
+#define vec3_is_equal(T) c_template(vec3_is_equal, T)
+#define vec3_null(T) c_template(vec3_null, T)
 #define vec3_zero(T) vec3_null(T)
-#define vec3_print(T) template(vec3_print, T)
-#define vec3_dot(T) template(vec3_dot, T)
-#define vec3_cross(T) template(vec3_cross, T)
-#define vec3_magnitude(T) template(vec3_magnitude, T)
-#define vec3_negate(T) template(vec3_negate, T)
-#define vec3_normalize(T) template(vec3_normalize, T)
-#define vec3_rotate(T) template(vec3_rotate, T) NOT_IMPLEMENTED
-#define vec3_angle(T) template(vec3_angle, T)
-#define vec3_abs(T) template(vec3_abs, T)
-#define vec3_up(T) template(vec3_up, T)
-#define vec3_down(T) template(vec3_down, T)
-#define vec3_left(T) template(vec3_left, T)
-#define vec3_right(T) template(vec3_right, T)
-#define vec3_forward(T) template(vec3_forward, T)
-#define vec3_backward(T) template(vec3_backward, T)
-#define vec3_project(T) template(vec3_project, T)
-#define vec3_lerp(T) template(vec3_lerp, T)
-#define vec3_slerp(T) template(vec3_slerp, T)
-#define vec3_scale(T) template(vec3_scale, T)			//vec3_transform(T)(vec3_t(T) v, mat33_t(T) transform)
-#define vec3_transform(T) template(vec3_transform, T) NOT_IMPLEMENTED
-#define vec3_internal_division(T) template(vec3_internal_division, T)
-#define vec3_external_division(T) template(vec3_external_division, T)
-#define vec3_direction_ratios(T) template(vec3_direction_ratios, T) NOT_IMPLEMENTED
-#define vec3_box(T) template(vec3_box, T) NOT_IMPLEMENTED
+#define vec3_print(T) c_template(vec3_print, T)
+#define vec3_dot(T) c_template(vec3_dot, T)
+#define vec3_cross(T) c_template(vec3_cross, T)
+#define vec3_magnitude(T) c_template(vec3_magnitude, T)
+#define vec3_negate(T) c_template(vec3_negate, T)
+#define vec3_normalize(T) c_template(vec3_normalize, T)
+#define vec3_rotate(T) c_template(vec3_rotate, T) NOT_IMPLEMENTED
+#define vec3_angle(T) c_template(vec3_angle, T)
+#define vec3_abs(T) c_template(vec3_abs, T)
+#define vec3_up(T) c_template(vec3_up, T)
+#define vec3_down(T) c_template(vec3_down, T)
+#define vec3_left(T) c_template(vec3_left, T)
+#define vec3_right(T) c_template(vec3_right, T)
+#define vec3_forward(T) c_template(vec3_forward, T)
+#define vec3_backward(T) c_template(vec3_backward, T)
+#define vec3_project(T) c_template(vec3_project, T)
+#define vec3_lerp(T) c_template(vec3_lerp, T)
+#define vec3_slerp(T) c_template(vec3_slerp, T)
+#define vec3_scale(T) c_template(vec3_scale, T)			//vec3_transform(T)(vec3_t(T) v, mat33_t(T) transform)
+#define vec3_transform(T) c_template(vec3_transform, T) NOT_IMPLEMENTED
+#define vec3_internal_division(T) c_template(vec3_internal_division, T)
+#define vec3_external_division(T) c_template(vec3_external_division, T)
+#define vec3_direction_ratios(T) c_template(vec3_direction_ratios, T) NOT_IMPLEMENTED
+#define vec3_box(T) c_template(vec3_box, T) NOT_IMPLEMENTED
 
 #define instantiate_vec3_struct(T) \
 typedef struct vec3_t(T)\
