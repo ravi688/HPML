@@ -13,11 +13,11 @@
 
 #include <hpml/defines.h>
 
+#include <stdint.h>
+
 #ifdef __cplusplus
-#   include <cstdint>
-#else
-#   include <stdint.h>
-#endif /*__cplusplus*/
+extern "C" {
+#endif // __cplusplus
 
 #ifdef NO_EXCEPTION
 #	define EXCEPTION_BLOCK(x)
@@ -63,6 +63,6 @@ HPML_API void __throw_exception(exception_t exception, uint64_t line_no, const c
 
 #ifdef __cplusplus
 }
-#endif
+#endif // __cplusplus
 
 #endif/*__EXCEPTION_H__*/
