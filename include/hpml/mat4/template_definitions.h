@@ -154,7 +154,7 @@ typedef struct mat4_t(T)\
 		};\
 		T values[16];\
 	};\
-	T* const data[4];\
+	T* data[4];\
 } mat4_t(T)
 
 
