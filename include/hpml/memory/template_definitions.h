@@ -14,15 +14,15 @@
 #define EXTERN_C
 #endif
 
-#define move(T) c_template(move, T)
-#define instantiate_declaration_move(T) EXTERN_C HPML_API void move(T)(T* dst, T src)
+#define hpml_move(T) c_template(hpml_move, T)
+#define instantiate_declaration_move(T) EXTERN_C HPML_API void hpml_move(T)(T* dst, T src)
 #define instantiate_implementation_move(T)\
-EXTERN_C HPML_API void move(T)(T* dst, T src)\
+EXTERN_C HPML_API void hpml_move(T)(T* dst, T src)\
 {\
 	memcpy(dst, &src, sizeof(T));\
 }
 
-#define copy(T)(dst, src) memcpy(T)(&dst, &src, sizeof(T))
+#define hpml_copy(T)(dst, src) memcpy(T)(&dst, &src, sizeof(T))
 #define instantiate_declaration_copy(T) NOT_IMPLEMENTED
 #define instantiate_implementation_copy(T) NOT_IMPLEMENTED
 

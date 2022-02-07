@@ -33,12 +33,12 @@ HPML_API T* const* const __mat4_data(T)(mat4_t(T)* m)\
 }
 
 /*mat4_move*/
-#define mat4_move(T) move(mat4_t(T))
+#define mat4_move(T) hpml_move(mat4_t(T))
 #define instantiate_declaration_mat4_move(T) instantiate_declaration_move(mat4_t(T))
 #define instantiate_implementation_mat4_move(T) instantiate_implementation_move(mat4_t(T))
 
 /*mat4_copy*/
-#define mat4_copy(T) copy(mat4_t(T))
+#define mat4_copy(T) hpml_copy(mat4_t(T))
 #define instantiate_declaration_mat4_copy(T) instantiate_declaration_copy(mat4_t(T))
 #define instantiate_implementation_mat4_copy(T) instantiate_implementation_copy(mat4_t(T))
 
