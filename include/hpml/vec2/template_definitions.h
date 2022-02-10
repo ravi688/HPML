@@ -351,7 +351,7 @@ HPML_API vec2_t(T) vec2(T)(T x, T y)\
 /* See: vec2_null
  */
 #define instantiate_implementation_vec2_zero(T) instantiate_implementation_vec2_null(T)
-HPML_API 
+ 
 /* vec2_null: Creates a vector2 object in memory having x = 0, and y = 0
  * returns: vec2_t(T) vector having x = 0, y = 0
  */

@@ -1,13 +1,8 @@
 
 #pragma once
 
-#ifdef __cplusplus
-#	include <cstdint>
-#	include <cstdio>
-#else
-#	include <stdint.h>
-#	include <stdio.h>
-#endif
+#include <stdint.h>
+#include <stdio.h>
 
 typedef uint16_t u16; 
 typedef int16_t s16;
@@ -20,10 +15,6 @@ typedef int64_t s64;
 
 typedef uint8_t u8; 
 typedef int8_t s8; 
-
-#ifndef __cplusplus
-#define nullptr NULL
-#endif
 
 #define IGNORE_CONST(type, value) *(type*)(&value)
 

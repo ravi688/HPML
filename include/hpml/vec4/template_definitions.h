@@ -53,7 +53,7 @@ typedef struct\
 /*vec4_right*/
 #define vec4_right(T) c_template(vec4_right, T)
 #define instantiate_declaration_vec4_right(T) HPML_API vec4_t(T) vec4_right(T)()
-#define instantiate_implementation_vec4_right(T) HPML_API vec4_t(T) vec4_right(T)() { return (vec4_t(T)) { -1, 0, 0, 0 }; }
+#define instantiate_implementation_vec4_right(T) HPML_API vec4_t(T) vec4_right(T)() { return (vec4_t(T)) { 1, 0, 0, 0 }; }
 
 /*vec4_left*/
 #define vec4_left(T) c_template(vec4_left, T)
@@ -69,6 +69,11 @@ typedef struct\
 #define vec4_back(T) c_template(vec4_back, T)
 #define instantiate_declaration_vec4_back(T) HPML_API vec4_t(T) vec4_back(T)()
 #define instantiate_implementation_vec4_back(T) HPML_API vec4_t(T) vec4_back(T)() { return (vec4_t(T)) { 0, 0, 1, 0 }; }
+
+/*vec4_one*/
+#define vec4_one(T) c_template(vec4_one, T)
+#define instantiate_declaration_vec4_one(T) HPML_API vec4_t(T) vec4_one(T)()
+#define instantiate_implementation_vec4_one(T) HPML_API vec4_t(T) vec4_one(T)() { return (vec4_t(T)) { 1, 1, 1, 1 }; }
 
 
 /*ARITHMETIC*/
@@ -361,6 +366,13 @@ EXCEPTION_BLOCK\
 #define instantiate_implementation_vec4_is_null(T) HPML_API bool vec4_is_null(T)(vec4_t(T) v)\
 {\
 	return (v.x == 0) && (v.y == 0) && (v.z == 0) && (v.w == 0);\
+}
+
+#define vec4_is_equal(T) c_template(vec4_is_equal, T)
+#define instantiate_declaration_vec4_is_equal(T) HPML_API bool vec4_is_equal(T)(vec4_t(T) v1, vec4_t(T) v2)
+#define instantiate_implementation_vec4_is_equal(T) HPML_API bool vec4_is_equal(T)(vec4_t(T) v1, vec4_t(T) v2)\
+{\
+	return (v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z) && (v1.w == v2.w);\
 }
 
 /*DEBUGGING*/
