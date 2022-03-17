@@ -16,7 +16,7 @@ typedef int64_t s64;
 typedef uint8_t u8; 
 typedef int8_t s8; 
 
-#define IGNORE_CONST(type, value) *(type*)(&value)
+#define IGNORE_CONST(type, value) (*(type*)(&value))
 
 #ifdef GLOBAL_DEBUG 
 
@@ -42,3 +42,8 @@ do\
 #else
 #	define HPML_API
 #endif
+
+
+#define HPML_INLINE inline
+#define HPML_FORCE_INLINE __attribute__((always_inline))
+

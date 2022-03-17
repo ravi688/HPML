@@ -1,6 +1,194 @@
 
 #pragma once
 
-#include <hpml/quat/header_config.h>
-#include <hpml/quat/quat.h>
+#include <hpml/defines.h>
+
+typedef struct quat_t
+{
+	/*
+	 vector part = { x, y, z },
+	 scalar part = { w }
+	*/
+	float x, y, z, w;
+} quat_t;
+
+#define QUAT (quat_t)
+
+/* 	quat : constructs a quat_t instance 
+	x, y, z, w : components of the quaternion
+	returns: an initialized instance of quat_t struct
+*/
+HPML_API HPML_FORCE_INLINE quat_t quat(float x, float y, float z, float w) { return QUAT { x, y, z, w }; }
+
+/*
+	quat_identity : consturcts an identity quaternion instance
+	returns: identity quaternion
+ */
+HPML_API HPML_FORCE_INLINE quat_t quat_identity() { return quat(0, 0, 0, 1); }
+
+/*
+ 	quat_zero : constructs a null quaternion instance
+ 	returns : null quaternion
+ */
+HPML_API HPML_FORCE_INLINE quat_t quat_zero() { return quat(0, 0, 0, 0); }
+
+/*	quat_add : adds variable number of quaternions into q (quat_t)
+	count : number of variable quaternions to add
+	q : first quaternion
+	... : variable number of quaternions
+	returns : result of the addition
+*/
+HPML_API quat_t quat_add(u32 count, quat_t q, ...);
+HPML_API quat_t __quat_add(quat_t q1, quat_t q2);
+
+/*	quat_sub : subtracts variable number of quaternions from q (quat_t)
+	count : number of variable quaternions to add
+	q : first quaternion
+	... : variable number of quaternions
+	returns : result of the subtraction
+*/
+HPML_API quat_t quat_sub(u32 count, quat_t q, ...);
+HPML_API quat_t __quat_sub(quat_t q1, quat_t q2);
+
+/*	quat_add : multiplies variable number of quaternions with q (quat_t)
+	count : number of variable quaternions to multiply
+	q : first quaternion
+	... : variable number of quaternions
+	returns : result of the multiplication
+*/
+HPML_API quat_t quat_mul(u32 count, quat_t q, ...);
+HPML_API quat_t __quat_mul(quat_t q1, quat_t q2);
+
+/*	quat_add : divides q (quat_t) by variable number of quaternions
+	count : number of variable quaternions to divide with
+	q : first quaternion
+	... : variable number of quaternions
+	returns : result of the division
+*/
+HPML_API quat_t quat_div(u32 count, quat_t q, ...);
+HPML_API quat_t __quat_div(quat_t q1, quat_t q2);
+
+/*	quat_difference : calculates the rotation difference between two quaternions q1 and q2
+	q1 : first quaternion (final rotation)
+	q2 : second quaternion (intial rotation)
+	returns: quaternion equivalent to the difference of the two quaternions q1 and q2
+
+NOTE: difference(q1, q0) = q1 * inverse(q0)
+
+*/
+HPML_API quat_t quat_difference(quat_t q1, quat_t q2);
+
+/*
+ 	quat_inverse : calculates the inverse of a quaternion
+ 	q : original quaternion
+ 	returns: inverse of the quaterion 'q'
+ */
+HPML_API quat_t quat_inverse(quat_t q);
+
+/*
+ 	quat_conjugate : calculates the conjugate of a quatenion
+ 	q : original quaternion
+ 	returns : conjugate of the quaterion 'q'
+ */
+HPML_API HPML_FORCE_INLINE quat_t quat_conjugate(quat_t q) { return quat(-q.x, -q.y, -q.z, q.w); }
+
+/*
+	quat_reciprocal : calculates the reciprocal of a quaternion
+	q : original quaternion
+	returns: reciprocal of the quaternion 'q'
+
+NOTE: 1 / q = conjugate(q) / (q * conjugate(q)) = conjugate(q) / sqrmagnitude(q);
+
+ */
+HPML_API quat_t quat_reciprocal(quat_t q);
+
+/*
+	quat_sqrt : calcualtes the square root of a quaternion
+	q : original quaternion
+	returns: square root of the quaternion 'q'
+ */
+HPML_API quat_t quat_sqrt(quat_t q);
+
+/*
+	quat_log : calculates the logarithm of a quaternion
+	q : original quaternion
+	returns: logarithm of the quaternion 'q'
+ */
+HPML_API quat_t quat_log(quat_t q);
+
+/*
+	quat_pow : calculates power of a quaternion
+	q : base quaternion
+	t : exponent
+	returns: power of the quaternion 'q'
+ */
+HPML_API quat_t quat_pow(quat_t q, float t);
+
+/*
+	quat_magnitude : calculates the magnitude of a quaternion
+	q : quaternion
+	returns: magnitude of the quaternion 'q'
+ */
+HPML_API quat_t quat_magnitude(quat_t q);
+
+/*
+	quat_sqrmagnitude : calculates the squared magnitude of a quaternion, efficient than magnitude version
+	q : quaternion
+	returns: squared magnitude of the quaternion 'q'
+ */
+HPML_API quat_t quat_sqrmagnitude(quat_t q);
+
+/*
+	quat_normalize : calculates a unit quaternion from a quaternion
+	q : original quaternion
+	returns: unit quaterion of the quaterion 'q'
+ */
+HPML_API quat_t quat_normalize(quat_t q);
+
+/*
+	quat_angle_axis : calculates a quaterion rotor with angle along an axis
+	x : x coordinate of the axis
+	y : y coordinate of the axis
+	z : z coordinate of the axis
+	angle : angle (in radians), +ve is anticlockwise, -ve is clockwise
+	returns: quaterion rotor
+ */
+HPML_API quat_t quat_angle_axis(float x, float y, float z, float angle);
+
+/* same as quat_angle_axis above */
+HPML_API quat_t quat_versor(float x, float y, float z, float angle);
+
+/*
+ 	quat_angle : calculates an angle between two quaternions
+ 	q1 : first quaterion (from)
+ 	q2 : second quaterion (to)
+ 	returns: angle (in radians), +ve is anticlockwise, -ve is clockwise
+ */
+HPML_API float quat_angle(quat_t q1, quat_t q2);
+
+/*
+	quat_lerp : calculates a linearly interpolated quaternion
+	from : initial quaternion
+	to : final quaternion
+	t : interpolation parameter
+	returns: interpolated quaternion or { from * (1 - t) + to * t }
+ */
+HPML_API quat_t quat_lerp(quat_t from, quat_t to, float t);
+
+/*
+	quat_slerp : calculates a spherically interpolated quaternion
+	from : intial quaternion
+	to : final quaternion
+	t : interpolation paramter
+	returns : interpolated quaterion OR
+
+NOTE:
+	versor : exp(q) = cos(angle * 0.5f) + r * sin(angle * 0.5f),
+			where r * r = -1, which is a quaternion with zero scalar part and unit vector part
+
+	slerp(q0, q1, t) = pow(q1 * inverse(q0), t) * q0
+	OR
+	slerp(q0, q1, t) = pow(quat_difference(q1, q0), t) * q0
+ */
+HPML_API quat_t quat_slerp(quat_t from, quat_t to, float t);
 
