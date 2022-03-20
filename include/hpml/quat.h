@@ -1,4 +1,25 @@
 
+/*
+	
+	Resources:
+
+	https://en.wikipedia.org/wiki/Quaternion
+	https://math.stackexchange.com/questions/2552/the-logarithm-of-quaternion
+	https://en.wikipedia.org/wiki/Slerp
+	https://web.mit.edu/2.998/www/QuaternionReport1.pdf
+	https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation
+	https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+	https://en.wikipedia.org/wiki/Rotation_formalisms_in_three_dimensions
+	https://en.wikipedia.org/wiki/Three-dimensional_rotation_operator
+	https://en.wikipedia.org/wiki/Euler%27s_rotation_theorem
+	https://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation
+	https://en.wikipedia.org/wiki/Spherical_coordinate_system
+	
+	https://math.stackexchange.com/questions/939229/unit-quaternion-to-a-scalar-power
+
+ */
+
+
 #pragma once
 
 #include <hpml/defines.h>
@@ -9,7 +30,19 @@ typedef struct quat_t
 	 vector part = { x, y, z },
 	 scalar part = { w }
 	*/
-	float x, y, z, w;
+	union
+	{
+		struct 
+		{
+			float x, y, z, w;
+		};
+
+		struct
+		{
+			float v[3];
+			float s;
+		};
+	};
 } quat_t;
 
 #define QUAT (quat_t)
@@ -18,19 +51,19 @@ typedef struct quat_t
 	x, y, z, w : components of the quaternion
 	returns: an initialized instance of quat_t struct
 */
-HPML_API HPML_FORCE_INLINE quat_t quat(float x, float y, float z, float w) { return QUAT { x, y, z, w }; }
+static HPML_API HPML_FORCE_INLINE quat_t quat(float x, float y, float z, float w) { return QUAT { x, y, z, w }; }
 
 /*
 	quat_identity : consturcts an identity quaternion instance
 	returns: identity quaternion
  */
-HPML_API HPML_FORCE_INLINE quat_t quat_identity() { return quat(0, 0, 0, 1); }
+static HPML_API HPML_FORCE_INLINE quat_t quat_identity() { return quat(0, 0, 0, 1); }
 
 /*
  	quat_zero : constructs a null quaternion instance
  	returns : null quaternion
  */
-HPML_API HPML_FORCE_INLINE quat_t quat_zero() { return quat(0, 0, 0, 0); }
+static HPML_API HPML_FORCE_INLINE quat_t quat_zero() { return quat(0, 0, 0, 0); }
 
 /*	quat_add : adds variable number of quaternions into q (quat_t)
 	count : number of variable quaternions to add
@@ -68,6 +101,14 @@ HPML_API quat_t __quat_mul(quat_t q1, quat_t q2);
 HPML_API quat_t quat_div(u32 count, quat_t q, ...);
 HPML_API quat_t __quat_div(quat_t q1, quat_t q2);
 
+/*
+ 	quat_mul_scalar : multiplies each component of the quaternion with a scalar value
+ 	q : original quaternion
+ 	s : scalar floating point value
+ 	returns : q * s
+ */
+static HPML_API HPML_FORCE_INLINE quat_t quat_mul_scalar(quat_t q, float s) { return quat(q.x * s, q.y * s, q.z * s, q.w * s); }
+
 /*	quat_difference : calculates the rotation difference between two quaternions q1 and q2
 	q1 : first quaternion (final rotation)
 	q2 : second quaternion (intial rotation)
@@ -90,7 +131,7 @@ HPML_API quat_t quat_inverse(quat_t q);
  	q : original quaternion
  	returns : conjugate of the quaterion 'q'
  */
-HPML_API HPML_FORCE_INLINE quat_t quat_conjugate(quat_t q) { return quat(-q.x, -q.y, -q.z, q.w); }
+static HPML_API HPML_FORCE_INLINE quat_t quat_conjugate(quat_t q) { return quat(-q.x, -q.y, -q.z, q.w); }
 
 /*
 	quat_reciprocal : calculates the reciprocal of a quaternion
@@ -112,9 +153,10 @@ HPML_API quat_t quat_sqrt(quat_t q);
 /*
 	quat_log : calculates the logarithm of a quaternion
 	q : original quaternion
+	base : scalar base
 	returns: logarithm of the quaternion 'q'
  */
-HPML_API quat_t quat_log(quat_t q);
+HPML_API quat_t quat_log(quat_t q, float base);
 
 /*
 	quat_pow : calculates power of a quaternion
@@ -155,7 +197,16 @@ HPML_API quat_t quat_normalize(quat_t q);
  */
 HPML_API quat_t quat_angle_axis(float x, float y, float z, float angle);
 
-/* same as quat_angle_axis above */
+/*
+	quat_versor : calculates a quaternion versor
+	x : x coordiante of the imaginary part (r)
+	y : y coordinate of the imaginary part (r)
+	z : z coordinate of the imaginary part (r)
+	angle : ange (in radians)
+
+NOTE: 
+	versor = exp(r * angle) = cos(angle) + sin(angle) * r;
+ */
 HPML_API quat_t quat_versor(float x, float y, float z, float angle);
 
 /*
@@ -183,7 +234,7 @@ HPML_API quat_t quat_lerp(quat_t from, quat_t to, float t);
 	returns : interpolated quaterion OR
 
 NOTE:
-	versor : exp(q) = cos(angle * 0.5f) + r * sin(angle * 0.5f),
+	versor : q = exp(r * angle) = cos(angle * 0.5f) + r * sin(angle * 0.5f),
 			where r * r = -1, which is a quaternion with zero scalar part and unit vector part
 
 	slerp(q0, q1, t) = pow(q1 * inverse(q0), t) * q0
@@ -192,3 +243,10 @@ NOTE:
  */
 HPML_API quat_t quat_slerp(quat_t from, quat_t to, float t);
 
+/*
+	quat_sandwitch : calculates the sandwitched multiplication q * p * inverse(q), where q is a quaterion versor
+	versor : quaternion q in the sandwitched multiplication
+	p : quaternion p in the sandwitched multiplication
+	returns: sandwitched product (q * p * inverse(q))
+ */
+HPML_API quat_t quat_sandwitch(quat_t versor, quat_t p);
