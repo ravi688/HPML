@@ -132,6 +132,7 @@ HPML_API quat_t quat_inverse(quat_t q);
  	returns : conjugate of the quaterion 'q'
  */
 static HPML_API HPML_FORCE_INLINE quat_t quat_conjugate(quat_t q) { return quat(-q.x, -q.y, -q.z, q.w); }
+#define quat_conj(x) quat_conjugate(x)
 
 /*
 	quat_reciprocal : calculates the reciprocal of a quaternion
@@ -171,14 +172,14 @@ HPML_API quat_t quat_pow(quat_t q, float t);
 	q : quaternion
 	returns: magnitude of the quaternion 'q'
  */
-HPML_API quat_t quat_magnitude(quat_t q);
+HPML_API float quat_magnitude(quat_t q);
 
 /*
 	quat_sqrmagnitude : calculates the squared magnitude of a quaternion, efficient than magnitude version
 	q : quaternion
 	returns: squared magnitude of the quaternion 'q'
  */
-HPML_API quat_t quat_sqrmagnitude(quat_t q);
+HPML_API float quat_sqrmagnitude(quat_t q);
 
 /*
 	quat_normalize : calculates a unit quaternion from a quaternion
@@ -250,3 +251,19 @@ HPML_API quat_t quat_slerp(quat_t from, quat_t to, float t);
 	returns: sandwitched product (q * p * inverse(q))
  */
 HPML_API quat_t quat_sandwitch(quat_t versor, quat_t p);
+
+/*
+	 Comparison functions
+ */
+
+/*
+	quat_equal : determines whether two quaternions are equal or not
+	q1 : first quaternion
+	q2 : quaternion to compare against
+	returns: true if both are equal to each other; false otherwise.
+ */
+HPML_API bool quat_equal(quat_t q1, quat_t q2);
+
+/* For debugging purpose */
+
+HPML_API void quat_print(quat_t q);

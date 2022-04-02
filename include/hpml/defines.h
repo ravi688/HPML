@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef uint16_t u16; 
 typedef int16_t s16;
@@ -45,5 +46,5 @@ do\
 
 
 #define HPML_INLINE inline
-#define HPML_FORCE_INLINE __attribute__((always_inline))
+#define HPML_FORCE_INLINE __attribute__((always_inline)) inline
 
