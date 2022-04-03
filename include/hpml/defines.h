@@ -18,6 +18,7 @@ typedef uint8_t u8;
 typedef int8_t s8; 
 
 #define IGNORE_CONST(type, value) (*(type*)(&value))
+#define REINTERPRET_CAST(value, type) (*(type*)(&(value)))
 
 #ifdef GLOBAL_DEBUG 
 
