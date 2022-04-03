@@ -1,6 +1,5 @@
 
 
-#include <hpml/memory.h>
 #include <hpml/mat4.h>
 #include <hpml/vec4.h>
 #include <hpml/affine_transformation.h>
@@ -32,17 +31,17 @@ int main()
 	quaternion_test();
 
 
-	vec4_t(float) v = vec4_zero(float)();
-	vec4_print(float)(v);
+	vec4_t v = vec4_zero();
+	vec4_print(v);
 
-	vec4_t(float) v1 = vec4(float)(1, 3, 5, 100);
-	vec4_print(float)(v1);
+	vec4_t v1 = vec4(1, 3, 5, 100);
+	vec4_print(v1);
 
-	vec4_print(float)(vec4_add(float)(2, v1, vec4(float)(3.4f, -5.6f, 0.0f, 1.2f)));
+	vec4_print(vec4_add(2, v1, vec4(3.4f, -5.6f, 0.0f, 1.2f)));
 	puts("Hello World");
 
 
-	mat4_t(float) mat =
+	mat4_t mat =
 	{
 		0, 1, 2, 3,
 		1, 0, 4, 5,
@@ -50,6 +49,6 @@ int main()
 		7, 2, 4, 0
 	};
 
-	printf("Determinant: %f\n", mat4_det(float)(mat));
+	printf("Determinant: %f\n", mat4_det(mat));
 	return 0;
 }
