@@ -1,5 +1,8 @@
 # Mathematics Library for Computer Graphics & Numerical Computing
 
+- In-depth documention is embedded in the header files
+- You can find overview of the library in **Getting Started**  section
+
 #### Features
 
 - Vector Mathematics
@@ -45,7 +48,7 @@
 | Matrix 4x4        | a 4x4 square matrix    | `mat4_t`    |
 | Complex Number    | a complex number       | `complex_t` |
 
-###### Vectors
+#### Vectors
 
 2D Vectors
 
@@ -73,9 +76,14 @@ final_position = vec2_add(3, position, vec2_down(), vec2_left());
 another_position = vec2_sub(3, position, vec2_down(), vec2_left());
 
 // printing on the console window for debugging purpose
-vec2_print(final_position);        // final_position: (x, y, z)
-vec2_print(another_position);      // another_position: (x, y, z)
+vec2_print(final_position);        // final_position: (x, y)
+vec2_print(another_position);      // another_position: (x, y)
 
+// interpolations [linear interpolation, and spherical linear interpolation]
+vec2_t interpolated_vector = vec2_lerp(vec2(1.0f, 2.0f), vec2(4.0f, 5.0f), 0.2f);
+vec2_t slerped_vector = vec2_slerp(vec2(1.0f, 2.0f), vec2(4.0f, 5.0f), 0.2f);
+vec2_print(interpolated_vector);
+vec2_print(slerped_vector);
 
 ```
 
@@ -103,21 +111,36 @@ if(vec3_is_null(null_vector))
 // adding & subtracting vectors
 vec3_t final_position = vec3_add(2, position, vec3_down());
 vec3_t another_position = vec3_sub(2, position, vec2_up());
+
+// adding & subtracting more than 2 vectors at once
+final_position = vec3_add(3, position, vec3_down(), vec3_left());
+another_position = vec3_sub(3, position, vec3_down(), vec3_left());
+
+// printing on the console window for debugging purpose
+vec3_print(final_position);        // final_position: (x, y, z)
+vec3_print(another_position);      // another_position: (x, y, z)
+
+// interpolations [linear interpolation, and spherical linear interpolation]
+vec3_t interpolated_vector = vec3_lerp(vec2(1.0f, 2.0f, 5.0f), vec2(4.0f, 5.0f, 2.0f), 0.2f);
+vec3_t slerped_vector = vec3_slerp(vec2(1.0f, 2.0f, 5.0f), vec2(4.0f, 5.0f, 2.0f), 0.2f);
+vec3_print(interpolated_vector);
+vec3_print(slerped_vector);
+
 ```
 
 
 
 
 
-###### Matrices
+#### Matrices [TODO]
 
-###### Quaternions
+#### Quaternions [TODO]
 
-###### Complex Numbers
+#### Complex Numbers [TODO]
 
 
 
-##### About me
+### About me
 
 [Youtube](https://www.youtube.com/channel/UCWe_os3p4z3DBnQ4B5DUTfw/videos)
 
