@@ -22,7 +22,7 @@ typedef int8_t s8;
 
 #ifdef GLOBAL_DEBUG 
 
-#define ASSERT(boolean, ...)\
+#define HPML_ASSERT(boolean, ...)\
 do\
 {\
 	if(!(boolean))\
@@ -32,7 +32,7 @@ do\
 	}\
 } while(0)
 #else 
-#	define ASSERT(boolean, ...)
+#	define HPML_ASSERT(boolean, ...)
 #endif
 
 #ifdef HPML_STATIC_LIBRARY
