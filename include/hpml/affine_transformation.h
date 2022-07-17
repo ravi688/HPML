@@ -3,6 +3,10 @@
 #include <hpml/mat4.h>      // mat4_t
 #include <hpml/vec4.h>      // vec4_t
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 /* mat4_rotation: Creates a euler angles rotation matrix
  * x: angle of rotation around x-axis in radians
  * y: angle of rotation around y-axis in radians
@@ -175,3 +179,7 @@ HPML_API mat4_t mat4_axis_rotation(float angle, float x, float y, float z);
  * returns: mat4_t shear matrix in 3D space
  */
 HPML_API mat4_t mat4_shear(float xy_angle, float yx_angle, float zx_angle, float xz_angle, float yz_angle, float zy_angle);
+
+#ifdef __cplusplus
+ }
+#endif

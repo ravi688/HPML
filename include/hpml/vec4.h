@@ -33,45 +33,45 @@ typedef union
 
 /*CONSTRUCTOR*/
 /*vec4*/
-HPML_API HPML_FORCE_INLINE vec4_t vec4(float x, float y, float z, float w) { return VEC4 { x, y, z, w }; }
+static HPML_FORCE_INLINE vec4_t vec4(float x, float y, float z, float w) { return VEC4 { x, y, z, w }; }
 
 /* vec4_zero: Creates a vector3 object in memory having x = 0, y = 0, z = 0, and w = 0
  * returns: vec4_t vector having x = 0, y = 0, z = 0, w = 0
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_zero() { return vec4(0, 0, 0, 0); }
+static HPML_FORCE_INLINE vec4_t vec4_zero() { return vec4(0, 0, 0, 0); }
 
 /* vec4_up: Returns the up direction vector (vector4)
  * returns: vec4_t up direction, i.e. Vector4.up [+ve y axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_up() { return vec4(0, 1, 0, 0);  }
+static HPML_FORCE_INLINE vec4_t vec4_up() { return vec4(0, 1, 0, 0);  }
 
 /* vec4_down: Returns the down direction vector (vector4)
  * returns: vec4_t down direction, i.e. Vector4.down [-ve y axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_down() { return vec4(0, -1, 0, 0); }
+static HPML_FORCE_INLINE vec4_t vec4_down() { return vec4(0, -1, 0, 0); }
 
 /* vec4_right: Returns the right direction vector (vector4)
  * returns: vec4_t right direction, i.e. Vector4.right [+ve x axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_right() { return vec4(1, 0, 0, 0); }
+static HPML_FORCE_INLINE vec4_t vec4_right() { return vec4(1, 0, 0, 0); }
 
 /* vec4_left: Returns the left direction vector (vector4)
  * returns: vec4_t left direction, i.e. Vector4.right [-ve x axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_left() { return vec4(-1, 0, 0, 0); }
+static HPML_FORCE_INLINE vec4_t vec4_left() { return vec4(-1, 0, 0, 0); }
 
 /* vec4_forward: Returns the forward direction vector (vector4)
  * returns: vec4_t forward direction, i.e. Vector4.forward [+ve z axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_forward() { return vec4(0, 0, 1, 0); }
+static HPML_FORCE_INLINE vec4_t vec4_forward() { return vec4(0, 0, 1, 0); }
 
 /* vec4_back: Return the backward direction vector (vector4)
  * returns: vec4_t backward direction, i.e. Vector4.back [-ve z axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_back() { return vec4(0, 0, -1, 0); }
+static HPML_FORCE_INLINE vec4_t vec4_back() { return vec4(0, 0, -1, 0); }
 
 /*vec4_one*/
-HPML_API HPML_FORCE_INLINE vec4_t vec4_one() { return vec4(1, 1, 1, 1); }
+static HPML_FORCE_INLINE vec4_t vec4_one() { return vec4(1, 1, 1, 1); }
 
 
 /*ARITHMETIC*/
@@ -170,7 +170,7 @@ HPML_API float vec4_magnitude(vec4_t v);
  * vec4_t v: vector of which squared magnitude to be calculated
  * returns: float squared magnitude of vector4 v
  */
-static HPML_API HPML_FORCE_INLINE float vec4_sqrmagnitude(vec4_t v) { return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w; }
+static HPML_FORCE_INLINE float vec4_sqrmagnitude(vec4_t v) { return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w; }
 
 /* vec4_normalize: Normalizes a vector3
  * vec4_t v: vector to be normalized
@@ -197,7 +197,7 @@ HPML_API float vec4_unit_angle(vec4_t v1, vec4_t v2);
  * v: vector to be negated
  * returns: negated vector
  */
-HPML_API HPML_FORCE_INLINE vec4_t vec4_negate(vec4_t v) { return VEC4 { -v.x, -v.y, -v.z, -v.w }; }
+static HPML_FORCE_INLINE vec4_t vec4_negate(vec4_t v) { return VEC4 { -v.x, -v.y, -v.z, -v.w }; }
 
 /* vec4_rotate_x: rotates a vector along x axis
  * v: vector to be rotated

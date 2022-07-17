@@ -38,6 +38,10 @@ typedef struct mat4_t
 
 #define MAT4 (mat4_t)
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 /* mat4: mat4 contructor taking 16 parameter to initialize the components
  * float v00: element at [0, 0] -> [Row, Column]
  * float v01: element at [0, 1] -> [Row, Column]
@@ -57,7 +61,7 @@ typedef struct mat4_t
  * float v33: element at [3, 3] -> [Row, Column]
  * returns: mat4_t initialized matrix
  */
-static HPML_API HPML_FORCE_INLINE mat4_t mat4(float v00, float v01, float v02, float v03,
+static HPML_FORCE_INLINE mat4_t mat4(float v00, float v01, float v02, float v03,
                     float v10, float v11, float v12, float v13,
                     float v20, float v21, float v22, float v23,
                     float v30, float v31, float v32, float v33)
@@ -86,7 +90,7 @@ HPML_API float* const* const __mat4_data(mat4_t* m);
  * NOTE: this function doesn't support rvalue src matrix; use mat4_move instead
  */
 #define mat4_copy(dest, src) __mat4_copy(&(dest), &(src))
-static HPML_API HPML_FORCE_INLINE void __mat4_copy(mat4_t* const dest, const mat4_t* const src) 
+static HPML_FORCE_INLINE void __mat4_copy(mat4_t* const dest, const mat4_t* const src) 
 { 
 	/*
 		TODO: This should be like this: 
@@ -101,7 +105,7 @@ static HPML_API HPML_FORCE_INLINE void __mat4_copy(mat4_t* const dest, const mat
  * returns: nothing
  */
 #define mat4_move(dst, src) __mat4_move(&(dst), src)
-static HPML_API HPML_FORCE_INLINE void __mat4_move(mat4_t* const dest, const mat4_t src)
+static HPML_FORCE_INLINE void __mat4_move(mat4_t* const dest, const mat4_t src)
 {
 	__mat4_copy(dest, &src);
 }
@@ -133,7 +137,7 @@ HPML_API void mat4_build_cofactor(mat4_t m, float* const* const cofactorMatrix, 
 /* mat4_identity: constructs a 4x4 identity matrix
  * returns: identity matrix of order 4x4
  */
-static HPML_API HPML_FORCE_INLINE mat4_t mat4_identity()
+static HPML_FORCE_INLINE mat4_t mat4_identity()
 {
 	return mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
@@ -141,7 +145,7 @@ static HPML_API HPML_FORCE_INLINE mat4_t mat4_identity()
 /* mat4_null: Creates a null or zero matrix
  * returns: a 4x4 matrix having all entries equal to zero
  */
-static HPML_API HPML_FORCE_INLINE mat4_t mat4_null() { return mat4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+static HPML_FORCE_INLINE mat4_t mat4_null() { return mat4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
 #define mat4_zero mat4_null
 
 
@@ -153,7 +157,7 @@ static HPML_API HPML_FORCE_INLINE mat4_t mat4_null() { return mat4(0, 0, 0, 0, 0
  * returns: mat4_t 4x4 diagonal matrix
  */
 
-static HPML_API HPML_FORCE_INLINE mat4_t mat4_diagonal(float x, float y, float z, float w)
+static HPML_FORCE_INLINE mat4_t mat4_diagonal(float x, float y, float z, float w)
 {
 	return MAT4
 	{
@@ -168,7 +172,7 @@ static HPML_API HPML_FORCE_INLINE mat4_t mat4_diagonal(float x, float y, float z
  * mat4_t m: Matrix of which the trace to be calculated
  * returns: float trace value
  */
-static HPML_API HPML_FORCE_INLINE float mat4_trace(mat4_t m)
+static HPML_FORCE_INLINE float mat4_trace(mat4_t m)
 {
 	return m.m00 + m.m11 + m.m22 + m.m33;
 }
@@ -254,3 +258,7 @@ HPML_API mat4_t mat4_inverse(mat4_t m);
 
 /* mat4_print */
 HPML_API void mat4_print(mat4_t m);
+
+#ifdef __cplusplus
+     }
+#endif // __cplusplus

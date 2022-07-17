@@ -47,23 +47,27 @@ typedef struct quat_t
 
 #define QUAT (quat_t)
 
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
 /* 	quat : constructs a quat_t instance 
 	x, y, z, w : components of the quaternion
 	returns: an initialized instance of quat_t struct
 */
-static HPML_API HPML_FORCE_INLINE quat_t quat(float x, float y, float z, float w) { return QUAT { x, y, z, w }; }
+static HPML_FORCE_INLINE quat_t quat(float x, float y, float z, float w) { return QUAT { x, y, z, w }; }
 
 /*
 	quat_identity : consturcts an identity quaternion instance
 	returns: identity quaternion
  */
-static HPML_API HPML_FORCE_INLINE quat_t quat_identity() { return quat(0, 0, 0, 1); }
+static HPML_FORCE_INLINE quat_t quat_identity() { return quat(0, 0, 0, 1); }
 
 /*
  	quat_zero : constructs a null quaternion instance
  	returns : null quaternion
  */
-static HPML_API HPML_FORCE_INLINE quat_t quat_zero() { return quat(0, 0, 0, 0); }
+static HPML_FORCE_INLINE quat_t quat_zero() { return quat(0, 0, 0, 0); }
 
 /*	quat_add : adds variable number of quaternions into q (quat_t)
 	count : number of variable quaternions to add
@@ -107,7 +111,7 @@ HPML_API quat_t __quat_div(quat_t q1, quat_t q2);
  	s : scalar floating point value
  	returns : q * s
  */
-static HPML_API HPML_FORCE_INLINE quat_t quat_mul_scalar(quat_t q, float s) { return quat(q.x * s, q.y * s, q.z * s, q.w * s); }
+static HPML_FORCE_INLINE quat_t quat_mul_scalar(quat_t q, float s) { return quat(q.x * s, q.y * s, q.z * s, q.w * s); }
 
 /*	quat_difference : calculates the rotation difference between two quaternions q1 and q2
 	q1 : first quaternion (final rotation)
@@ -131,7 +135,7 @@ HPML_API quat_t quat_inverse(quat_t q);
  	q : original quaternion
  	returns : conjugate of the quaterion 'q'
  */
-static HPML_API HPML_FORCE_INLINE quat_t quat_conjugate(quat_t q) { return quat(-q.x, -q.y, -q.z, q.w); }
+static HPML_FORCE_INLINE quat_t quat_conjugate(quat_t q) { return quat(-q.x, -q.y, -q.z, q.w); }
 #define quat_conj(x) quat_conjugate(x)
 
 /*
@@ -267,3 +271,7 @@ HPML_API bool quat_equal(quat_t q1, quat_t q2);
 /* For debugging purpose */
 
 HPML_API void quat_print(quat_t q);
+
+#ifdef __cplusplus
+ 	}
+#endif // __cplusplus

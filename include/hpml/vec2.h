@@ -10,32 +10,36 @@ typedef struct vec2_t
 
 #define VEC2 (vec2_t)
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 /* vec2: Creates vector2 object in memory taking two arguments
  * x: x-component
  * y: y-component
  * returns: vec_t vector having x, y
  */
-static HPML_API HPML_FORCE_INLINE vec2_t vec2(float x, float y) { return VEC2 { x, y }; }
+static HPML_FORCE_INLINE vec2_t vec2(float x, float y) { return VEC2 { x, y }; }
 
 /* vec2_right: Returns the right direction vector (vector2)
  * returns: vec2_t right direction, i.e. Vector2.right [+ve x axis direction]
  */
-static HPML_API HPML_FORCE_INLINE vec2_t vec2_right() { return vec2(1, 0); }
+static HPML_FORCE_INLINE vec2_t vec2_right() { return vec2(1, 0); }
 
 /* vec2_left: Returns the left direction vector (vector2)
  * returns: vec2_t left direction, i.e. Vector2.left [-ve x axis direction]
  */
-static HPML_API HPML_FORCE_INLINE vec2_t vec2_left() { return vec2(-1, 0); }
+static HPML_FORCE_INLINE vec2_t vec2_left() { return vec2(-1, 0); }
 
 /* vec2_down: Returns the down direction vector (vector2)
  * returns: vec2_t down direction, i.e. Vector2.down [-ve y axis direction]
  */
-static HPML_API HPML_FORCE_INLINE vec2_t vec2_down() { return vec2(0, -1); }
+static HPML_FORCE_INLINE vec2_t vec2_down() { return vec2(0, -1); }
 
 /* vec2_up: Returns the up direction vector (vector2)
  * returns: vec2_t up direction, i.e. Vector2.up [+ve y axis direction]
  */
-static HPML_API HPML_FORCE_INLINE vec2_t vec2_up() { return vec2(0, 1); }
+static HPML_FORCE_INLINE vec2_t vec2_up() { return vec2(0, 1); }
 
 
 /* vec2_slerp: Calculates the spherical interpolation value in between vector v1 and v2
@@ -154,7 +158,7 @@ HPML_API float vec2_dot(vec2_t v1, vec2_t v2);
 /* vec2_null: Creates a vector2 object in memory having x = 0, and y = 0
  * returns: vec2_t vector having x = 0, y = 0
  */
-static HPML_API HPML_FORCE_INLINE vec2_t vec2_null() { return vec2(0, 0); }
+static HPML_FORCE_INLINE vec2_t vec2_null() { return vec2(0, 0); }
 
 /* vec2_is_null: Checks if passed vector2 is null or not
  * vec2_t v: vector2 to be checked for
@@ -202,3 +206,7 @@ HPML_API vec2_t vec2_div(vec2_t v1, vec2_t v2);
 
 /* For debugging purpose */
 HPML_API void vec2_print(vec2_t v);
+
+#ifdef __cplusplus
+ }
+#endif // extern "C"

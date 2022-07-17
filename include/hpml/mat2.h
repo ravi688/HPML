@@ -24,10 +24,14 @@ typedef union mat2_t
 
 #define MAT2 (mat2_t)
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 /* mat2_identity: Creates an identity matrix of order 2x2
    returns: 2x2 identity matrix
  */
-static HPML_API HPML_FORCE_INLINE mat2_t mat2_identity() { return MAT2 { 1, 0, 0, 1 }; }
+static HPML_FORCE_INLINE mat2_t mat2_identity() { return MAT2 { 1, 0, 0, 1 }; }
 
 /* mat2: mat2 contructor taking four parameter to initialize the components
  * float v0: element at [0, 0] -> [Row, Column]
@@ -36,7 +40,7 @@ static HPML_API HPML_FORCE_INLINE mat2_t mat2_identity() { return MAT2 { 1, 0, 0
  * float v3: element at [1, 0] -> [Row, Column]
  * returns: mat2_t initialized matrix
  */
-static HPML_API HPML_FORCE_INLINE mat2_t mat2(float v0, float v1, float v2, float v3)
+static HPML_FORCE_INLINE mat2_t mat2(float v0, float v1, float v2, float v3)
 {
 	return MAT2 { v0, v1, v2, v3 };
 }
@@ -45,7 +49,7 @@ static HPML_API HPML_FORCE_INLINE mat2_t mat2(float v0, float v1, float v2, floa
  * mat2_t m: Matrix of which the trace to be calculated
  * returns: float trace value
  */
-static HPML_API HPML_FORCE_INLINE float mat2_trace(mat2_t m)
+static HPML_FORCE_INLINE float mat2_trace(mat2_t m)
 {
 	return m.m0 + m.m3;
 }
@@ -143,3 +147,7 @@ HPML_API mat2_t mat2_rotation(float angle);
 
 /* mat2_print */
 HPML_API void mat2_print(mat2_t m);
+
+#ifdef __cplusplus
+ }
+#endif

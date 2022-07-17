@@ -27,43 +27,43 @@ typedef union
 
 /*CONSTRUCTOR*/
 /*vec3*/
-HPML_API HPML_FORCE_INLINE vec3_t vec3(float x, float y, float z) { return (vec3_t) { x, y, z }; }
+HPML_FORCE_INLINE vec3_t vec3(float x, float y, float z) { return (vec3_t) { x, y, z }; }
 
 /* vec3_zero: Creates a vector3 object in memory having x = 0, and y = 0
  * returns: vec3_t vector having x = 0, y = 0
  */
-HPML_API HPML_FORCE_INLINE vec3_t vec3_zero() { return (vec3_t) { 0, 0, 0 }; }
+HPML_FORCE_INLINE vec3_t vec3_zero() { return (vec3_t) { 0, 0, 0 }; }
 
 /* vec3_up: Returns the up direction vector (vector3)
  * returns: vec3_t up direction, i.e. Vector4.up [+ve y axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec3_t vec3_up() { return (vec3_t) { 0, 1, 0 }; }
+HPML_FORCE_INLINE vec3_t vec3_up() { return (vec3_t) { 0, 1, 0 }; }
 
 /* vec3_down: Returns the down direction vector (vector3)
  * returns: vec3_t down direction, i.e. Vector4.down [-ve y axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec3_t vec3_down() { return (vec3_t) { 0, -1, 0 }; }
+HPML_FORCE_INLINE vec3_t vec3_down() { return (vec3_t) { 0, -1, 0 }; }
 
 /* vec3_right: Returns the right direction vector (vector3)
  * returns: vec3_t right direction, i.e. Vector4.right [+ve x axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec3_t vec3_right() { return (vec3_t) { 1, 0, 0 }; }
+HPML_FORCE_INLINE vec3_t vec3_right() { return (vec3_t) { 1, 0, 0 }; }
 
 /*vec3_left*/
-HPML_API HPML_FORCE_INLINE vec3_t vec3_left() { return (vec3_t) { -1, 0, 0 }; }
+HPML_FORCE_INLINE vec3_t vec3_left() { return (vec3_t) { -1, 0, 0 }; }
 
 /* vec3_forward: Returns the forward direction vector (vector3)
  * returns: vec3_t forward direction, i.e. Vector4.forward [+ve z axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec3_t vec3_forward() { return (vec3_t) { 0, 0, 1 }; }
+HPML_FORCE_INLINE vec3_t vec3_forward() { return (vec3_t) { 0, 0, 1 }; }
 
 /* vec3_back: Return the backward direction vector (vector3)
  * returns: vec3_t backward direction, i.e. Vector4.back [-ve z axis direction]
  */
-HPML_API HPML_FORCE_INLINE vec3_t vec3_back() { return (vec3_t) { 0, 0, 1 }; }
+HPML_FORCE_INLINE vec3_t vec3_back() { return (vec3_t) { 0, 0, 1 }; }
 
 /*vec3_one*/
-HPML_API HPML_FORCE_INLINE vec3_t vec3_one() { return (vec3_t) { 1, 1, 1 }; }
+HPML_FORCE_INLINE vec3_t vec3_one() { return (vec3_t) { 1, 1, 1 }; }
 
 
 /*ARITHMETIC*/
