@@ -12,6 +12,23 @@ HPML_API float* const* const __mat4_data(mat4_t* m)
 	return (float* const* const)m->data;
 }
 
+HPML_API vec4_t mat4_get_position(mat4_t m)
+{
+	return vec4(m.m03, m.m13, m.m23, m.m33);
+}
+
+HPML_API vec4_t mat4_get_rotation(mat4_t m)
+{
+	/* TODO */
+	return vec4_zero();
+}
+
+HPML_API vec4_t mat4_get_scale(mat4_t m)
+{
+	/* TODO */
+	return vec4_one();
+}
+
 HPML_API float mat4_det(mat4_t m)
 {
 	return m.m00 * (m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) - m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) + m.m13 * (m.m21 * m.m32 - m.m22 * m.m31)) -
@@ -96,7 +113,7 @@ HPML_API mat4_t mat4_add(mat4_t m1, mat4_t m2)
 
 HPML_API mat4_t mat4_sub(mat4_t m1, mat4_t m2)
 {
-	return MAT4 
+	return MAT4
 	{
 		m1.m00 - m2.m00,
 		m1.m01 - m2.m01,

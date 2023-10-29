@@ -6,6 +6,9 @@
 #endif
 
 #include <hpml/defines.h>
+#include <hpml/vec4.h>
+#include <hpml/vec2.h>
+#include <hpml/vec3.h>
 
 /*DATA*/
 /*vec4_t struct*/
@@ -19,6 +22,24 @@ typedef union
 	struct
 	{
 		float r, g, b, a;
+	};
+
+	struct
+	{
+		vec3_t xyz;
+		float _pad0;
+	};
+
+	struct
+	{
+		vec2_t xy;
+		vec2_t zw;
+	};
+
+	struct
+	{
+		float _pad1;
+		vec3_t yzw;
 	};
 
 	float v[4];
@@ -229,8 +250,8 @@ HPML_API vec4_t vec4_rotate(vec4_t v, float x, float y, float z);
 
 /*vec4_axis_rotate*/
 /*
- let axis = a; 
- let vector = v; 
+ let axis = a;
+ let vector = v;
  let angle = r;
 
  k =  v - (v.a)a

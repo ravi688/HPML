@@ -2,6 +2,7 @@
 
 
 #include <hpml/defines.h>
+#include <hpml/vec4.h> // for vec4_t
 
 #include <math.h>           // for sin and cos
 #include <stdarg.h>         // for variable arugments
@@ -66,7 +67,7 @@ static HPML_FORCE_INLINE mat4_t mat4(float v00, float v01, float v02, float v03,
                     float v20, float v21, float v22, float v23,
                     float v30, float v31, float v32, float v33)
 {
-    return MAT4 
+    return MAT4
     {
         v00, v01, v02, v03,
         v10, v11, v12, v13,
@@ -90,13 +91,13 @@ HPML_API float* const* const __mat4_data(mat4_t* m);
  * NOTE: this function doesn't support rvalue src matrix; use mat4_move instead
  */
 #define mat4_copy(dest, src) __mat4_copy(&(dest), &(src))
-static HPML_FORCE_INLINE void __mat4_copy(mat4_t* const dest, const mat4_t* const src) 
-{ 
+static HPML_FORCE_INLINE void __mat4_copy(mat4_t* const dest, const mat4_t* const src)
+{
 	/*
-		TODO: This should be like this: 
+		TODO: This should be like this:
 			memcpy(dest, src, COMPILE_TIME( 16 * sizeof(float) ));
 	 */
-	memcpy(dest, src, 16 * sizeof(float)); 
+	memcpy(dest, src, 16 * sizeof(float));
 }
 
 /* mat4_move: Performs a move operation of 4x4 matrices
@@ -109,6 +110,24 @@ static HPML_FORCE_INLINE void __mat4_move(mat4_t* const dest, const mat4_t src)
 {
 	__mat4_copy(dest, &src);
 }
+
+/* mat4_get_position: Retrieves the position componenets from the 4x4 matrix
+ * m: Input 4x4 matrix
+ * returns: vec4 position vector
+ */
+HPML_API vec4_t mat4_get_position(mat4_t m);
+
+/* mat4_get_rotation: Retrieves the euler angle rotation from the 4x4 matrix
+ * m: Input 4x4 matrix
+ * returns: vec4 euler angles rotation vector (prefer not to use the 4th component, as it might not have any meaning to a typical context)
+ */
+HPML_API vec4_t mat4_get_rotation(mat4_t m);
+
+/* mat4_get_scale: Retrieves the scale componenets from the 4x4 matrix
+ * m: Input 4x4 matrix
+ * returns: vec4 scale vector
+ */
+HPML_API vec4_t mat4_get_scale(mat4_t m);
 
 /* mat4_determinant: Calculates the determinant value of a 4x4 matrix
  * m: Input 4x4 matrix
@@ -168,7 +187,7 @@ static HPML_FORCE_INLINE mat4_t mat4_diagonal(float x, float y, float z, float w
 	};
 }
 
-/* mat4_trace: Calculates trace of 2x2 matrix 
+/* mat4_trace: Calculates trace of 2x2 matrix
  * mat4_t m: Matrix of which the trace to be calculated
  * returns: float trace value
  */
@@ -247,7 +266,7 @@ HPML_API mat4_t mat4_transpose(mat4_t m);
  */
 HPML_API mat4_t mat4_lerp(mat4_t m1, mat4_t m2, float lerp_value);
 
-/* mat4_inverse: Inverts a 4x4 matrix 
+/* mat4_inverse: Inverts a 4x4 matrix
  * mat4_t m: Matrix to be inverted
  * returns: mat4_t inverted 4x4 matrix
  */
