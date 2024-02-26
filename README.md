@@ -3,6 +3,8 @@
 - In-depth documention is embedded in the header files
 - You can find overview of the library in **Getting Started**  section
 
+<a href="https://www.buymeacoffee.com/raviprakashsingh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 #### Features
 
 - Vector Mathematics
