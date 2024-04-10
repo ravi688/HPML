@@ -134,7 +134,21 @@ vec3_print(slerped_vector);
 
 
 
-#### Matrices [TODO]
+#### Matrices
+
+2x2 Matrices
+```c
+  mat2_t m = { 1.0f, 0.0f, 0.0f, 1.0f }; // initializer
+  m = mat2_identity();                   // identity matrix of dimension 2x2
+  mat2_t m1 = mat2(1.0f, 0.0f, 0.0f, 1.0f); // matrix constructor of dimension 2x2
+  float t = mat2_trace(m1);   // trace calculation, i.e. sum of diagonal elements from left to right
+  mat2_t m2 = mat2_add(m, m1); // addition
+  mat2_t m3 = mat2_mul_with_scalar(m2, 5.0f) // multiply with scalar
+  mat2_t lp = mat2_lerp(m2, m3, 0.7f); //  linear interpolation calculation for each elements of the matrices
+  mat2_t rotation = mat2_rotation(1.57) // approx 90 degree anticlockwise 2D rotation matrix
+  mat2_t opp_rot = mat2_inverse(rotation) // inverse of a 2x2 matrix
+  mat2_print(opp_rot); // print the elements of 2x2 matrix to stdout
+```
 
 #### Quaternions [TODO]
 
