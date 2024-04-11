@@ -138,16 +138,90 @@ vec3_print(slerped_vector);
 
 2x2 Matrices
 ```c
-  mat2_t m = { 1.0f, 0.0f, 0.0f, 1.0f }; // initializer
-  m = mat2_identity();                   // identity matrix of dimension 2x2
-  mat2_t m1 = mat2(1.0f, 0.0f, 0.0f, 1.0f); // matrix constructor of dimension 2x2
-  float t = mat2_trace(m1);   // trace calculation, i.e. sum of diagonal elements from left to right
-  mat2_t m2 = mat2_add(m, m1); // addition
-  mat2_t m3 = mat2_mul_with_scalar(m2, 5.0f) // multiply with scalar
-  mat2_t lp = mat2_lerp(m2, m3, 0.7f); //  linear interpolation calculation for each elements of the matrices
-  mat2_t rotation = mat2_rotation(1.57) // approx 90 degree anticlockwise 2D rotation matrix
-  mat2_t opp_rot = mat2_inverse(rotation) // inverse of a 2x2 matrix
-  mat2_print(opp_rot); // print the elements of 2x2 matrix to stdout
+  // initializer
+  mat2_t m = { 1.0f, 0.0f, 0.0f, 1.0f };
+  // matrix constructor of dimensions 2x2
+  mat2_t m1 = mat2(1.0f, 0.0f, 0.0f, 1.0f);
+
+  // identity matrix of dimensions 2x2
+  m = mat2_identity();
+
+  // trace calculation, i.e. sum of diagonal elements from left to right
+  float t = mat2_trace(m1);
+
+  // addition
+  mat2_t m2 = mat2_add(m, m1);
+
+  // multiply with scalar
+  mat2_t m3 = mat2_mul_with_scalar(m2, 5.0f)
+
+   //  linear interpolation calculation for each elements of the matrices
+  mat2_t lp = mat2_lerp(m2, m3, 0.7f);
+
+  // calculates and returns approx 90 degree anticlockwise 2D rotation matrix
+  mat2_t rotation = mat2_rotation(1.57)
+
+  // calculates and returns inverse of a 2x2 matrix (non-singular matrix)
+  mat2_t opp_rot = mat2_inverse(rotation)
+
+  // print the elements of 2x2 matrix to stdout
+  mat2_print(opp_rot);
+```
+
+4x4 Matrices
+```c
+// initializer
+mat4_t m =
+{
+  1.0f, 0.0f, 0.0f, 0.0f,
+  0.0f, 1.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 1.0f, 0.0f,
+  0.0f, 0.0f, 0.0f, 1.0f
+};
+// matrix constructor of dimensions 4x4
+mat4_t m1 = mat4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+
+// identity matrix of dimensions 4x4
+m = mat4_identity();
+
+// copy contents of m1 matrix into m1 matrix
+mat4_copy(m, m1);
+// move identity matrix (r-value) into m matrix
+mat4_move(m, mat4_identity());
+
+// returns the last column (considered as position vector in a translation vector)
+vec4_t position = mat4_get_position(m);
+// returns the euler angles rotation along each axis in radians in a RTS matrix
+vec4_t euler_angles = mat4_get_rotation(m);
+// returns the diagonal elements from left to right
+vec4_t scale = mat4_get_scale(m);
+
+// calculates and returns determinant of 4x4 matrix
+float det = mat4_det(m);
+
+// multiply 2 4x4 matrices together, associates from right to left
+mat4_t product = mat4_mul(2, m, m1);
+
+// creates a scale matrix (a diagonal matrix) which scales x, y and z components by 2.0f
+mat4_t scale_matrix = mat4_diagonal(2.0f, 2.0f, 2.0f, 1.0f);
+
+// multiply 4x4 matrix by 2.0f (a scalar)
+mat4_t t = mat4_mul_scalar(scale_matrix, 2.0f);
+
+// multiplies each components of first matrix to the correponding components of second matrix
+mat4_t t1 = mat4_mul_component_wise(scale_matrix, scale_matrix);
+
+// transposes 4x4 matrix along the left-to-right diagonal
+mat4_t trans = mat4_transpose(t1);
+
+// linearly interpolates each components of the two matrices
+mat4_t l = mat4_lerp(t1, t, 0.7f);
+
+// calculates and returns inverse of 4x4 non-singular matrix, if the matrix is singular then throws an exception
+mat4_t inv = mat4_inverse(l);
+
+// prints the components of a 4x4 matrix on stdout
+mat4_print(inv);
 ```
 
 #### Quaternions [TODO]
