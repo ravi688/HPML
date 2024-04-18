@@ -66,8 +66,8 @@ HPML_API vec2_t vec2_abs(vec2_t v)
 {
 	return VEC2 
 	{
-		abs(v.x),
-		abs(v.y)
+		fabs(v.x),
+		fabs(v.y)
 	};
 }
 
