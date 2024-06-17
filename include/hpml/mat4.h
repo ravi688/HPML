@@ -8,6 +8,31 @@
 #include <stdarg.h>         // for variable arugments
 #include <string.h>         // memcpy
 
+/* plain mat4 object */
+typedef union _mat4_t
+{
+	// elements
+	struct
+	{
+		float m00, m01, m02, m03;
+		float m10, m11, m12, m13;
+		float m20, m21, m22, m23;
+		float m30, m31, m32, m33;
+	};
+
+	// sequential
+	float values[16];
+
+	// rows
+	struct
+	{
+		float r1[4];
+		float r2[4];
+		float r3[4];
+		float r4[4];
+	};
+} _mat4_t;
+
 
 typedef struct mat4_t
 {
