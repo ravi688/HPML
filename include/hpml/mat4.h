@@ -38,7 +38,7 @@ typedef struct mat4_t
 {
 	union
 	{
-		struct
+		union
 		{
 			// elements
 			struct
