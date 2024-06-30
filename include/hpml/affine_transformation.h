@@ -148,6 +148,7 @@ HPML_API mat4_t mat4_shear_zy(float angle);
  * returns: mat4_t translation matrix having vec3(x, y, z) displacement
  */
 HPML_API mat4_t mat4_translation(float x, float y, float z);
+static HPML_FORCE_INLINE mat4_t mat4_translation_v(vec3_t disp_vector) { return mat4_translation(disp_vector.x, disp_vector.y, disp_vector.z); }
 
 /*
  * mat4_scale: Calculates a scale 4x4 matrix having the scale factors as x [in x dir], y [in y dir], and z [in z dir]
