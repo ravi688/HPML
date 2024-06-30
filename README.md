@@ -47,7 +47,8 @@
 | Quaternion        | a quaternion           | `quat_t`    |
 | Matrix 2x2        | a 2x2 square matrix    | `mat2_t`    |
 | Matrix 3x3        | a 3x3 square matrix    | `mat3_t `   |
-| Matrix 4x4        | a 4x4 square matrix    | `mat4_t`    |
+| Matrix 4x4        | a 4x4 square matrix, sizeof(mat4_t) != 64 bytes    | `mat4_t`    |
+| Raw Matrix 4x4    | a 4x4 square matrix, sizeof(_mat4_t) == 64 bytes | `_mat4_t` |
 | Complex Number    | a complex number       | `complex_t` |
 
 #### Vectors
@@ -223,6 +224,7 @@ mat4_t inv = mat4_inverse(l);
 // prints the components of a 4x4 matrix on stdout
 mat4_print(inv);
 ```
+**NOTE: To convert `mat4_t` to raw `_mat4_t`**: simply access the union member `raw4x4f32` in `mat4_t` object.
 
 #### Quaternions [TODO]
 
