@@ -40,6 +40,30 @@ EXCEPTION_BLOCK
 	};
 }
 
+HPML_API mat4_t mat4_ortho_projection2(float nearClipPlane, float farClipPlane, float height, float aspectRatio)
+{
+	float box_x = farClipPlane - nearClipPlane;
+	float box_y;
+	float box_z;
+		box_y = height;
+		box_z = aspectRatio * height;
+EXCEPTION_BLOCK
+(
+	if((box_x == 0) || (box_y == 0) || (box_z == 0))
+		throw_exception(DIVIDE_BY_ZERO);
+	if((box_x < 0) || (box_y < 0) || (box_z < 0))
+		throw_exception(NEGATIVE_VALUE);
+)
+	float t = 1 / box_x;
+	return (mat4_t)
+	{
+		0, 0, 2 / box_z, 0,
+		0, 2 / box_y, 0, 0,
+		t, 0, 0, - nearClipPlane * t,
+		0, 0, 0, 1
+	};
+}
+
 HPML_API mat4_t mat4_persp_projection(float nearClipPlane, float farClipPlane, float fieldOfView, float aspectRatio)
 {
 EXCEPTION_BLOCK

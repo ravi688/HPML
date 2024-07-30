@@ -23,6 +23,8 @@ HPML_API mat4_t mat4_rotation(float x, float y, float z);
  */
 HPML_API mat4_t mat4_ortho_projection(float nearClipPlane, float farClipPlane, float height, float aspectRatio);
 
+HPML_API mat4_t mat4_ortho_projection2(float nearClipPlane, float farClipPlane, float height, float aspectRatio);
+
 /* mat4_persp_projection: Creates a perspective projection matrix
  * nearClipPlane: position of the near clip plane relative to the camera, +ve means front and -ve means back
  * farClipPlane: position of the far clip plane relative to the camera, +ve means front and -ve means back
