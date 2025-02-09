@@ -1,0 +1,43 @@
+{
+    "project_name" : "HPML",
+    "canonical_name" : "hpml",
+    "description" : "Mathematics Library for Scientific Computing",
+    "release_defines": [ "-DHPML_RELEASE" ],
+    "debug_defines": [ "-DHPML_DEBUG" ],
+    "install_header_dirs" : [ "include/hpml" ],
+    "include_dirs" : [ "include" ],
+    "targets" :
+    [
+        {
+            "name" : "hpml_static",
+            "is_static_library" : true,
+            "description" : "Static Library for HPML",
+            "build_defines" : [ "-DHPML_BUILD_STATIC_LIBRARY" ],
+            "use_defines" : [ "-DHPML_USE_STATIC_LIBRARY" ]
+        },
+        {
+            "name" : "hpml_shared",
+            "is_shared_library" : true,
+            "description" : "Shared Library for HPML",
+            "build_defines" : [ "-DHPML_BUILD_SHARED_LIBRARY" ],
+            "use_defines" : [ "-DHPML_USE_SHARED_LIBRARY" ]
+        },
+        {
+            "name" : "main",
+            "is_executable" : true,
+            "sources" : [ "source/main.c" ]
+        }
+    ],
+    "sources" :
+    [
+        "source/affine_transformation.c",
+        "source/complex.c",
+        "source/exception.c",
+        "source/mat2.c",
+        "source/mat4.c",
+        "source/quat.c",
+        "source/vec2.c",
+        "source/vec3.c",
+        "source/vec4.c"
+    ]
+}
